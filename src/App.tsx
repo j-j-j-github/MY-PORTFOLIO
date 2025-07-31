@@ -164,7 +164,7 @@ const App = () => {
             Have a project in mind or just want to say hello? Feel free to reach out! I'm always open to new opportunities and collaborations.
           </p>
           <div className="flex justify-center space-x-6 mt-8">
-            <SocialLink icon={Github} href="https://github.com/j_j_j_github" label="GitHub" />
+            <SocialLink icon={Github} href="https://github.com/j-j-j-github" label="GitHub" />
             <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/" label="LinkedIn" />
             <SocialLink icon={Mail} href="mailto:jeevaljolly@gmail.com" label="Email" />
           </div>

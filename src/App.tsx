@@ -277,51 +277,57 @@ const SkillCard = ({ icon: Icon, name }: { icon: React.ComponentType<any>; name:
 
 // Project Card Component with ANIMATION RESTORED
 const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string } }) => (
-    <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl">
-        {/* Effects from SkillCard */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-700 ease-out transform scale-0 group-hover:scale-100 rounded-xl z-10"></div>
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out p-[1px] z-10">
-            <div className="bg-black rounded-xl h-full w-full"></div>
-        </div>
-        <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10"></div>
-        
-        {/* Content */}
-        <div className="relative z-20">
-            <div className="relative w-full h-56 bg-gray-900 overflow-hidden">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                    onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.src = `https://placehold.co/600x400/111111/FFFFFF?text=${encodeURIComponent(project.title.replace(/\s/g, '+'))}`;
-                    }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                </div>
-            </div>
-            <div className="p-6 space-y-4">
-                <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                        <span key={index} className="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm font-medium rounded-full">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-                <div className="flex justify-end mt-4">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-indigo-400 hover:text-indigo-200 font-semibold transition-colors duration-200">
-                        View Project
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+  // Added `flex flex-col` to the main container from your original code
+  <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl flex flex-col">
+      {/* Effects from SkillCard (untouched) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-700 ease-out transform scale-0 group-hover:scale-100 rounded-xl z-10"></div>
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out p-[1px] z-10">
+          <div className="bg-black rounded-xl h-full w-full"></div>
+      </div>
+      <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10"></div>
+      
+      {/* Make the main content wrapper a flex container that can grow */}
+      <div className="relative z-20 flex flex-col flex-grow">
+          <div className="relative w-full h-56 bg-gray-900 overflow-hidden">
+              <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                  onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = `https://placehold.co/600x400/111111/FFFFFF?text=${encodeURIComponent(project.title.replace(/\s/g, '+'))}`;
+                  }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+              </div>
+          </div>
+          {/* This content area is now a flex column that fills the remaining space */}
+          <div className="p-6 flex flex-col flex-grow">
+              {/* This wrapper grows to push the link to the bottom */}
+              <div className="flex-grow">
+                  <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                      {project.tags.map((tag, index) => (
+                          <span key={index} className="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm font-medium rounded-full">
+                              {tag}
+                          </span>
+                      ))}
+                  </div>
+              </div>
+              {/* This div is now always at the bottom */}
+              <div className="flex justify-end mt-4">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-indigo-400 hover:text-indigo-200 font-semibold transition-colors duration-200">
+                      View Project
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
 );
 
 

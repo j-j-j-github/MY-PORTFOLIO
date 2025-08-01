@@ -1,6 +1,7 @@
 // App.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import VideoBackground from './components/VideoBackground';
+import TimelineSection from "./components/TimelineSection";
 import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown } from 'lucide-react';
 
 const Logo = ({ onClick }: { onClick: () => void }) => {
@@ -130,6 +131,8 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      <TimelineSection />
 
       <section id="skills" ref={(el) => (sectionsRef.current[2] = el)} className="py-20 md:py-32 px-8 text-white">
         <div className="max-w-4xl mx-auto text-center">

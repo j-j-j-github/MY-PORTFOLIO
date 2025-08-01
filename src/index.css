@@ -14,7 +14,7 @@ body {
 }
 
 /* Optional: Add overlay to sections for better text readability over video */
-section {
+section:not(#timeline) {
   position: relative;
   background: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
 }

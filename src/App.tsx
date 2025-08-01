@@ -1,6 +1,8 @@
 // App.tsx
 import React, { useState, useEffect, useRef } from 'react';
+import VideoBackground from './components/VideoBackground';
 import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown } from 'lucide-react';
+
 const Logo = ({ onClick }: { onClick: () => void }) => {
   const [spinning, setSpinning] = React.useState(false);
 
@@ -62,10 +64,10 @@ const App = () => {
     };
   }, []);
 
-
-
   return (
     <div className="min-h-screen text-white font-inter antialiased">
+      <VideoBackground /> {/* Added this line for the video background */}
+      
       {/* Navigation Bar with Glassmorphism */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10 shadow-lg py-4 px-4 md:px-12 flex items-center">
         {/* Logo flush left */}
@@ -123,7 +125,7 @@ const App = () => {
               I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
-              Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building small experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
+              Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building SMALL experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
             </p>
           </div>
         </div>
@@ -276,6 +278,11 @@ const SkillCard = ({ icon: Icon, name }: { icon: React.ComponentType<any>; name:
 );
 
 // Project Card Component with ANIMATION RESTORED
+// App.tsx -> Replace ONLY the ProjectCard component with this one
+
+// App.tsx -> Replace ONLY the ProjectCard component with this one
+
+// Project Card Component with restored animations and fixed link position
 const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string } }) => (
   // Added `flex flex-col` to the main container from your original code
   <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl flex flex-col">
@@ -330,7 +337,6 @@ const ProjectCard = ({ project }: { project: { title: string; description: strin
   </div>
 );
 
-
 // Social Link Component (no direct glassmorphism, but part of the overall design)
 const SocialLink = ({ icon: Icon, href, label }: { icon: React.ComponentType<any>; href: string; label: string }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors duration-300 group">
@@ -352,46 +358,25 @@ const skills = [
 
 const projects = [
   {
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce solution with user authentication, product catalog, shopping cart, and payment integration.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=E-commerce+Platform',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-    link: '#',
+    title: 'Auto Motors',
+    description: 'An online marketplace for new and used vehicles, featuring advanced search with filters, detailed listings, and dashboards for both buyers and sellers.',
+    image: 'automotors.jpg',
+    tags: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'jQuery'],
+    link: 'https://github.com/j-j-j-github/AUTO-MOTORS',
   },
   {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and project organization features.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Task+Manager',
-    tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS'],
-    link: '#',
+    title: 'Bus Reservation Website',
+    description: 'A comprehensive bus booking platform allowing users to search routes, view seat layouts, and manage bookings with a secure payment system.',
+    image: 'busbooking.jpg',
+    tags: ['Python', 'Django', 'MySQL', 'JavaScript', 'HTML/CSS'],
+    link: 'https://github.com/j-j-j-github/BUS-RESERVATION-WEBSITE',
   },
   {
-    title: 'Personal Blog',
-    description: 'A responsive personal blog built with a custom CMS, allowing easy content creation and management.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Personal+Blog',
-    tags: ['Next.js', 'GraphQL', 'Strapi', 'PostgreSQL'],
-    link: '#',
-  },
-  {
-    title: 'Weather Dashboard',
-    description: 'An interactive weather dashboard fetching real-time weather data from a third-party API.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Weather+App',
-    tags: ['React', 'API Integration', 'CSS Modules'],
-    link: '#',
-  },
-  {
-    title: 'Recipe Finder',
-    description: 'A web application that allows users to search for recipes based on ingredients and dietary preferences.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Recipe+Finder',
-    tags: ['Vue.js', 'REST API', 'Sass'],
-    link: '#',
-  },
-  {
-    title: 'Portfolio V1',
-    description: 'My first iteration of a portfolio website, showcasing fundamental web development skills.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Portfolio+V1',
-    tags: ['HTML', 'CSS', 'JavaScript', 'jQuery'],
-    link: '#',
+    title: 'Renewly',
+    description: 'Renewly is a smart, easy-to-use app that helps you track all your subscriptions in one place so you never miss a renewal or waste money again.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Coming+Soon',
+    tags: ['...', '...', '...', '...'],
+    
   },
 ];
 

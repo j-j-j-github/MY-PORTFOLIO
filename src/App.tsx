@@ -110,27 +110,48 @@ const App = () => {
       </section>
 
       <section id="about" ref={(el) => (sectionsRef.current[1] = el)} className="py-20 md:py-32 px-8 text-gray-200 bg-black/80 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Image container with subtle glassmorphism */}
-          <div className="flex-shrink-0 w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-gray-700 transform hover:scale-105 transition-transform duration-300 ease-in-out bg-white/5 backdrop-blur-sm">
-            <img src="Aboutme.jpg" alt="Jeeval Jolly" className="w-full h-full object-cover" />
-          </div>
-          <div className="text-left space-y-6">
-            <h2 className="text-4xl font-bold text-white flex items-center">
-              <User className="mr-3 text-indigo-400" size={32} /> About Me
-            </h2>
-            <p className="text-lg text-gray-400 leading-relaxed">
-              Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing a BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
-            </p>
-            <p className="text-lg text-gray-400 leading-relaxed">
-              I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.
-            </p>
-            <p className="text-lg text-gray-400 leading-relaxed">
-              Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building SMALL experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
-            </p>
-          </div>
-        </div>
-      </section>
+  <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+  <div className="flip-container w-48 h-48 flex-shrink-0">
+  <div className="flip-inner">
+    <div className="flip-front">
+    <img
+  src="front.jpg"
+  alt="Front"
+  className="w-full h-full object-cover rounded-full aspect-square"
+/>
+    </div>
+    <div className="flip-back">
+    <img
+  src="back.jpg"
+  alt="Back"
+  className="w-full h-full object-cover rounded-full aspect-square"
+/>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    {/* Text content remains untouched */}
+    <div className="text-left space-y-6">
+      <h2 className="text-4xl font-bold text-white flex items-center">
+        <User className="mr-3 text-indigo-400" size={32} /> About Me
+      </h2>
+      <p className="text-lg text-gray-400 leading-relaxed">
+        Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing a BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
+      </p>
+      <p className="text-lg text-gray-400 leading-relaxed">
+        I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.
+      </p>
+      <p className="text-lg text-gray-400 leading-relaxed">
+        Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building SMALL experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
+      </p>
+    </div>
+  </div>
+</section>
 
       <TimelineSection />
 

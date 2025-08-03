@@ -1,9 +1,6 @@
 // App.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import VideoBackground from './components/VideoBackground';
-import TimelineSection from "./components/TimelineSection";
 import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown } from 'lucide-react';
-
 const Logo = ({ onClick }: { onClick: () => void }) => {
   const [spinning, setSpinning] = React.useState(false);
 
@@ -65,10 +62,10 @@ const App = () => {
     };
   }, []);
 
+
+
   return (
     <div className="min-h-screen text-white font-inter antialiased">
-      <VideoBackground /> {/* Added this line for the video background */}
-      
       {/* Navigation Bar with Glassmorphism */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10 shadow-lg py-4 px-4 md:px-12 flex items-center">
         {/* Logo flush left */}
@@ -110,50 +107,27 @@ const App = () => {
       </section>
 
       <section id="about" ref={(el) => (sectionsRef.current[1] = el)} className="py-20 md:py-32 px-8 text-gray-200 bg-black/80 backdrop-blur-sm">
-  <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
-
-  <div className="flip-container w-48 h-48 flex-shrink-0">
-  <div className="flip-inner">
-    <div className="flip-front">
-    <img
-  src="front.jpg"
-  alt="Front"
-  className="w-full h-full object-cover rounded-full aspect-square"
-/>
-    </div>
-    <div className="flip-back">
-    <img
-  src="back.jpg"
-  alt="Back"
-  className="w-full h-full object-cover rounded-full aspect-square"
-/>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-    {/* Text content remains untouched */}
-    <div className="text-left space-y-6">
-      <h2 className="text-4xl font-bold text-white flex items-center">
-        <User className="mr-3 text-indigo-400" size={32} /> About Me
-      </h2>
-      <p className="text-lg text-gray-400 leading-relaxed">
-        Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing a BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
-      </p>
-      <p className="text-lg text-gray-400 leading-relaxed">
-        I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.
-      </p>
-      <p className="text-lg text-gray-400 leading-relaxed">
-        Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building SMALL experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
-      </p>
-    </div>
-  </div>
-</section>
-
-      <TimelineSection />
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          {/* Image container with subtle glassmorphism */}
+          <div className="flex-shrink-0 w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-gray-700 transform hover:scale-105 transition-transform duration-300 ease-in-out bg-white/5 backdrop-blur-sm">
+            <img src="Aboutme.jpg" alt="Jeeval Jolly" className="w-full h-full object-cover" />
+          </div>
+          <div className="text-left space-y-6">
+            <h2 className="text-4xl font-bold text-white flex items-center">
+              <User className="mr-3 text-indigo-400" size={32} /> About Me
+            </h2>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing a BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
+            </p>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.
+            </p>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Outside of my studies and coding sessions, I often dive into new topics, tools, and frameworks, building small experiments to test ideas and understand systems better. I’m always curious, always learning, and constantly pushing myself to grow as a developer.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section id="skills" ref={(el) => (sectionsRef.current[2] = el)} className="py-20 md:py-32 px-8 text-white">
         <div className="max-w-4xl mx-auto text-center">
@@ -190,7 +164,7 @@ const App = () => {
             Have a project in mind or just want to say hello? Feel free to reach out! I'm always open to new opportunities and collaborations.
           </p>
           <div className="flex justify-center space-x-6 mt-8">
-            <SocialLink icon={Github} href="https://github.com/j-j-j-github" label="GitHub" />
+            <SocialLink icon={Github} href="https://github.com/j_j_j_github" label="GitHub" />
             <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/" label="LinkedIn" />
             <SocialLink icon={Mail} href="mailto:jeevaljolly@gmail.com" label="Email" />
           </div>
@@ -302,64 +276,54 @@ const SkillCard = ({ icon: Icon, name }: { icon: React.ComponentType<any>; name:
 );
 
 // Project Card Component with ANIMATION RESTORED
-// App.tsx -> Replace ONLY the ProjectCard component with this one
-
-// App.tsx -> Replace ONLY the ProjectCard component with this one
-
-// Project Card Component with restored animations and fixed link position
 const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string } }) => (
-  // Added `flex flex-col` to the main container from your original code
-  <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl flex flex-col">
-      {/* Effects from SkillCard (untouched) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-700 ease-out transform scale-0 group-hover:scale-100 rounded-xl z-10"></div>
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out p-[1px] z-10">
-          <div className="bg-black rounded-xl h-full w-full"></div>
-      </div>
-      <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10"></div>
-      
-      {/* Make the main content wrapper a flex container that can grow */}
-      <div className="relative z-20 flex flex-col flex-grow">
-          <div className="relative w-full h-56 bg-gray-900 overflow-hidden">
-              <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                  onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null;
-                      target.src = `https://placehold.co/600x400/111111/FFFFFF?text=${encodeURIComponent(project.title.replace(/\s/g, '+'))}`;
-                  }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-              </div>
-          </div>
-          {/* This content area is now a flex column that fills the remaining space */}
-          <div className="p-6 flex flex-col flex-grow">
-              {/* This wrapper grows to push the link to the bottom */}
-              <div className="flex-grow">
-                  <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                      {project.tags.map((tag, index) => (
-                          <span key={index} className="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm font-medium rounded-full">
-                              {tag}
-                          </span>
-                      ))}
-                  </div>
-              </div>
-              {/* This div is now always at the bottom */}
-              <div className="flex justify-end mt-4">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-indigo-400 hover:text-indigo-200 font-semibold transition-colors duration-200">
-                      View Project
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                  </a>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div className="relative group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl">
+        {/* Effects from SkillCard */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-700 ease-out transform scale-0 group-hover:scale-100 rounded-xl z-10"></div>
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out p-[1px] z-10">
+            <div className="bg-black rounded-xl h-full w-full"></div>
+        </div>
+        <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10"></div>
+        
+        {/* Content */}
+        <div className="relative z-20">
+            <div className="relative w-full h-56 bg-gray-900 overflow-hidden">
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = `https://placehold.co/600x400/111111/FFFFFF?text=${encodeURIComponent(project.title.replace(/\s/g, '+'))}`;
+                    }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                </div>
+            </div>
+            <div className="p-6 space-y-4">
+                <p className="text-gray-300 text-base leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, index) => (
+                        <span key={index} className="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm font-medium rounded-full">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+                <div className="flex justify-end mt-4">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-indigo-400 hover:text-indigo-200 font-semibold transition-colors duration-200">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 );
+
 
 // Social Link Component (no direct glassmorphism, but part of the overall design)
 const SocialLink = ({ icon: Icon, href, label }: { icon: React.ComponentType<any>; href: string; label: string }) => (
@@ -382,25 +346,46 @@ const skills = [
 
 const projects = [
   {
-    title: 'Auto Motors',
-    description: 'An online marketplace for new and used vehicles, featuring advanced search with filters, detailed listings, and dashboards for both buyers and sellers.',
-    image: 'automotors.jpg',
-    tags: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'jQuery'],
-    link: 'https://github.com/j-j-j-github/AUTO-MOTORS',
+    title: 'E-commerce Platform',
+    description: 'A full-stack e-commerce solution with user authentication, product catalog, shopping cart, and payment integration.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=E-commerce+Platform',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+    link: '#',
   },
   {
-    title: 'Bus Reservation Website',
-    description: 'A comprehensive bus booking platform allowing users to search routes, view seat layouts, and manage bookings with a secure payment system.',
-    image: 'busbooking.jpg',
-    tags: ['Python', 'Django', 'MySQL', 'JavaScript', 'HTML/CSS'],
-    link: 'https://github.com/j-j-j-github/BUS-RESERVATION-WEBSITE',
+    title: 'Task Management App',
+    description: 'A collaborative task management application with real-time updates and project organization features.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Task+Manager',
+    tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS'],
+    link: '#',
   },
   {
-    title: 'Renewly',
-    description: 'Renewly is a smart, easy-to-use app that helps you track all your subscriptions in one place so you never miss a renewal or waste money again.',
-    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Coming+Soon',
-    tags: ['...', '...', '...', '...'],
-    
+    title: 'Personal Blog',
+    description: 'A responsive personal blog built with a custom CMS, allowing easy content creation and management.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Personal+Blog',
+    tags: ['Next.js', 'GraphQL', 'Strapi', 'PostgreSQL'],
+    link: '#',
+  },
+  {
+    title: 'Weather Dashboard',
+    description: 'An interactive weather dashboard fetching real-time weather data from a third-party API.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Weather+App',
+    tags: ['React', 'API Integration', 'CSS Modules'],
+    link: '#',
+  },
+  {
+    title: 'Recipe Finder',
+    description: 'A web application that allows users to search for recipes based on ingredients and dietary preferences.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Recipe+Finder',
+    tags: ['Vue.js', 'REST API', 'Sass'],
+    link: '#',
+  },
+  {
+    title: 'Portfolio V1',
+    description: 'My first iteration of a portfolio website, showcasing fundamental web development skills.',
+    image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Portfolio+V1',
+    tags: ['HTML', 'CSS', 'JavaScript', 'jQuery'],
+    link: '#',
   },
 ];
 

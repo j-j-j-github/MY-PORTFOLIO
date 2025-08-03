@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 
@@ -11,7 +11,7 @@ const timelineItems = [
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1 }
+  visible: { opacity: 1, y: 0, scale: 1 },
 };
 
 const TimelineCard = ({ item, variants, transition }) => (
@@ -33,41 +33,40 @@ const TimelineCard = ({ item, variants, transition }) => (
       <div className="relative z-10 flex flex-col items-center text-center h-full">
         <GraduationCap className="h-12 w-12 text-indigo-400 mb-4 group-hover:text-white transition-colors duration-500" />
         <div className="flex flex-col flex-grow w-full">
-            <h3 className="text-xl font-semibold mb-1 text-white">{item.title}</h3>
-            <p className="text-gray-300 text-sm leading-tight flex-grow">{item.institution}</p>
-            <span className="mt-4 text-xs text-indigo-300 font-mono tracking-wider">{item.year}</span>
+          <h3 className="text-xl font-semibold mb-1 text-white">{item.title}</h3>
+          <p className="text-gray-300 text-sm leading-tight flex-grow">{item.institution}</p>
+          <span className="mt-4 text-xs text-indigo-300 font-mono tracking-wider">{item.year}</span>
         </div>
       </div>
     </motion.div>
   </div>
 );
 
-const TimelineSection = () => (
+// ✅ Use forwardRef to pass the ref to the actual <section>
+const TimelineSection = forwardRef((_, ref) => (
   <section
-    id="timeline"
+    ref={ref}
+    id="education"
     className="relative py-20 px-6 md:px-12 text-white"
-    // THIS STYLE CREATES THE DIMMED VIGNETTE EFFECT
     style={{
-      backgroundImage: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 80%)'
+      backgroundImage: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 80%)",
     }}
   >
-    <h2 className="text-4xl font-bold mb-16 text-center">
-      My Education Journey
-    </h2>
+    <h2 className="text-4xl font-bold mb-16 text-center">My Education Journey</h2>
     <div className="relative max-w-6xl mx-auto">
       <div className="absolute top-[16px] left-4 right-4 h-[2px] bg-white/10" />
       <div className="relative flex justify-center items-start gap-x-8 flex-wrap">
         {timelineItems.map((item, idx) => (
-          <TimelineCard 
-            key={idx} 
-            item={item} 
+          <TimelineCard
+            key={idx}
+            item={item}
             variants={cardVariants}
-            transition={{ duration: 0.5, delay: idx * 0.11 }} 
+            transition={{ duration: 0.5, delay: idx * 0.11 }}
           />
         ))}
       </div>
     </div>
   </section>
-);
+));
 
 export default TimelineSection;

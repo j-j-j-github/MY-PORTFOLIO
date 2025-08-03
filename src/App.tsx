@@ -19,7 +19,7 @@ const Logo = ({ onClick }: { onClick: () => void }) => {
       onAnimationEnd={() => setSpinning(false)}
     >
       <img
-        src="public/logo.png"
+        src="public/logomain.png"
         alt="Logo"
         className={`h-10 w-10 md:h-12 md:w-12 object-contain transition-transform duration-300 ${spinning ? 'animate-logo-spin' : ''}`}
         draggable="false"
@@ -88,6 +88,7 @@ const App = () => {
   const navItemsData = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
@@ -206,9 +207,9 @@ const App = () => {
         </div>
       </section>
 
-      <TimelineSection />
+      <TimelineSection ref={(el) => (sectionsRef.current[2] = el)} />
 
-      <section id="skills" ref={(el) => (sectionsRef.current[2] = el)} className="py-20 md:py-32 px-8 text-white">
+      <section id="skills" ref={(el) => (sectionsRef.current[3] = el)} className="py-20 md:py-32 px-8 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-12 flex items-center justify-center">
             <Code className="mr-3 text-indigo-400" size={32} /> My Skills
@@ -221,7 +222,7 @@ const App = () => {
         </div>
       </section>
 
-      <section id="projects" ref={(el) => (sectionsRef.current[3] = el)} className="py-20 md:py-32 px-8 text-gray-200">
+      <section id="projects" ref={(el) => (sectionsRef.current[4] = el)} className="py-20 md:py-32 px-8 text-gray-200">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-12 flex items-center justify-center">
             <Briefcase className="mr-3 text-indigo-400" size={32} /> My Projects
@@ -234,7 +235,7 @@ const App = () => {
         </div>
       </section>
 
-      <section id="contact" ref={(el) => (sectionsRef.current[4] = el)} className="py-20 md:py-32 px-8 text-white">
+      <section id="contact" ref={(el) => (sectionsRef.current[5] = el)} className="py-20 md:py-32 px-8 text-white">
         <div className="max-w-xl mx-auto text-center space-y-8">
           <h2 className="text-4xl font-bold text-white flex items-center justify-center">
             <Mail className="mr-3 text-indigo-400" size={32} /> Get In Touch

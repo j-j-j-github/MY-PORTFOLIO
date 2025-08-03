@@ -197,7 +197,7 @@ const App = () => {
               <User className="mr-3 text-indigo-400" size={32} /> About Me
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed">
-              Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing a BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
+              Hi there! I’m Jeeval, a passionate software engineering enthusiast currently pursuing my MCA after completing my BCA. I’m deeply interested in the world of full-stack development and DevOps, where I get to bridge the gap between coding and infrastructure.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
               I love experimenting with new concepts and building side projects just for fun, it’s my way of exploring how software really works under the hood and bringing ideas to life through hands-on learning.

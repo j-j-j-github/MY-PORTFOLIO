@@ -14,7 +14,7 @@ const Logo = ({ onClick }: { onClick: () => void }) => {
       onAnimationEnd={() => setSpinning(false)}
     >
       <img
-        src="/logo.png"
+        src="https://placehold.co/80x80?text=Logo"
         alt="Logo"
         className={`h-10 w-10 md:h-12 md:w-12 object-contain transition-transform duration-300 ${spinning ? 'animate-logo-spin' : ''}`}
         draggable="false"

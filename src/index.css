@@ -6,27 +6,20 @@
 @tailwind utilities;
 
 /* Consolidated Body Style with Premium Gradient Background */
+/* Consolidated Body Style with Premium Gradient Background and Image */
+/* Simplified Body Style with Background Image Only */
 body {
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 25%, #0f0f0f 50%, #1a1a1a 75%, #000000 100%);
-  background-attachment: fixed;
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
+  /* Your existing styles */
+  background-color: #000000;  /* Fallback */
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Optional: Add overlay to sections for better text readability over video */
+section:not(#timeline) {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
 }
+
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -85,4 +78,51 @@ section {
 }
 .animate-logo-spin {
   animation: logo-spin 0.5s cubic-bezier(0.4, 0.8, 0.6, 1.2);
+}
+
+.flip-container {
+  width: 192px;
+  height: 192px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s;
+}
+
+.flip-container:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%; /* ensures circle */
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.flip-container img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }

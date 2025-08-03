@@ -142,7 +142,7 @@ const App = () => {
   </div>
   
   {/* Navigation links container with mobile-specific and desktop-specific classes */}
-  <div ref={navRef} className="flex-grow flex justify-end md:justify-center overflow-x-auto whitespace-nowrap scrollbar-hide">
+  <div ref={navRef} className="flex-grow flex justify-start md:justify-center overflow-x-auto whitespace-nowrap scrollbar-hide">
     <div className="flex space-x-8">
       {navItemsData.map(item => (
           <NavItem 

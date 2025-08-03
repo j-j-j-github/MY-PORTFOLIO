@@ -135,27 +135,29 @@ const App = () => {
       <VideoBackground />
       
       {/* **NEW: Nav tag updated with ref and scrolling classes** */}
-      <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10 shadow-lg px-4 py-4 md:px-12 flex items-center overflow-x-auto whitespace-nowrap">
-        <div className="flex-shrink-0">
-          <Logo onClick={() => scrollToSection('hero')} />
-        </div>
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="flex space-x-8">
-            {/* **NEW: NavItems are now mapped with refs** */}
-            {navItemsData.map(item => (
-                <NavItem 
-                    key={item.id}
-                    ref={el => linkRefs.current[item.id] = el}
-                    id={item.id}
-                    label={item.label}
-                    active={activeSection === item.id}
-                    onClick={scrollToSection}
-                />
-            ))}
-          </div>
-        </div>
-      </nav>
-
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/10 shadow-lg px-4 py-4 md:px-12 flex items-center">
+  {/* Logo always on the left */}
+  <div className="flex-shrink-0">
+    <Logo onClick={() => scrollToSection('hero')} />
+  </div>
+  
+  {/* Navigation links container with mobile-specific and desktop-specific classes */}
+  <div ref={navRef} className="flex-grow flex justify-end md:justify-center overflow-x-auto whitespace-nowrap scrollbar-hide">
+    <div className="flex space-x-8">
+      {navItemsData.map(item => (
+          <NavItem 
+              key={item.id}
+              ref={el => linkRefs.current[item.id] = el}
+              id={item.id}
+              label={item.label}
+              active={activeSection === item.id}
+              onClick={scrollToSection}
+          />
+      ))}
+    </div>
+  </div>
+</nav>
+<div className="pt-20 md:pt-24">
       <section id="hero" ref={(el) => (sectionsRef.current[0] = el)} className="relative flex items-center justify-center min-h-screen text-white text-center px-4 py-20 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in-up">
           <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-white drop-shadow-lg">
@@ -255,7 +257,7 @@ const App = () => {
           </div>
         </div>
       </section>
-
+      </div>
       <footer className="py-10 bg-black/80 backdrop-blur-xl border-t border-white/10 shadow-lg text-gray-400 text-center text-sm transition-all">
         <p>&copy; {new Date().getFullYear()} Jeeval. All rights reserved.</p>
         <p className="mt-2">Designed with ☕️ and Code.</p>

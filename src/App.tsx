@@ -90,10 +90,10 @@ const App = () => {
       <section id="hero" ref={(el) => (sectionsRef.current[0] = el)} className="relative flex items-center justify-center min-h-screen text-white text-center px-4 py-20 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in-up">
           <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-white drop-shadow-lg">
-            Welcome to <br> </br> <span className="text-gray-300">Jeeval's Space</span>.
+            Welcome to <br></br><span className="text-gray-300">Jeeval's Space</span>.
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto">
-            A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant and efficient solutions for the web.
+            A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant and efficient solutions for web and mobile.
           </p>
           <div className="flex justify-center space-x-4 mt-8">
             <Button primary={true} onClick={() => scrollToSection('projects')}>
@@ -376,7 +376,7 @@ const skills = [
   { name: 'Python', icon: Code },
   { name: 'Tailwind CSS', icon: Star },
   { name: 'Firebase', icon: Star },
-  { name: 'MongoDB', icon: Code },
+  { name: 'C++', icon: Code },
   { name: 'SQL', icon: Code },
 ];
 
@@ -405,3 +405,4 @@ const projects = [
 ];
 
 export default App;
+

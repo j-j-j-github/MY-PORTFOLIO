@@ -22,7 +22,7 @@ const Logo = ({ onClick }: { onClick: () => void }) => {
         src="/logomain.png"
         alt="Logo"
         className={`h-10 w-10 md:h-12 md:w-12 object-contain transition-transform duration-300 ${spinning ? 'animate-logo-spin' : ''}`}
-        draggable="false"
+        draggable={false}
       />
     </button>
   );

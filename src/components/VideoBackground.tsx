@@ -1,41 +1,41 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import NET from 'vanta/dist/vanta.net.min';
+import { useEffect } from "react";
 
-const VantaBackground = () => {
-  const vantaRef = useRef(null);
+declare var VANTA: any; // tells TypeScript about the global VANTA
 
+const VideoBackground = () => {
   useEffect(() => {
-    const vantaEffect = NET({
-      el: vantaRef.current,
-      THREE: THREE,
+    const effect = VANTA.NET({
+      el: "#vanta-bg",
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x7a7a7a,
-      backgroundColor: 0x0,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x7a7a7a,      // particle color from first snippet
+      backgroundColor: 0x0, // background color from first snippet
+      // You can also add points and maxDistance if needed:
+      points: 14.0,
+      maxDistance: 25.0,
     });
 
     return () => {
-      if (vantaEffect) vantaEffect.destroy();
+      effect.destroy();
     };
   }, []);
 
   return (
     <div
-      ref={vantaRef}
+      id="vanta-bg"
       style={{
-        position: 'fixed',
+        position: "fixed",
         inset: 0,
-        zIndex: 0, 
-        pointerEvents: 'none',
+        zIndex: 0,
+        pointerEvents: "none",
       }}
-    ></div>
+    />
   );
 };
 
-export default VantaBackground;
+export default VideoBackground;

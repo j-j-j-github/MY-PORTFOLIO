@@ -122,6 +122,13 @@ const App = () => {
       link: 'https://github.com/j-j-j-github/BUS-RESERVATION-WEBSITE',
     },
     {
+      title: 'ISS Sensory Lab: Astronaut Training and EVA Simulation',
+      description: 'An interactive website that allows users to experience astronaut training and spacewalks. Features include astronaut customization, realistic Cupola, NBL simulation, and a 2D Space EVA game.',
+      image: 'iss.jpg',
+      tags: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS', 'Canvas', 'Physics Simulation'],
+      link: 'https://j-j-j-github.github.io/ISS-SENSORY-LAB/',
+    },
+    {
       title: 'Renewly',
       description: 'Renewly is a smart, easy-to-use app that helps you track all your subscriptions in one place so you never miss a renewal or waste money again.',
       image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Coming+Soon',

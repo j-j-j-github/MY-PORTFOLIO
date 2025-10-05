@@ -1,1 +1,13 @@
+# Node modules
+node_modules/
+
+# Vite build output
+dist/
+.vite/
+
+# Logs
+*.log
+
+# OS files
 .DS_Store
+Thumbs.db

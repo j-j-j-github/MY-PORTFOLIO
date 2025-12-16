@@ -129,6 +129,27 @@ const App = () => {
       link: 'https://j-j-j-github.github.io/ISS-SENSORY-LAB/',
     },
     {
+      title: 'JBlog: Blogging Platform',
+      description: 'A modern, full-stack blogging platform supporting real-time user registration, authentication, profile management (including profile pictures), and rich-text post creation/editing. Features a clean, two-column logged-in dashboard and a custom monochrome logged-out UI.',
+      image: 'jblog.jpg', 
+      tags: ['Django', 'Python', 'SQLite', 'HTML/CSS', 'Template Inheritance', 'User Authentication', 'CKEditor'],
+      link: 'https://github.com/j-j-j-github/JBLOG',
+  },
+  {
+    title: 'Daily Verse - Android App',
+    description: 'A minimalist, offline-first daily devotion app featuring a synchronized home screen widget, reliable background scheduling via WorkManager, and a custom OLED dark mode engine. Built with native Kotlin and Material Design 3.',
+    image: 'dailyverse.jpg',
+    tags: ['Kotlin', 'Android SDK', 'WorkManager', 'AppWidgets', 'Material Design 3', 'JSON'],
+    link: 'https://github.com/j-j-j-github/DAILYVERSE',
+  },
+    {
+      title: 'TMT - Task Manager Team',
+      description: 'A robust full-stack task tracking application featuring real-time CRUD operations via AJAX, dynamic user assignment, and secure search functionality. Built with ASP.NET Core and Entity Framework.',
+      image: 'taskmanager.jpg', 
+      tags: ['ASP.NET Core', 'C#', 'Entity Framework', 'SQLite', 'AJAX', 'Bootstrap 5'],
+      link: 'https://github.com/j-j-j-github/TASKMANAGER',
+    },
+    {
       title: 'Renewly',
       description: 'Renewly is a smart, easy-to-use app that helps you track all your subscriptions in one place so you never miss a renewal or waste money again.',
       image: 'https://placehold.co/600x400/E0E7FF/4F46E5?text=Coming+Soon',

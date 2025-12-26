@@ -108,19 +108,19 @@ const App = () => {
   
   const projects = [
     {
-      title: 'Daily Verse - Android App',
-      description: 'A minimalist, offline-first daily devotion app featuring a synchronized home screen widget, reliable background scheduling via WorkManager, and a custom OLED dark mode engine. Built with native Kotlin and Material Design 3.',
-      image: 'dailyverse.jpg',
-      tags: ['Kotlin', 'Android SDK', 'WorkManager', 'AppWidgets', 'Material Design 3', 'JSON'],
-      link: 'https://github.com/j-j-j-github/DAILYVERSE',
+    title: 'Daily Verse - Android App',
+    description: 'A minimalist, offline-first daily devotion app featuring a synchronized home screen widget, reliable background scheduling via WorkManager, and a custom OLED dark mode engine. Built with native Kotlin and Material Design 3.',
+    image: 'dailyverse.jpg',
+    tags: ['Kotlin', 'Android SDK', 'WorkManager', 'AppWidgets', 'Material Design 3', 'JSON'],
+    link: 'https://github.com/j-j-j-github/DAILYVERSE',
+  },
+    {
+      title: 'TMT - Task Manager Team',
+      description: 'A robust full-stack task tracking application featuring real-time CRUD operations via AJAX, dynamic user assignment, and secure search functionality. Built with ASP.NET Core and Entity Framework.',
+      image: 'taskmanager.jpg', 
+      tags: ['ASP.NET Core', 'C#', 'Entity Framework', 'SQLite', 'AJAX', 'Bootstrap 5'],
+      link: 'https://github.com/j-j-j-github/TASKMANAGER',
     },
-      {
-        title: 'TMT - Task Manager Team',
-        description: 'A robust full-stack task tracking application featuring real-time CRUD operations via AJAX, dynamic user assignment, and secure search functionality. Built with ASP.NET Core and Entity Framework.',
-        image: 'taskmanager.jpg', 
-        tags: ['ASP.NET Core', 'C#', 'Entity Framework', 'SQLite', 'AJAX', 'Bootstrap 5'],
-        link: 'https://github.com/j-j-j-github/TASKMANAGER',
-      },
     {
       title: 'ISS Sensory Lab: Astronaut Training and EVA Simulation',
       description: 'An interactive website that allows users to experience astronaut training and spacewalks. Features include astronaut customization, realistic Cupola, NBL simulation, and a 2D Space EVA game.',
@@ -276,10 +276,10 @@ const App = () => {
           <div className="flex justify-center space-x-6 mt-8">
             <SocialLink icon={Github} href="https://github.com/j-j-j-github" label="GitHub" />
             <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/" label="LinkedIn" />
-            <SocialLink icon={Mail} href="mailto:jeevaljolly@gmail.com" label="Email" />
+            <SocialLink icon={Mail} href="https://mail.google.com/mail/?view=cm&fs=1&to=jeevaljolly@gmail.com" label="Email" />
           </div>
           <div className="flex justify-center mt-8">
-            <Button primary={true} onClick={() => window.location.href = 'mailto:jeevaljolly@gmail.com'}>
+            <Button primary={true} onClick={() => window.location.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=jeevaljolly@gmail.com'}>
               Send Me an Email <Mail className="ml-2 h-5 w-5" />
             </Button>
           </div>

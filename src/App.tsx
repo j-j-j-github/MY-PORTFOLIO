@@ -97,7 +97,7 @@ const App = () => {
   
   const skills = [
     { name: 'React.js', icon: Star },
-    { name: 'Node.js', icon: Code },
+    { name: 'Kotlin', icon: Code },
     { name: 'JavaScript', icon: Code },
     { name: 'Python', icon: Code },
     { name: 'Tailwind CSS', icon: Star },
@@ -107,6 +107,13 @@ const App = () => {
   ];
   
   const projects = [
+    {
+      title: 'ECHO - Seek the Silence',
+      description: 'A minimalist, ephemeral social experience where users share anonymous questions into a living void. Features real-time presence, impermanent posts, cinematic share artifacts, and a dark-first UI designed for reflection over reaction.',
+      image: 'echo.png',
+      tags: ['React', 'Supabase', 'Realtime', 'Canvas API', 'Tailwind CSS', 'Framer Motion'],
+      link: 'https://void-echo.vercel.app/',
+    },
     {
     title: 'Daily Verse - Android App',
     description: 'A minimalist, offline-first daily devotion app featuring a synchronized home screen widget, reliable background scheduling via WorkManager, and a custom OLED dark mode engine. Built with native Kotlin and Material Design 3.',

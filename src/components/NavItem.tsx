@@ -20,54 +20,33 @@ const NavItem = forwardRef(
       ref={ref}
       onClick={() => onClick(id)}
       className={`
-        relative group overflow-hidden px-5 py-2 rounded-lg font-semibold text-sm md:text-base 
-        transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02]
-        bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg hover:shadow-2xl
-        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50
-        ${active ? 'text-white' : 'text-gray-300'}
+        relative group overflow-hidden px-6 py-2.5 rounded-full text-sm font-medium tracking-wide
+        transition-all duration-300 ease-out transform
+        border
+        ${active 
+          ? 'text-white bg-white/10 border-white/10 shadow-[0_0_20px_rgba(37,99,235,0.25)] scale-105' 
+          : 'text-neutral-400 border-transparent hover:text-white hover:bg-white/5 hover:border-white/5'
+        }
+        focus:outline-none focus:ring-2 focus:ring-blue-500/50
       `}
     >
-      {/* Hover Gradient Layer */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-700 ease-out transform scale-0 group-hover:scale-100 rounded-lg"></div>
-
-      {/* Border Highlight on Hover */}
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out p-[1px]">
-        <div className="bg-black rounded-lg h-full w-full"></div>
-      </div>
-
-      {/* Moving Shine */}
-      <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-
       {/* Label */}
-      <div className="relative z-10 group-hover:text-white transition-colors duration-500">
-        {label}
+      <span className="relative z-10">{label}</span>
+
+      {/* Active State: Sophisticated Blue Reflection */}
+      <div 
+        className={`
+          absolute inset-0 pointer-events-none transition-opacity duration-500
+          ${active ? 'opacity-100' : 'opacity-0'}
+        `}
+      >
+        {/* Subtle bottom blue light reflection (like macOS dock) */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-blue-600/20 blur-md rounded-full"></div>
+        <div className="absolute bottom-[-2px] left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-blue-400 blur-[2px]"></div>
       </div>
 
-      {/* Smoky Underglow Effect with Smooth Transition */}
-      {/* Enhanced Smoky Underglow */}
-{/* Vibrant Indigo Glow with Tightened Blur */}
-<div
-  className={`
-    pointer-events-none absolute inset-x-0 bottom-[-10px] transition-opacity duration-700 ease-in-out
-    ${active ? 'opacity-100' : 'opacity-0'}
-  `}
->
-  {/* Rich, colorful radial glow */}
-  <div
-    className="
-      mx-auto w-[120%] h-[70px]
-      bg-[radial-gradient(ellipse_at_center,_rgba(99,102,241,0.75)_0%,_rgba(129,140,248,0.5)_40%,_transparent_90%)]
-      blur-[45px] opacity-95
-    "
-  />
-  {/* Crisper inner light bar */}
-  <div
-    className="
-      absolute inset-x-10 bottom-[2px] h-[8px] rounded-full bg-indigo-400
-      blur-md opacity-95 shadow-[0_0_30px_10px_rgba(129,140,248,0.6)]
-    "
-  />
-</div>
+      {/* Hover: Minimalist Shine Swipe (White) */}
+      <div className="absolute inset-0 -top-10 -bottom-10 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></div>
     </button>
   )
 );

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import VideoBackground from './components/VideoBackground';
 import TimelineSection from "./components/TimelineSection";
-import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ArrowRight, Rocket } from 'lucide-react';
 import NavItem from './components/NavItem';
 
 // --- HELPER: CONSISTENT TAG COLORS ---
@@ -329,7 +329,7 @@ const App = () => {
             </div>
         </section>
 
-        {/* ABOUT SECTION (Apple Aesthetics: Tight tracking, large radius, blurred BG) */}
+        {/* ABOUT SECTION */}
         <section id="about" ref={(el) => { sectionsRef.current[1] = el; }} className="py-24 md:py-32 px-8 bg-black/40 backdrop-blur-sm border-t border-white/5">
             <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-16">
             <div className="flip-container w-56 h-56 flex-shrink-0 group">
@@ -347,16 +347,45 @@ const App = () => {
                 <User className="mr-4 text-blue-500" size={40} /> About Me
                 </h2>
                 <div className="space-y-4 text-lg text-neutral-400 leading-relaxed font-light">
-  <p>
-    Hi there! I’m <span className="text-white font-medium">Jeeval Jolly Jacob</span>, a software engineering enthusiast currently pursuing my MCA after completing my BCA, with a strong focus on full-stack development and DevOps.
-  </p>
-  <p>
-    I enjoy experimenting with new technologies and building side projects for fun, it’s how I understand systems deeply and turn ideas into real-world solutions.
-  </p>
-  <p>
-    Beyond academics, I’m constantly exploring new concepts, running small experiments, and sharpening my skills. Curious by nature and driven by growth, I’m always pushing myself to become a better developer.
-  </p>
-</div>
+                    <p>
+                        Hi there! I’m <span className="text-white font-medium">Jeeval Jolly Jacob</span>, a software engineering enthusiast currently pursuing my MCA after completing my BCA, with a strong focus on full-stack development and DevOps.
+                    </p>
+                    <p>
+                        I enjoy experimenting with new technologies and building side projects for fun, it’s how I understand systems deeply and turn ideas into real-world solutions.
+                    </p>
+                    <p>
+                        Beyond academics, I’m constantly exploring new concepts, running small experiments, and sharpening my skills. Curious by nature and driven by growth, I’m always pushing myself to become a better developer.
+                    </p>
+                </div>
+                
+                {/* BUTTONS CONTAINER */}
+                <div className="flex flex-wrap gap-4 pt-4">
+                    {/* LinkedIn Button */}
+                    <a 
+                        href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium text-sm transition-all duration-300 hover:bg-blue-600/10 hover:border-blue-500/30 hover:text-blue-400 group"
+                    >
+                        <Linkedin className="w-4 h-4 mr-2" />
+                        <span>Connect on LinkedIn</span>
+                        <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out" />
+                    </a>
+
+                    {/* J3 Labs Venture Button */}
+<a 
+    href="https://j-j-j-github.github.io/J3-Labs/#about" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="inline-flex items-center px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium text-sm transition-all duration-300 hover:bg-emerald-600/10 hover:border-emerald-500/30 hover:text-emerald-400 group"
+>
+    {/* Icon also needs to turn green on group hover */}
+    <Rocket className="w-4 h-4 mr-2 text-neutral-400 group-hover:text-emerald-400 transition-colors" />
+    <span>Meet my Venture: J3 Labs</span>
+    <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out" />
+</a>
+                </div>
+
             </div>
             </div>
         </section>

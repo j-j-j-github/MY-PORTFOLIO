@@ -411,7 +411,7 @@ const App = () => {
         <section id="projects" ref={(el) => { sectionsRef.current[4] = el; }} className="py-24 md:py-32 px-8 bg-gradient-to-b from-black/0 via-black/20 to-black/0 border-y border-white/5">
             <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 flex items-center justify-center tracking-tighter">
-                <Briefcase className="mr-4 text-blue-500" size={40} /> Selected Projects
+                <Briefcase className="mr-4 text-blue-500" size={40} /> Featured Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 {projects.map((project, index) => (

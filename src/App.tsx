@@ -215,7 +215,7 @@ const App = () => {
       description: 'A minimalist, ephemeral social experience where users share anonymous questions into a living void. Features real-time presence, impermanent posts, cinematic share artifacts, and a dark-first UI designed for reflection over reaction.',
       image: 'echo.png',
       tags: ['React', 'Supabase', 'Realtime', 'Canvas API', 'Tailwind CSS', 'Framer Motion'],
-      link: 'https://void-echo.vercel.app/',
+      link: 'https://www.voidecho.space/',
     },
     {
     title: 'Daily Verse - Android App',

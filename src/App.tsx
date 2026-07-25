@@ -363,10 +363,7 @@ const App = () => {
         </div>
 
         <div className="flex-grow relative flex overflow-hidden">
-          {/* Mobile Fade Overlay */}
-          <div className="md:hidden absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/80 to-transparent z-20 pointer-events-none" />
-          
-          <div ref={navRef} className="w-full flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div ref={navRef} className="w-full flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] nav-fade-mask">
             <div className="flex space-x-2 md:space-x-4 p-1 relative w-max md:w-auto">
               {navItemsData.map(item => (
                 <NavItem

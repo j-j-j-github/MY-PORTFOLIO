@@ -131,3 +131,12 @@ section {
   height: 100%;
   border-radius: 50%;
 }
+
+@layer utilities {
+  @media (max-width: 767px) {
+    .nav-fade-mask {
+      -webkit-mask-image: linear-gradient(to right, transparent, black 32px, black 100%);
+      mask-image: linear-gradient(to right, transparent, black 32px, black 100%);
+    }
+  }
+}

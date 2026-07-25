@@ -29,7 +29,7 @@ const VideoBackground = () => {
     <div
       id="vanta-bg"
       style={{
-        position: "fixed",
+        position: "absolute",
         inset: 0,
         zIndex: 0,
         pointerEvents: "none",

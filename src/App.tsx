@@ -362,18 +362,23 @@ const App = () => {
           </button>
         </div>
 
-        <div ref={navRef} className="flex-grow flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide relative scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          <div className="flex space-x-2 md:space-x-4 p-1 relative w-max md:w-auto">
-            {navItemsData.map(item => (
-              <NavItem
-                key={item.id}
-                ref={(el: HTMLDivElement | null) => { linkRefs.current[item.id] = el; }}
-                id={item.id}
-                label={item.label}
-                active={activeSection === item.id}
-                onClick={scrollToSection}
-              />
-            ))}
+        <div className="flex-grow relative flex overflow-hidden">
+          {/* Mobile Fade Overlay */}
+          <div className="md:hidden absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/80 to-transparent z-20 pointer-events-none" />
+          
+          <div ref={navRef} className="w-full flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex space-x-2 md:space-x-4 p-1 relative w-max md:w-auto">
+              {navItemsData.map(item => (
+                <NavItem
+                  key={item.id}
+                  ref={(el: HTMLDivElement | null) => { linkRefs.current[item.id] = el; }}
+                  id={item.id}
+                  label={item.label}
+                  active={activeSection === item.id}
+                  onClick={scrollToSection}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </nav>
@@ -405,7 +410,7 @@ const App = () => {
                 <p className="text-base sm:text-lg md:text-2xl text-neutral-300 font-light leading-relaxed mx-auto md:mx-0 drop-shadow-lg">
                   A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant, efficient, and scalable solutions for modern mobile and web applications.
                 </p>
-                <div className="flex flex-wrap justify-center md:justify-start space-x-4 mt-8 pointer-events-auto w-full">
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8 pointer-events-auto w-full">
                   <Button primary={true} onClick={() => scrollToSection('projects')}>
                     View My Work <Briefcase className="ml-2 h-5 w-5" />
                   </Button>
@@ -476,7 +481,7 @@ const App = () => {
 
             {/* 3. Buttons (Right) */}
             <div className="flex flex-col w-full max-w-sm mx-auto lg:col-span-3 lg:max-w-none">
-              <h3 className="text-lg font-bold text-black mb-4 flex items-center justify-center lg:justify-start border-b border-neutral-200 pb-2">
+              <h3 className="text-base font-bold uppercase tracking-[0.2em] text-black mb-4 flex items-center justify-center border-b border-neutral-200 pb-2">
                 <Rocket className="w-5 h-5 mr-2 text-blue-600" /> Quick Links
               </h3>
               <div className="flex flex-col gap-4">
@@ -559,7 +564,7 @@ const App = () => {
             </AnimatePresence>
           </div>
 
-          <div className="max-w-6xl mx-auto relative z-10">
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="flex flex-col items-center justify-center mb-20 relative">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}

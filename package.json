@@ -2,7 +2,7 @@
   "name": "my-portfolio-vite",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://j-j-j-github.github.io/MY-PORTFOLIO",
+  "homepage": "https://jeevals.space",
   "type": "module",
   "scripts": {
     "dev": "vite",

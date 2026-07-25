@@ -525,7 +525,7 @@ const App = () => {
 
                 {/* Download Resume Button */}
                 <a
-                  href={`${import.meta.env.BASE_URL}Jeeval's%20Resume.pdf`}
+                  href={`${import.meta.env.BASE_URL}resume.pdf`}
                   download="Jeeval_Jolly_Jacob_Resume.pdf"
                   className="flex flex-col items-center justify-center py-4 px-2 rounded-full bg-rose-600 border border-rose-500 text-white font-medium text-sm transition-all duration-300 hover:bg-rose-700 group hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-600/20"
                 >

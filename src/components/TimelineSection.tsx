@@ -34,7 +34,7 @@ const educationItems = [
   },
   { 
     title: "Higher Secondary - 12th", 
-    institution: "BMM English Medium, Kottayam", 
+    institution: "BMM English Medium School, Kottayam", 
     year: "2021", 
     icon: "icons/bmm.jpg",
     cardGradient: "from-amber-700/30 to-white/5",
@@ -195,8 +195,8 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center mb-20 relative">
-          <h2 className="text-4xl md:text-5xl font-bold text-center tracking-tighter flex items-center justify-center">
-              <Map className="mr-4 text-emerald-500" size={40} /> My Journey
+          <h2 className="text-2xl md:text-3xl font-bold text-center tracking-[0.2em] uppercase flex items-center justify-center">
+              <Map className="mr-3 md:mr-4 text-emerald-500" size={32} /> My Timeline
           </h2>
           <motion.div 
               initial={{ width: 0 }}

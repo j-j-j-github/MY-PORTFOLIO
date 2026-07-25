@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import VideoBackground from './components/VideoBackground';
 import TimelineSection from "./components/TimelineSection";
-import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ChevronUp, ArrowRight, Rocket, Download, Layout, Server, Smartphone } from 'lucide-react';
+import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ChevronUp, ArrowRight, Rocket, Download, Layout, Server, Smartphone, HelpCircle } from 'lucide-react';
 import NavItem from './components/NavItem';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -87,7 +87,7 @@ const SkillCard = ({ icon: Icon, name }: { icon: React.ComponentType<any>; name:
 );
 
 // Project Card: Modern B&W base with Colorful Tags
-const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string; overlayText?: string } }) => (
+const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string; overlayText?: string; isInternship?: boolean } }) => (
   <div className="flex flex-col h-full group bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-500 hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(255,255,255,0.05)] hover:shadow-2xl">
       <div className="relative w-full h-64 overflow-hidden bg-neutral-950">
           <img
@@ -109,11 +109,18 @@ const ProjectCard = ({ project }: { project: { title: string; description: strin
                   </span>
               </div>
           )}
+          {project.isInternship && (
+              <div className="absolute top-4 left-4 z-20">
+                  <span className="px-3 py-1.5 bg-blue-600/90 backdrop-blur-md rounded-full text-white font-semibold text-xs border border-blue-400/30 shadow-lg flex items-center gap-1.5">
+                      <Briefcase size={12} /> Internship Project
+                  </span>
+              </div>
+          )}
       </div>
       
       <div className="p-8 flex flex-col flex-grow relative">
           <h3 className="text-2xl font-bold text-white tracking-tight mb-3 group-hover:text-blue-400 transition-colors duration-300">{project.title}</h3>
-          <p className="text-neutral-400 text-base leading-relaxed mb-6 font-light line-clamp-3">{project.description}</p>
+          <p className="text-neutral-400 text-base leading-relaxed mb-6 font-light">{project.description}</p>
           
           <div className="mt-auto">
             <div className="flex flex-wrap gap-1.5 mb-6">
@@ -152,6 +159,8 @@ const SocialLink = ({ icon: Icon, href, label }: { icon: React.ComponentType<any
 const App = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
+  const [showSkillInfo, setShowSkillInfo] = useState(false);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
   const scrollToSection = (id: string) => {
@@ -208,7 +217,7 @@ const App = () => {
   const navItemsData = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'education', label: 'Education' },
+    { id: 'education', label: 'Timeline' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
@@ -228,7 +237,7 @@ const App = () => {
   const projects = [
     {
       title: 'Renewly',
-      description: 'Renewly is a smart, easy-to-use app that helps you track all your subscriptions in one place so you never miss a renewal or waste money again.',
+      description: 'Smart subscription tracker managing all your recurring expenses in one place. Never miss a renewal again.',
       image: 'renewly.jpeg',
       tags: ['Android', 'Kotlin', 'Room', 'AlarmManager'],
       link: '#', 
@@ -236,49 +245,74 @@ const App = () => {
     },
     {
       title: 'ECHO - Seek the Silence',
-      description: 'A minimalist, ephemeral social experience where users share anonymous questions into a living void. Features real-time presence, impermanent posts, cinematic share artifacts, and a dark-first UI designed for reflection over reaction.',
+      description: 'Minimalist, ephemeral social app for sharing anonymous thoughts into a living void. Features real-time presence.',
       image: 'echo.png',
       tags: ['Jetpack Compose', 'Supabase', 'Firebase FCM', 'WorkManager', 'Room DB'],
       link: 'https://play.google.com/store/apps/details?id=com.j3labs.echo',
     },
     {
       title: 'Daily Verse - Android App',
-      description: 'A minimalist, offline-first daily devotion app featuring a synchronized home screen widget, reliable background scheduling via WorkManager, and a custom OLED dark mode engine. Built with native Kotlin and Material Design 3.',
+      description: 'Offline-first daily devotion app with a synchronized widget, background scheduling, and custom OLED dark mode.',
       image: 'dailyverse.jpg',
       tags: ['Kotlin', 'Android SDK', 'WorkManager', 'AppWidgets', 'Material Design 3', 'JSON'],
       link: 'https://play.google.com/store/apps/details?id=com.j3labs.dailyverse',
     },
     {
+      title: 'Diya Hero Website Redesign',
+      description: 'Modernized dealership website featuring a responsive UI, auto-sliding hero banner, and dynamic vehicle showcase.',
+      image: 'Internship Projects/diya.png',
+      tags: ['HTML5', 'CSS3', 'Responsive Design', 'Embedded Media', 'UI/UX'],
+      link: '#',
+      isInternship: true
+    },
+    {
+      title: 'Accounts Hub Website Design',
+      description: 'Structured financial services website crafted from scratch. Optimized complex layouts to drive lead generation.',
+      image: 'Internship Projects/accounts.png',
+      tags: ['HTML5', 'CSS3', 'Web Architecture', 'Responsive Design'],
+      link: '#',
+      isInternship: true
+    },
+    {
+      title: 'Terresteel Website Design',
+      description: 'Industrial manufacturing website featuring modular front-end architecture, responsive galleries, and clear navigation.',
+      image: 'Internship Projects/terresteel.png',
+      tags: ['HTML5', 'CSS3', 'Modular Design', 'Responsive UI'],
+      link: '#',
+      isInternship: true
+    },
+    {
       title: 'TMT - Task Manager Team',
-      description: 'A robust full-stack task tracking application featuring real-time CRUD operations via AJAX, dynamic user assignment, and secure search functionality. Built with ASP.NET Core and Entity Framework.',
+      description: 'Robust full-stack task tracking app featuring real-time AJAX operations, dynamic user assignment, and secure search.',
       image: 'taskmanager.jpg', 
       tags: ['ASP.NET Core', 'C#', 'Entity Framework', 'SQLite', 'AJAX', 'Bootstrap 5'],
       link: 'https://github.com/j-j-j-github/TASKMANAGER',
+      isInternship: true
     },
     {
       title: 'ISS Sensory Lab',
-      description: 'An interactive website that allows users to experience astronaut training and spacewalks. Features include astronaut customization, realistic Cupola, NBL simulation, and a 2D Space EVA game.',
+      description: 'Interactive web experience simulating astronaut training. Features a realistic Cupola view and a 2D Space EVA game.',
       image: 'iss.jpg',
       tags: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS', 'Canvas', 'Physics Simulation'],
       link: 'https://j-j-j-github.github.io/ISS-SENSORY-LAB/',
     },
     {
       title: 'JBlog Platform',
-      description: 'A modern, full-stack blogging platform supporting real-time user registration, authentication, profile management (including profile pictures), and rich-text post creation/editing.',
+      description: 'Full-stack blogging platform supporting secure authentication, dynamic profile management, and intuitive post editing.',
       image: 'jblog.jpg', 
-      tags: ['Django', 'Python', 'SQLite', 'HTML/CSS', 'Template Inheritance', 'User Authentication', 'CKEditor'],
+      tags: ['Django', 'Python', 'SQLite', 'HTML/CSS', 'User Authentication', 'CKEditor'],
       link: 'https://github.com/j-j-j-github/JBLOG',
     },
     {
       title: 'Auto Motors',
-      description: 'An online marketplace for new and used vehicles, featuring advanced search with filters, detailed listings, and dashboards for both buyers and sellers.',
+      description: 'Online marketplace for new and used vehicles. Features advanced search filters, detailed listings, and dashboards.',
       image: 'automotors.jpg',
       tags: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'jQuery'],
       link: 'https://github.com/j-j-j-github/AUTO-MOTORS',
     },
     {
       title: 'Bus Reservation Website',
-      description: 'A comprehensive bus booking platform allowing users to search routes, view seat layouts, and manage bookings with a secure payment system.',
+      description: 'Comprehensive bus booking platform featuring interactive seat layouts, route searching, and a secure payment system.',
       image: 'busbooking.jpg',
       tags: ['Python', 'Django', 'MySQL', 'JavaScript', 'HTML/CSS'],
       link: 'https://github.com/j-j-j-github/BUS-RESERVATION-WEBSITE',
@@ -297,7 +331,7 @@ const App = () => {
         .vertical-timeline-element-date { opacity: 0.6; font-weight: 500; }
       `}</style>
 
-      {/* Navigation */}
+      {/* Navigation (Original)
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 py-4 md:px-12 flex items-center">
         <div className="flex-shrink-0">
           <Logo onClick={() => scrollToSection('hero')} />
@@ -318,31 +352,82 @@ const App = () => {
           </div>
         </div>
       </nav>
+      */}
 
-      <div className="pt-20 md:pt-24">
-        {/* HERO SECTION (Original Layout, Updated Colors) */}
-        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative flex flex-col md:flex-row items-center justify-center min-h-screen pt-20 px-8 text-center bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
+      {/* Navigation (New: Text Logo, Left-Aligned Navbar) */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 py-4 md:px-12 flex items-center">
+        <div className="flex-shrink-0 mr-4 md:mr-8">
+          <button 
+            onClick={() => scrollToSection('hero')}
+            onMouseEnter={() => setIsLogoHovered(true)}
+            onMouseLeave={() => setIsLogoHovered(false)}
+            className="font-bold text-lg md:text-xl tracking-[0.2em] text-white transition-colors duration-300 focus:outline-none uppercase flex items-center"
+          >
+            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-3' : 'mr-3'}`}>J</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>EEVAL&nbsp;</span>
+            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-3' : 'mr-3'}`}>J</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>OLLY&nbsp;</span>
+            <span>J</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>ACOB</span>
+          </button>
+        </div>
+        
+        <div ref={navRef} className="flex-grow flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide relative scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="flex space-x-2 md:space-x-4 p-1 relative w-max md:w-auto">
+            {navItemsData.map(item => (
+                <NavItem 
+                    key={item.id}
+                    ref={(el: HTMLDivElement | null) => { linkRefs.current[item.id] = el; }}
+                    id={item.id}
+                    label={item.label}
+                    active={activeSection === item.id}
+                    onClick={scrollToSection}
+                />
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <div>
+        {/* HERO SECTION (Split Layout) */}
+        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative flex flex-col justify-center md:flex-row md:items-center min-h-[100vh] bg-black overflow-hidden pt-20 md:pt-24 pb-12 md:pb-0">
             <VideoBackground />
-            <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in-up">
-            <h1 className="text-6xl md:text-8xl font-bold leading-tight tracking-tighter drop-shadow-2xl">
-  <span className="text-neutral-400">Welcome to</span>
-  <br />
-  <span className="text-white">Jeeval's Space</span>.
-</h1>
-            <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
-                A passionate <span className="font-semibold text-blue-400">Full-Stack Developer</span> crafting elegant and efficient solutions for web and mobile.
-            </p>
-            <div className="flex justify-center space-x-4 mt-8">
-                <Button primary={true} onClick={() => scrollToSection('projects')}>
-                    View My Work <Briefcase className="ml-2 h-5 w-5" />
-                </Button>
-                <Button primary={false} onClick={() => scrollToSection('contact')}>
-                    Get In Touch <Mail className="ml-2 h-5 w-5" />
-                </Button>
+            
+            {/* Left Static Image */}
+            <div className="relative md:absolute md:top-0 md:left-0 w-full md:w-1/2 h-[45vh] md:h-full z-10 flex items-center justify-center p-6 md:p-16 md:pt-36 cursor-default perspective-1000 mt-4 md:mt-0">
+                <div className="w-[60%] sm:w-[45%] md:w-full h-full bg-white p-3 md:p-5 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.1)] flex transition-all duration-[1500ms] ease-out hover:scale-[1.03] hover:-translate-y-2 hover:rotate-1 hover:shadow-[0_20px_60px_rgba(255,255,255,0.25)] hover:cursor-pointer">
+                    <img 
+                        src="hero/1.png" 
+                        alt="Jeeval Jolly Jacob" 
+                        className="w-full h-full object-cover object-[center_top] rounded-2xl shadow-inner transition-transform duration-[1500ms] ease-out"
+                    />
+                </div>
             </div>
+
+            {/* Right Aligned Text Content */}
+            <div className="relative z-20 w-full max-w-7xl mx-auto flex justify-center md:justify-end px-6 lg:px-16 pointer-events-none py-10 md:py-20">
+                <div className="w-full md:w-1/2 space-y-6 md:space-y-8 animate-fade-in-up text-center md:text-left pointer-events-auto mt-[4vh] md:mt-0">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tighter drop-shadow-2xl">
+                        <span className="text-neutral-400">Welcome to</span>
+                        <br />
+                        <span className="text-white">Jeeval's Space.</span>
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-2xl text-neutral-300 font-light leading-relaxed mx-auto md:mx-0 drop-shadow-lg max-w-md md:max-w-none">
+                        A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant and efficient solutions for web and mobile.
+                    </p>
+                    <div className="flex flex-wrap justify-center md:justify-start space-x-4 mt-8 pointer-events-auto">
+                        <Button primary={true} onClick={() => scrollToSection('projects')}>
+                            View My Work <Briefcase className="ml-2 h-5 w-5" />
+                        </Button>
+                        <Button primary={false} onClick={() => scrollToSection('contact')}>
+                            Get In Touch <Mail className="ml-2 h-5 w-5" />
+                        </Button>
+                    </div>
+                </div>
             </div>
-            <div className="absolute bottom-10 animate-bounce">
-                <ChevronDown className="h-8 w-8 text-neutral-600" />
+            
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20 pointer-events-none">
+                <ChevronDown className="h-8 w-8 text-neutral-300" />
             </div>
         </section>
 
@@ -355,8 +440,8 @@ const App = () => {
                 
                 {/* Overlay Centered Heading */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-8 z-10">
-                    <h2 className="text-4xl md:text-6xl font-bold flex items-center justify-center tracking-tighter text-black">
-                        <User className="mr-4 text-blue-600" size={48} /> About Me
+                    <h2 className="text-2xl md:text-4xl font-bold flex items-center justify-center tracking-[0.2em] uppercase text-black">
+                        <User className="mr-3 md:mr-4 text-blue-600" size={36} /> About Me
                     </h2>
                     <motion.div 
                         initial={{ width: 0 }}
@@ -455,6 +540,34 @@ const App = () => {
 
         {/* SKILLS SECTION */}
         <section id="skills" ref={(el) => { sectionsRef.current[3] = el; }} className="py-10 md:py-16 px-8 relative bg-white border-t border-neutral-200 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+            {/* Info Button */}
+            <div className="absolute top-6 right-6 md:top-10 md:right-10 z-30 flex flex-row-reverse items-start">
+                <button 
+                    onClick={() => setShowSkillInfo(!showSkillInfo)}
+                    className="p-3 bg-neutral-900/5 backdrop-blur-xl border border-neutral-200/50 shadow-lg rounded-full hover:bg-neutral-900/10 transition-all text-neutral-500 hover:text-blue-600 focus:outline-none"
+                    title="Skill Bars Info"
+                >
+                    <HelpCircle className="w-6 h-6" />
+                </button>
+                
+                {/* Pop up */}
+                <AnimatePresence>
+                    {showSkillInfo && (
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9, x: 10 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="mr-4 w-72 md:w-96 p-5 rounded-2xl bg-white/70 backdrop-blur-2xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)] z-40 text-sm text-neutral-600 leading-relaxed text-left"
+                        >
+                            <p>
+                                <strong>Note:</strong> The progress bars below are purely visual elements designed to add aesthetic flair to the page. They do <em>not</em> represent actual expertise or proficiency levels.
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
             <div className="max-w-6xl mx-auto relative z-10">
             <div className="flex flex-col items-center justify-center mb-20 relative">
               <motion.h2 
@@ -462,9 +575,9 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl md:text-5xl font-bold flex items-center justify-center tracking-tighter text-black"
+                className="text-2xl md:text-3xl font-bold flex items-center justify-center tracking-[0.2em] uppercase text-black"
               >
-                  <Code className="mr-4 text-blue-600" size={40} /> My Skills
+                  <Code className="mr-3 md:mr-4 text-blue-600" size={32} /> My Skills
               </motion.h2>
               <motion.div 
                   initial={{ width: 0 }}
@@ -553,7 +666,7 @@ const App = () => {
                                 <motion.div 
                                     className={`absolute top-0 left-0 h-full rounded-full ${category.barColor}`}
                                     initial={{ width: 0 }}
-                                    whileInView={{ width: `${Math.random() * 30 + 70}%` }}
+                                    whileInView={{ width: skill === "HTML5" || skill === "CSS3" ? `${Math.random() * 15 + 80}%` : `${Math.random() * 20 + 40}%` }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 1, delay: idx * 0.15 + sIdx * 0.1, ease: "easeOut" }}
                                 />
@@ -572,8 +685,8 @@ const App = () => {
         <section id="projects" ref={(el) => { sectionsRef.current[4] = el; }} className="py-10 md:py-16 px-8 bg-black border-y border-neutral-900 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
             <div className="max-w-7xl mx-auto text-center">
             <div className="flex flex-col items-center justify-center mb-16 relative">
-              <h2 className="text-4xl md:text-5xl font-bold text-white flex items-center justify-center tracking-tighter">
-                  <Briefcase className="mr-4 text-blue-500" size={40} /> Featured Projects
+              <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center justify-center tracking-[0.2em] uppercase">
+                  <Briefcase className="mr-3 md:mr-4 text-blue-500" size={32} /> Featured Projects
               </h2>
               <motion.div 
                   initial={{ width: 0 }}
@@ -636,8 +749,8 @@ const App = () => {
         <section id="contact" ref={(el) => { sectionsRef.current[5] = el; }} className="py-8 md:py-12 px-8 bg-white border-t border-neutral-200 text-black bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
             <div className="max-w-2xl mx-auto text-center space-y-6">
             <div className="flex flex-col items-center justify-center relative">
-              <h2 className="text-4xl md:text-5xl font-bold flex items-center justify-center tracking-tighter text-black">
-                  <Mail className="mr-4 text-blue-600" size={40} /> Get In Touch
+              <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center tracking-[0.2em] uppercase text-black">
+                  <Mail className="mr-3 md:mr-4 text-blue-600" size={32} /> Get In Touch
               </h2>
               <motion.div 
                   initial={{ width: 0 }}
@@ -679,7 +792,7 @@ const App = () => {
         </section>
       </div>
       <footer className="py-12 bg-black border-t border-white/10 text-neutral-500 text-center text-sm font-medium">
-        <p>&copy; {new Date().getFullYear()} Jeeval. Designed with ☕️ and Code.</p>
+        <p>&copy; {new Date().getFullYear()} Jeeval Jolly Jacob. Designed with ☕️ and Code.</p>
       </footer>
     </div>
   );

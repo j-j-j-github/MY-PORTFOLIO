@@ -7,6 +7,7 @@ export default { // Using ES Module syntax
   theme: {
     extend: {
       fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       },
       keyframes: {

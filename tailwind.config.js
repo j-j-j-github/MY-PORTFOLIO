@@ -9,6 +9,11 @@ export default { // Using ES Module syntax
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        amanojaku: ['Amanojaku', 'sans-serif'],
+        barton: ['"Barton Miles"', 'sans-serif'],
+        crowtig: ['Crowtig', 'sans-serif'],
+        adventures: ['Adventures', 'sans-serif'],
+        playmaker: ['Playmaker', 'sans-serif'],
       },
       keyframes: {
         'fade-in-up': {

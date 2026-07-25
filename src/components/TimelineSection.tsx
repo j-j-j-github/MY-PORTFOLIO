@@ -195,8 +195,8 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center mb-20 relative">
-          <h2 className="text-2xl md:text-3xl font-bold text-center tracking-[0.2em] uppercase flex items-center justify-center">
-              <Map className="mr-3 md:mr-4 text-emerald-500" size={32} /> My Timeline
+          <h2 className="text-3xl md:text-5xl font-playmaker font-normal text-center flex items-center justify-center">
+              My Timeline
           </h2>
           <motion.div 
               initial={{ width: 0 }}
@@ -215,7 +215,7 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
                     <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
                         <GraduationCap className="text-blue-500" size={24} />
                     </div>
-                    <h3 className="text-2xl font-bold tracking-tight">Education</h3>
+                    <h3 className="text-xl font-bold uppercase tracking-[0.2em]">Education</h3>
                 </div>
                 {/* Connecting Line */}
                 <div className="absolute top-16 bottom-0 left-1/2 md:left-[1px] -translate-x-1/2 md:translate-x-0 w-[2px] bg-gradient-to-b from-blue-500/50 via-white/10 to-transparent" />
@@ -233,7 +233,7 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
                     <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
                         <Briefcase className="text-emerald-500" size={24} />
                     </div>
-                    <h3 className="text-2xl font-bold tracking-tight">Experience</h3>
+                    <h3 className="text-xl font-bold uppercase tracking-[0.2em]">Experience</h3>
                 </div>
                 {/* Connecting Line */}
                 <div className="absolute top-[160px] md:top-16 bottom-0 left-1/2 md:left-[1px] -translate-x-1/2 md:translate-x-0 w-[2px] bg-gradient-to-b from-emerald-500/50 via-white/10 to-transparent" />

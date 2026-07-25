@@ -20,7 +20,7 @@ const NavItem = forwardRef(
       ref={ref}
       onClick={() => onClick(id)}
       className={`
-        relative group overflow-hidden px-6 py-2.5 rounded-full text-sm font-medium tracking-wide
+        relative group overflow-hidden px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-[0.2em]
         transition-all duration-300 ease-out transform
         border
         ${active 

@@ -42,12 +42,17 @@ export default { // Using ES Module syntax
             boxShadow: '0 0 12px rgba(99, 102, 241, 0.6)',
           },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'fade-in-up': 'fade-in-up 1s ease-out forwards',
         'pulse-slow': 'pulse-slow 4s infinite ease-in-out',
         'bounce-subtle': 'bounce-subtle 1.5s infinite ease-in-out',
         glow: 'glow 2s infinite ease-in-out',
+        marquee: 'marquee 50s linear infinite',
       },
       backgroundImage: {
         'grid-pattern': 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23a0aec0\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")',

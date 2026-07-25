@@ -6,6 +6,19 @@ import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, Chevr
 import NavItem from './components/NavItem';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const featuredMedia = [
+  { title: "μLearn Orientation", image: "https://media.licdn.com/dms/image/v2/D4D2DAQGibW0FUflhRA/profile-treasury-image-shrink_1280_1280/B4DZ97CtWtJAAY-/0/1784475735789?e=1785600000&v=beta&t=W3Q79EFCCqJb9TSShP3Hxgo2TqDfbWkeg2boni2kYVg" },
+  { title: "Spiderline", image: "https://media.licdn.com/dms/image/v2/D5622AQEl1UhorEiO8Q/feedshare-image-high-res/B56Z8ea8oSKUAY-/0/1782921809524?e=1786579200&v=beta&t=iWJERMuukZlQYWONyB-5kYETZUGO8-eMz5c4sWFdxas" },
+  { title: "Anchoring Team", image: "https://media.licdn.com/dms/image/v2/D4E2DAQEdYBRQdfKpYg/profile-treasury-image-shrink_800_800/B4EZmI9uWYIoAc-/0/1758939512800?e=1785600000&v=beta&t=oRb2Gc3BKaGavroLVyQE0nmxoT4rjuiCfF082nmjigw" },
+  { title: "MuMent Meet", image: "https://media.licdn.com/dms/image/v2/D5622AQGYXjrjg8SYtA/feedshare-image-high-res/B56Z1CWgH8KsAY-/0/1774934688743?e=1786579200&v=beta&t=YtPqIT2e127dlqtmeuxHCHks5FOZiu7UBr0yB_j81fo" },
+  { title: "The Voice", image: "https://media.licdn.com/dms/image/v2/D562DAQH0baR4CcUzoA/profile-treasury-image-shrink_1280_1280/B56Z2pnBRdH4AQ-/0/1776667075792?e=1785600000&v=beta&t=1YYh7Y8tXo-q1F3mXkINzRz86yQFFd9-QrDe716rAKs" },
+  { title: "BCMCH", image: "https://media.licdn.com/dms/image/v2/D5622AQGYdK8DHgwibg/feedshare-image-high-res/B56ZsNmPwsHYAs-/0/1765459698549?e=1786579200&v=beta&t=IDc-azIl0RB_LcqmvOkLL2eABRiKrm75-mDvt1uzt84" },
+  { title: "Class of MCA", image: "https://media.licdn.com/dms/image/v2/D4E2DAQHPnUv_UXOoiA/profile-treasury-image-shrink_1280_1280/B4EZmeJE8AKQAQ-/0/1759294829879?e=1785600000&v=beta&t=d7GhCKiST-EQPhDBqnyNmzvQWx0UJkCIcahP_WbaDZ0" },
+  { title: "GitzBlitz", image: "https://media.licdn.com/dms/image/v2/D4E2DAQGW5v_7bzqEtQ/profile-treasury-image-shrink_800_800/B4EZgO_4mQHoAY-/0/1752598286471?e=1785600000&v=beta&t=xAF0Eks5vtnnmazNOG7uOsMmdCu7AF0Rxp_CQ6w9Bao" },
+  { title: "Class of BCA", image: "https://media.licdn.com/dms/image/v2/D4E2DAQHb52ECG110YQ/profile-treasury-image-shrink_800_800/B4EZmeH2izHIAY-/0/1759294492879?e=1785600000&v=beta&t=8jkAIOJ-WGZkVFB5MQP___Itgz4Ql50dywapNpAdLHs" },
+  { title: "Convocation", image: "https://media.licdn.com/dms/image/v2/D4E2DAQFWokjGMnvLPg/profile-treasury-image-shrink_800_800/B4EZgJ4lWrGoAg-/0/1752512489393?e=1785600000&v=beta&t=IClturz9s0p-rTb0Uua2eAjhZ7XBmlGiNGeYic-8VoU" }
+];
+
 // --- HELPER: CONSISTENT TAG COLORS ---
 // This ensures "React" is always one color, "Python" is always another, etc.
 const getTagColor = (tag: string) => {
@@ -402,7 +415,7 @@ const App = () => {
               <div className="w-full max-w-lg xl:max-w-xl space-y-6 md:space-y-8 animate-fade-in-up text-center md:text-left flex flex-col items-center md:items-start md:ml-12 lg:ml-24">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tighter drop-shadow-2xl flex flex-col md:items-start items-center">
                   <span className="text-neutral-400">Welcome to</span>
-                  <span className="text-white font-playmaker font-normal tracking-normal whitespace-nowrap mt-2 md:mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl">Jeevals Space</span>
+                  <span className="text-white font-playmaker font-normal tracking-normal whitespace-nowrap mt-2 md:mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl">Jeeval's Space</span>
                 </h1>
                 <p className="text-base sm:text-lg md:text-2xl text-neutral-300 font-light leading-relaxed mx-auto md:mx-0 drop-shadow-lg">
                   A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant, efficient, and scalable solutions for modern mobile and web applications.
@@ -522,6 +535,39 @@ const App = () => {
                   </div>
                   <span className="text-xs text-rose-200 font-normal group-hover:text-white text-center">Get a PDF copy</span>
                 </a>
+              </div>
+            </div>
+          </div>
+
+          {/* FEATURED MEDIA SECTION */}
+          <div className="max-w-7xl mx-auto mt-12 mb-0 overflow-hidden relative">
+            <div className="flex flex-col items-center justify-center mb-6 relative">
+              <h3 className="text-xl font-bold uppercase tracking-[0.2em] text-black flex items-center justify-center">
+                Featured Media
+              </h3>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "60px" }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="h-1 bg-blue-600 rounded-full mt-3"
+              />
+            </div>
+            <div className="relative flex overflow-hidden w-full group py-6">
+              {/* Fade masks for the edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+              
+              <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+                {/* Duplicate the array twice for seamless looping */}
+                {[...featuredMedia, ...featuredMedia].map((media, idx) => (
+                  <div key={idx} className="flex-shrink-0 w-48 md:w-64 mx-2 md:mx-4 bg-white p-2 md:p-3 pb-6 md:pb-8 rounded-md shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-neutral-200 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(0,0,0,0.15)] hover:rotate-2 hover:cursor-pointer">
+                    <div className="w-full aspect-square overflow-hidden bg-neutral-100 rounded-sm">
+                      <img src={media.image} alt={media.title} className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <p className="mt-3 md:mt-5 text-center text-xl md:text-3xl font-['Caveat'] text-neutral-800 transform -rotate-1">{media.title}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

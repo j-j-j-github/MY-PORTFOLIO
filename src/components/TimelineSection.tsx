@@ -195,7 +195,7 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center mb-20 relative">
-          <h2 className="text-3xl md:text-5xl font-playmaker font-normal text-center flex items-center justify-center">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-center flex items-center justify-center">
               My Timeline
           </h2>
           <motion.div 

@@ -1,10 +1,9 @@
 // App.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import VideoBackground from './components/VideoBackground';
 import TimelineSection from "./components/TimelineSection";
 import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ChevronUp, ArrowRight, Rocket, Download, Layout, Server, Smartphone, HelpCircle } from 'lucide-react';
 import NavItem from './components/NavItem';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const featuredMedia = [
   { title: "μLearn Orientation", image: "https://media.licdn.com/dms/image/v2/D4D2DAQGibW0FUflhRA/profile-treasury-image-shrink_1280_1280/B4DZ97CtWtJAAY-/0/1784475735789?e=1785600000&v=beta&t=W3Q79EFCCqJb9TSShP3Hxgo2TqDfbWkeg2boni2kYVg" },
@@ -64,15 +63,15 @@ const Logo = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-// Premium Button: Apple-style rounded, smooth transitions, colored hover effect
 const Button = ({ children, primary, onClick }: { children: React.ReactNode; primary?: boolean; onClick: () => void }) => {
-  const hoverBg = primary ? 'hover:bg-blue-600 hover:border-blue-600 hover:shadow-[0_10px_20px_rgba(37,99,235,0.3)]' : 'hover:bg-emerald-600 hover:border-emerald-600 hover:shadow-[0_10px_20px_rgba(16,185,129,0.3)]';
-  const textColor = primary ? 'text-blue-400 group-hover:text-white' : 'text-emerald-400 group-hover:text-white';
-
   return (
     <button
       onClick={onClick}
-      className={`group px-8 py-3.5 rounded-full font-medium text-lg flex items-center justify-center transition-all duration-300 ease-out bg-white/5 border border-white/10 ${hoverBg} backdrop-blur-md focus:outline-none ${textColor} shadow-lg hover:-translate-y-1`}
+      className={`group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out focus:outline-none w-full sm:w-auto ${
+        primary 
+          ? 'bg-black text-white hover:bg-blue-600 hover:shadow-[0_10px_30px_rgba(37,99,235,0.4)] hover:-translate-y-1 border border-black hover:border-blue-600' 
+          : 'bg-transparent text-black border border-neutral-300 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 hover:shadow-[0_10px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1'
+      }`}
     >
       {children}
     </button>
@@ -159,7 +158,62 @@ const SocialLink = ({ icon: Icon, href, label }: { icon: React.ComponentType<any
 
 // --- MAIN APP COMPONENT ---
 
+const HeroHoverText = ({ style }: { style?: any }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLHeadingElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  return (
+    <motion.h1 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={style}
+      className="relative text-6xl sm:text-7xl md:text-[5.5rem] lg:text-[6.5rem] font-black text-black leading-[0.95] tracking-tighter mb-6 md:mb-8 w-fit"
+    >
+      {/* Base Text (Always visible beneath) */}
+      <span>Full-Stack</span><br />
+      <span className="text-neutral-300">Developer.</span>
+
+      {/* Spotlight Colored Overlay */}
+      <div 
+        className="absolute top-0 left-0 w-full h-full pointer-events-none transition-opacity duration-500"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          backgroundImage: `linear-gradient(to bottom, #0066ff 10%, #00e676 90%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          color: 'transparent',
+          WebkitMaskImage: `radial-gradient(circle 250px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`,
+          maskImage: `radial-gradient(circle 250px at ${mousePos.x}px ${mousePos.y}px, black, transparent 80%)`
+        }}
+        aria-hidden="true"
+      >
+        <span>Full-Stack</span><br />
+        <span>Developer.</span>
+      </div>
+    </motion.h1>
+  );
+};
+
 const App = () => {
+  const { scrollY } = useScroll();
+  const textScale = useTransform(scrollY, [0, 600], [1, 3.5]);
+  const textX = useTransform(scrollY, [0, 600], [0, 150]);
+  const textY = useTransform(scrollY, [0, 600], [0, -100]);
+  const textOpacity = useTransform(scrollY, [0, 400, 600], [1, 0.8, 0]);
+
   const [activeSection, setActiveSection] = useState('hero');
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -358,7 +412,7 @@ const App = () => {
       */}
 
       {/* Navigation (New: Text Logo, Left-Aligned Navbar) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 py-4 md:px-12 flex items-center">
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[76px] bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 md:px-12 flex items-center">
         <div className="flex-shrink-0 mr-4 md:mr-8">
           <button
             onClick={() => scrollToSection('hero')}
@@ -395,45 +449,60 @@ const App = () => {
 
       <div>
         {/* HERO SECTION (Split Layout) */}
-        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative flex flex-col justify-center md:flex-row md:items-center min-h-[100vh] bg-black overflow-hidden pt-20 md:pt-24 pb-12 md:pb-0">
-          <VideoBackground />
-
-          {/* Left Static Image */}
-          <div className="relative md:absolute md:top-0 md:left-0 w-full md:w-1/2 h-[45vh] md:h-full z-10 flex items-center justify-center p-6 md:p-16 md:pt-36 cursor-default perspective-1000 mt-4 md:mt-0">
-            <div className="w-[60%] sm:w-[45%] md:w-full h-full bg-white p-3 md:p-5 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.1)] flex transition-all duration-[1500ms] ease-out hover:scale-[1.03] hover:-translate-y-2 hover:rotate-1 hover:shadow-[0_20px_60px_rgba(255,255,255,0.25)] hover:cursor-pointer">
-              <img
-                src="hero/1.png"
-                alt="Jeeval Jolly Jacob"
-                className="w-full h-full object-cover object-[center_top] rounded-2xl shadow-inner transition-transform duration-[1500ms] ease-out"
-              />
-            </div>
+        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative flex flex-col justify-center md:flex-row md:items-center min-h-[100vh] bg-transparent overflow-hidden pt-20 md:pt-24 pb-12 md:pb-0">
+          {/* Background Image bounded to exactly below topbar */}
+          <div className="absolute inset-x-0 bottom-0 top-[76px] z-0 bg-white">
+             <img src="hero.png" alt="Hero Background" className="hidden md:block w-full h-full object-contain object-[left_center] translate-x-8 md:translate-x-12 transition-transform" />
           </div>
 
           {/* Right Aligned Text Content */}
           <div className="relative z-20 w-full max-w-7xl mx-auto flex justify-center md:justify-end px-6 lg:px-16 pointer-events-none py-10 md:py-20">
-            <div className="w-full md:w-1/2 flex justify-center md:justify-center pointer-events-auto mt-[4vh] md:mt-0">
-              <div className="w-full max-w-lg xl:max-w-xl space-y-6 md:space-y-8 animate-fade-in-up text-center md:text-left flex flex-col items-center md:items-start md:ml-12 lg:ml-24">
-                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tighter drop-shadow-2xl flex flex-col md:items-start items-center">
-                  <span className="text-neutral-400">Welcome to</span>
-                  <span className="text-white font-playmaker font-normal tracking-normal whitespace-nowrap mt-2 md:mt-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl">Jeeval's Space</span>
-                </h1>
-                <p className="text-base sm:text-lg md:text-2xl text-neutral-300 font-light leading-relaxed mx-auto md:mx-0 drop-shadow-lg">
-                  A passionate <span className="font-semibold text-white">Full-Stack Developer</span> crafting elegant, efficient, and scalable solutions for modern mobile and web applications.
+            <div className="w-full md:w-1/2 flex justify-center md:justify-start pointer-events-auto mt-[4vh] md:mt-0">
+              
+              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full max-w-lg xl:max-w-xl animate-fade-in-up">
+                
+                {/* Overline Status Text */}
+                <div className="flex items-center gap-3 mb-6 md:mb-8 text-neutral-500 font-bold uppercase tracking-[0.2em] text-xs sm:text-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  Jeeval's Space
+                </div>
+                
+                {/* Massive Headline (Interactive & Scroll Animated) */}
+                <HeroHoverText style={{ scale: textScale, x: textX, y: textY, opacity: textOpacity }} />
+                
+                {/* Clean Description */}
+                <p className="text-base sm:text-lg md:text-xl text-neutral-500 font-light max-w-md leading-relaxed mb-8 md:mb-12">
+                  Crafting elegant and efficient solutions for modern mobile and web applications.
                 </p>
-                <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8 pointer-events-auto w-full">
+                
+                {/* Minimalist Buttons */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center md:justify-start">
                   <Button primary={true} onClick={() => scrollToSection('projects')}>
-                    View My Work <Briefcase className="ml-2 h-5 w-5" />
+                    View My Work <ArrowRight className="ml-3 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                   <Button primary={false} onClick={() => scrollToSection('contact')}>
-                    Get In Touch <Mail className="ml-2 h-5 w-5" />
+                    Get In Touch
                   </Button>
                 </div>
+
               </div>
+
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20 pointer-events-none">
-            <ChevronDown className="h-8 w-8 text-neutral-300" />
+          {/* Foreground Cutout Layer (z-30) for Depth Effect */}
+          <div className="hidden md:block absolute inset-x-0 bottom-0 top-[76px] z-30 pointer-events-none">
+             <img src="hero overlay.png" alt="Hero Overlay" className="w-full h-full object-contain object-[left_center] translate-x-8 md:translate-x-12 transition-transform" />
+          </div>
+
+          {/* Scroll Down Indicator */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-auto cursor-pointer" onClick={() => scrollToSection('about')}>
+            <div className="p-4 rounded-full border border-neutral-200 bg-white/50 backdrop-blur-md text-neutral-400 hover:bg-black hover:text-white hover:border-black transition-all duration-300 shadow-sm hover:shadow-lg animate-bounce">
+              <ChevronDown className="h-5 w-5" />
+            </div>
           </div>
         </section>
 
@@ -446,7 +515,7 @@ const App = () => {
 
             {/* Overlay Centered Heading */}
             <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-8 z-10">
-              <h2 className="text-3xl md:text-5xl font-playmaker font-normal flex items-center justify-center text-black">
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black">
                 About Me
               </h2>
               <motion.div
@@ -479,7 +548,7 @@ const App = () => {
             {/* 2. Description (Center) */}
             <div className="text-left space-y-5 text-base md:text-lg text-black leading-relaxed font-light lg:col-span-6">
               <p>
-                Hi there! I’m <span className="text-black font-bold">Jeeval Jolly Jacob</span>, a software engineering enthusiast currently pursuing my MCA after completing my BCA, with a strong focus on full-stack development and DevOps.
+                Hey there! I’m <span className="text-black font-bold">Jeeval Jolly Jacob</span>, a software engineering enthusiast currently pursuing my MCA after completing my BCA, with a strong focus on full-stack development and DevOps.
               </p>
               <p>
                 I enjoy experimenting with new technologies and building side projects for fun, it’s how I understand systems deeply and turn ideas into actual real-world solutions.
@@ -500,13 +569,19 @@ const App = () => {
                   href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center py-4 px-2 rounded-full bg-blue-600 border border-blue-500 text-white font-medium text-sm transition-all duration-300 hover:bg-blue-700 group hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/20"
+                  className="group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out w-full bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_10px_30px_rgba(37,99,235,0.4)] hover:-translate-y-1 border border-blue-600"
                 >
-                  <div className="flex items-center justify-center mb-1">
-                    <Linkedin className="w-5 h-5 mr-2 text-white transition-colors" />
-                    <span>LinkedIn</span>
-                  </div>
-                  <span className="text-xs text-blue-200 font-normal group-hover:text-white text-center">View my profile</span>
+                  <Linkedin className="mr-3 h-5 w-5" /> LinkedIn
+                </a>
+
+                {/* GitHub Button (NEW - Green) */}
+                <a
+                  href="https://github.com/j-j-j-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out w-full bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_10px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 border border-emerald-600"
+                >
+                  <Github className="mr-3 h-5 w-5" /> GitHub
                 </a>
 
                 {/* J3 Labs Venture Button */}
@@ -514,26 +589,18 @@ const App = () => {
                   href="https://j-j-j-github.github.io/J3-Labs/#about"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center justify-center py-4 px-2 rounded-full bg-emerald-600 border border-emerald-500 text-white font-medium text-sm transition-all duration-300 hover:bg-emerald-700 group hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-600/20"
+                  className="group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out w-full bg-black text-white hover:bg-neutral-800 hover:shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 border border-black hover:border-neutral-800"
                 >
-                  <div className="flex items-center justify-center mb-1">
-                    <Rocket className="w-5 h-5 mr-2 text-white transition-colors" />
-                    <span>J3 Labs</span>
-                  </div>
-                  <span className="text-xs text-emerald-200 font-normal group-hover:text-white text-center">Explore my agency</span>
+                  <Rocket className="mr-3 h-5 w-5" /> J3 Labs
                 </a>
 
                 {/* Download Resume Button */}
                 <a
                   href={`${import.meta.env.BASE_URL}resume.pdf`}
                   download="Jeeval_Jolly_Jacob_Resume.pdf"
-                  className="flex flex-col items-center justify-center py-4 px-2 rounded-full bg-rose-600 border border-rose-500 text-white font-medium text-sm transition-all duration-300 hover:bg-rose-700 group hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-600/20"
+                  className="group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out w-full bg-rose-600 text-white hover:bg-rose-700 hover:shadow-[0_10px_30px_rgba(225,29,72,0.4)] hover:-translate-y-1 border border-rose-600"
                 >
-                  <div className="flex items-center justify-center mb-1">
-                    <Download className="w-5 h-5 mr-2 text-white group-hover:animate-bounce transition-colors" />
-                    <span>Resume</span>
-                  </div>
-                  <span className="text-xs text-rose-200 font-normal group-hover:text-white text-center">Get a PDF copy</span>
+                  <Download className="mr-3 h-5 w-5" /> Resume
                 </a>
               </div>
             </div>
@@ -614,7 +681,7 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-playmaker font-normal flex items-center justify-center text-black"
+                className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black"
               >
                 My Skills
               </motion.h2>
@@ -724,7 +791,7 @@ const App = () => {
         <section id="projects" ref={(el) => { sectionsRef.current[4] = el; }} className="py-10 md:py-16 px-8 bg-black border-y border-neutral-900 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex flex-col items-center justify-center mb-16 relative">
-              <h2 className="text-3xl md:text-5xl font-playmaker font-normal text-white flex items-center justify-center">
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-white flex items-center justify-center">
                 Featured Projects
               </h2>
               <motion.div
@@ -788,7 +855,7 @@ const App = () => {
         <section id="contact" ref={(el) => { sectionsRef.current[5] = el; }} className="py-8 md:py-12 px-8 bg-white border-t border-neutral-200 text-black bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <div className="flex flex-col items-center justify-center relative">
-              <h2 className="text-3xl md:text-5xl font-playmaker font-normal flex items-center justify-center text-black">
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black">
                 Get In Touch
               </h2>
               <motion.div

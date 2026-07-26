@@ -474,8 +474,8 @@ const App = () => {
                 <HeroHoverText style={{ scale: textScale, x: textX, y: textY, opacity: textOpacity }} />
                 
                 {/* Clean Description */}
-                <p className="text-base sm:text-lg md:text-xl text-neutral-500 font-light max-w-md leading-relaxed mb-8 md:mb-12">
-                  Crafting elegant and efficient solutions for modern web and mobile applications.
+                <p className="text-base sm:text-lg md:text-xl text-neutral-500 font-light max-w-full leading-relaxed mb-8 md:mb-12">
+                  Engineering high-performance web and mobile applications from the ground up. Driven by clean code and scalable architecture, I turn complex technical challenges into seamless user experiences.
                 </p>
                 
                 {/* Minimalist Buttons */}

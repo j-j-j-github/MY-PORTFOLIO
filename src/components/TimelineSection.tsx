@@ -138,7 +138,7 @@ const TimelineCard = ({ item, delay, type }: { item: any, delay: number, type: '
     {/* Connector Dot */}
     <div className={`absolute left-1/2 -translate-x-1/2 top-0 md:top-8 md:-left-[5px] md:translate-x-0 w-[14px] h-[14px] rounded-full border-2 border-black z-10 ${item.dotColor}`} />
 
-    <div className={`relative group border border-white/10 backdrop-blur-2xl p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(255,255,255,0.05)]
+    <div className={`relative group border border-white/10 backdrop-blur-[2px] p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(255,255,255,0.05)]
       hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] hover:bg-white/10
       bg-gradient-to-r ${item.cardGradient} ${item.hoverBorder}
       transition-all duration-500 ease-in-out transform hover:-translate-y-1 

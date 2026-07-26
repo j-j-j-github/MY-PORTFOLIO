@@ -90,7 +90,7 @@ const SkillCard = ({ icon: Icon, name }: { icon: React.ComponentType<any>; name:
 
 // Project Card: Modern B&W base with Colorful Tags
 const ProjectCard = ({ project }: { project: { title: string; description: string; image: string; tags: string[]; link: string; overlayText?: string; isInternship?: boolean } }) => (
-  <div className="flex flex-col h-full group bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-500 hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(255,255,255,0.05)] hover:shadow-2xl">
+  <div className="flex flex-col h-full group bg-white/5 backdrop-blur-[2px] border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-500 hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(255,255,255,0.05)] hover:shadow-2xl">
     <div className="relative w-full h-64 overflow-hidden bg-neutral-950">
       <img
         src={project.image}
@@ -475,7 +475,7 @@ const App = () => {
                 
                 {/* Clean Description */}
                 <p className="text-base sm:text-lg md:text-xl text-neutral-500 font-light max-w-md leading-relaxed mb-8 md:mb-12">
-                  Crafting elegant and efficient solutions for modern mobile and web applications.
+                  Crafting elegant and efficient solutions for modern web and mobile applications.
                 </p>
                 
                 {/* Minimalist Buttons */}
@@ -743,7 +743,7 @@ const App = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className={`group relative z-10 hover:z-20 bg-gradient-to-b ${category.bgGradient} backdrop-blur-2xl border border-neutral-300 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-2xl p-6 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] ${category.glowColor} overflow-hidden`}
+                  className={`group relative z-10 hover:z-20 bg-gradient-to-b ${category.bgGradient} backdrop-blur-[2px] border border-neutral-300 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-2xl p-6 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] ${category.glowColor} overflow-hidden`}
                 >
                   {/* Shine Animation */}
                   <div className="absolute inset-0 -top-10 -bottom-10 bg-gradient-to-r from-transparent via-white/60 to-transparent 

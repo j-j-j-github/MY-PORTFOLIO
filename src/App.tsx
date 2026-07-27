@@ -315,11 +315,20 @@ const App = () => {
       link: 'https://play.google.com/store/apps/details?id=com.j3labs.dailyverse',
     },
     {
+      title: 'Civic Connect',
+      description: 'AI-assisted, API-first e-governance platform designed to streamline public grievance redressal. Features ML-driven complaint classification, GIS geo-tagging, and a scalable microservices architecture.',
+      image: 'Internship Projects/civic.png',
+      tags: ['AI/ML', 'Microservices', 'GIS', 'E-Governance'],
+      link: '#',
+      overlayText: 'Under Development',
+      isInternship: true
+    },
+    {
       title: 'Diya Hero Website Redesign',
       description: 'Modernized dealership website featuring a responsive UI, auto-sliding hero banner, and dynamic vehicle showcase.',
       image: 'Internship Projects/diya.png',
       tags: ['HTML5', 'CSS3', 'Responsive Design', 'Embedded Media', 'UI/UX'],
-      link: '#',
+      link: 'https://spiderlineglobal.in/saintgits/jeeval/',
       isInternship: true
     },
     {
@@ -327,7 +336,7 @@ const App = () => {
       description: 'Structured financial services website crafted from scratch. Optimized complex layouts to drive lead generation.',
       image: 'Internship Projects/accounts.png',
       tags: ['HTML5', 'CSS3', 'Web Architecture', 'Responsive Design'],
-      link: '#',
+      link: 'https://j-j-j-github.github.io/SPIDERLINE/TASKS/TASK%204/',
       isInternship: true
     },
     {
@@ -335,7 +344,7 @@ const App = () => {
       description: 'Industrial manufacturing website featuring modular front-end architecture, responsive galleries, and clear navigation.',
       image: 'Internship Projects/terresteel.png',
       tags: ['HTML5', 'CSS3', 'Modular Design', 'Responsive UI'],
-      link: '#',
+      link: 'https://j-j-j-github.github.io/SPIDERLINE/TASKS/Task%203/',
       isInternship: true
     },
     {

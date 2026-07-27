@@ -420,7 +420,7 @@ const App = () => {
       */}
 
       {/* Navigation (New: Text Logo, Left-Aligned Navbar) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 h-[76px] bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 md:px-12 flex items-center">
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[76px] bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 md:px-12 flex items-center transform-gpu">
         <div className="flex-shrink-0 mr-4 md:mr-8">
           <button
             onClick={() => scrollToSection('hero')}

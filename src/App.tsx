@@ -156,6 +156,14 @@ const SocialLink = ({ icon: Icon, href, label }: { icon: React.ComponentType<any
   </a>
 );
 
+// --- UTILS ---
+const getSkillWidth = (skill: string) => {
+  if (skill === "HTML5" || skill === "CSS3") return "95%";
+  if (skill === "JavaScript" || skill === "React.js") return "90%";
+  const hash = skill.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return `${(hash % 20) + 65}%`; // 65% to 85%
+};
+
 // --- MAIN APP COMPONENT ---
 
 const HeroHoverText = ({ style }: { style?: any }) => {
@@ -749,9 +757,9 @@ const App = () => {
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className={`group relative z-10 hover:z-20 bg-gradient-to-b ${category.bgGradient} backdrop-blur-[2px] border border-neutral-300 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-2xl p-6 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] ${category.glowColor} overflow-hidden`}
+                  className={`group relative z-10 hover:z-20 bg-gradient-to-b ${category.bgGradient} backdrop-blur-[2px] border border-neutral-300 shadow-[0_12px_40px_rgba(0,0,0,0.12)] rounded-2xl p-6 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] ${category.glowColor} overflow-hidden transform-gpu`}
                 >
                   {/* Shine Animation */}
                   <div className="absolute inset-0 -top-10 -bottom-10 bg-gradient-to-r from-transparent via-white/60 to-transparent 
@@ -780,7 +788,7 @@ const App = () => {
                             <motion.div
                               className={`absolute top-0 left-0 h-full rounded-full ${category.barColor}`}
                               initial={{ width: 0 }}
-                              whileInView={{ width: skill === "HTML5" || skill === "CSS3" ? `${Math.random() * 15 + 80}%` : `${Math.random() * 20 + 40}%` }}
+                              whileInView={{ width: getSkillWidth(skill) }}
                               viewport={{ once: true }}
                               transition={{ duration: 1, delay: idx * 0.15 + sIdx * 0.1, ease: "easeOut" }}
                             />

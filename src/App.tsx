@@ -320,8 +320,7 @@ const App = () => {
       image: 'Internship Projects/civic.png',
       tags: ['AI/ML', 'Microservices', 'GIS', 'E-Governance'],
       link: '#',
-      overlayText: 'Under Development',
-      isInternship: true
+      overlayText: 'Under Development'
     },
     {
       title: 'Diya Hero Website Redesign',

@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Briefcase, Clock } from "lucide-react";
+import { GraduationCap, Briefcase, Clock, HelpCircle } from "lucide-react";
 
 const timelineItems = [
   { 
@@ -92,15 +92,15 @@ Actively mentor and coordinate student contributors across diverse domains, enco
   { 
     title: "Master of Computer Applications (MCA)", 
     institution: "Saintgits College of Engineering", 
-    month: "SEP",
-    yearNode: "2024",
+    month: "JUL",
+    yearNode: "2025",
     icon: "icons/sg.png",
     cardGradient: "bg-gradient-to-r from-blue-500/20 to-red-500/20",
     hoverBorder: "hover:border-purple-500/40",
     glowColor: "bg-[radial-gradient(circle_at_center,theme(colors.purple.500)_0%,transparent_50%)]",
     hoverGlow: "group-hover:from-blue-600/10 group-hover:to-red-600/5",
     iconBg: "group-hover:bg-purple-600/20",
-    dateColor: "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-red-400",
+    dateColor: "text-purple-400",
     branchLeft: "bg-gradient-to-r from-blue-500/80 to-transparent",
     branchRight: "bg-gradient-to-l from-blue-500/80 to-transparent",
     verticalLine: "bg-gradient-to-b from-transparent via-purple-500/80 to-transparent",
@@ -119,15 +119,15 @@ Class Head Coordinator - Samyukta 9.0`,
   { 
     title: "Bachelor of Computer Applications (BCA)", 
     institution: "Saintgits College of Applied Sciences", 
-    month: "MAR",
-    yearNode: "2024",
+    month: "NOV",
+    yearNode: "2021",
     icon: "icons/sg.png",
     cardGradient: "bg-gradient-to-r from-blue-500/20 to-red-500/20",
     hoverBorder: "hover:border-purple-500/40",
     glowColor: "bg-[radial-gradient(circle_at_center,theme(colors.purple.500)_0%,transparent_50%)]",
     hoverGlow: "group-hover:from-blue-600/10 group-hover:to-red-600/5",
     iconBg: "group-hover:bg-purple-600/20",
-    dateColor: "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-red-400",
+    dateColor: "text-purple-400",
     branchLeft: "bg-gradient-to-r from-red-500/80 to-transparent",
     branchRight: "bg-gradient-to-l from-red-500/80 to-transparent",
     verticalLine: "bg-gradient-to-b from-transparent via-purple-500/80 to-transparent",
@@ -242,6 +242,7 @@ const TimelineCardContent = ({ item }: { item: any }) => {
 
 const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
   const [showFullTimeline, setShowFullTimeline] = useState(false);
+  const [showTimelineInfo, setShowTimelineInfo] = useState(false);
 
   return (
     <section
@@ -252,6 +253,33 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
       id="education" 
       className="relative py-16 md:py-24 text-white overflow-hidden bg-black border-t border-neutral-900 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]"
     >
+      {/* Info Button */}
+      <div className="absolute top-6 right-6 md:top-10 md:right-10 z-30 flex flex-row-reverse items-start">
+        <button
+          onClick={() => setShowTimelineInfo(!showTimelineInfo)}
+          className="p-3 bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-full hover:bg-white/10 transition-all text-neutral-400 hover:text-white focus:outline-none"
+          title="Timeline Info"
+        >
+          <HelpCircle className="w-6 h-6" />
+        </button>
+
+        {/* Pop up */}
+        <AnimatePresence>
+          {showTimelineInfo && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: 10 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.9, x: 10 }}
+              transition={{ duration: 0.2 }}
+              className="mr-4 w-72 md:w-96 p-5 rounded-2xl bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)] z-40 text-sm text-neutral-300 leading-relaxed text-left"
+            >
+              <p>
+                <strong>Note:</strong> The month and year represented on the timeline indicates the start of the enrolled activity or work.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
       <div className="w-full max-w-6xl mx-auto px-4 md:px-8">
         
         <div className="flex flex-col items-center justify-center mb-16 relative">

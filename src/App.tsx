@@ -10,12 +10,16 @@ const featuredMedia = [
   { title: "Spiderline", image: "https://media.licdn.com/dms/image/v2/D5622AQEl1UhorEiO8Q/feedshare-image-high-res/B56Z8ea8oSKUAY-/0/1782921809524?e=1786579200&v=beta&t=iWJERMuukZlQYWONyB-5kYETZUGO8-eMz5c4sWFdxas" },
   { title: "Anchoring Team", image: "https://media.licdn.com/dms/image/v2/D4E2DAQEdYBRQdfKpYg/profile-treasury-image-shrink_800_800/B4EZmI9uWYIoAc-/0/1758939512800?e=1785600000&v=beta&t=oRb2Gc3BKaGavroLVyQE0nmxoT4rjuiCfF082nmjigw" },
   { title: "MuMent Meet", image: "https://media.licdn.com/dms/image/v2/D5622AQGYXjrjg8SYtA/feedshare-image-high-res/B56Z1CWgH8KsAY-/0/1774934688743?e=1786579200&v=beta&t=YtPqIT2e127dlqtmeuxHCHks5FOZiu7UBr0yB_j81fo" },
-  { title: "The Voice", image: "https://media.licdn.com/dms/image/v2/D562DAQH0baR4CcUzoA/profile-treasury-image-shrink_1280_1280/B56Z2pnBRdH4AQ-/0/1776667075792?e=1785600000&v=beta&t=1YYh7Y8tXo-q1F3mXkINzRz86yQFFd9-QrDe716rAKs" },
+  { title: "Anchoring", image: "https://media.licdn.com/dms/image/v2/D562DAQH0baR4CcUzoA/profile-treasury-image-shrink_1280_1280/B56Z2pnBRdH4AQ-/0/1776667075792?e=1785600000&v=beta&t=1YYh7Y8tXo-q1F3mXkINzRz86yQFFd9-QrDe716rAKs" },
   { title: "BCMCH", image: "https://media.licdn.com/dms/image/v2/D5622AQGYdK8DHgwibg/feedshare-image-high-res/B56ZsNmPwsHYAs-/0/1765459698549?e=1786579200&v=beta&t=IDc-azIl0RB_LcqmvOkLL2eABRiKrm75-mDvt1uzt84" },
   { title: "Class of MCA", image: "https://media.licdn.com/dms/image/v2/D4E2DAQHPnUv_UXOoiA/profile-treasury-image-shrink_1280_1280/B4EZmeJE8AKQAQ-/0/1759294829879?e=1785600000&v=beta&t=d7GhCKiST-EQPhDBqnyNmzvQWx0UJkCIcahP_WbaDZ0" },
   { title: "GitzBlitz", image: "https://media.licdn.com/dms/image/v2/D4E2DAQGW5v_7bzqEtQ/profile-treasury-image-shrink_800_800/B4EZgO_4mQHoAY-/0/1752598286471?e=1785600000&v=beta&t=xAF0Eks5vtnnmazNOG7uOsMmdCu7AF0Rxp_CQ6w9Bao" },
   { title: "Class of BCA", image: "https://media.licdn.com/dms/image/v2/D4E2DAQHb52ECG110YQ/profile-treasury-image-shrink_800_800/B4EZmeH2izHIAY-/0/1759294492879?e=1785600000&v=beta&t=8jkAIOJ-WGZkVFB5MQP___Itgz4Ql50dywapNpAdLHs" },
-  { title: "Convocation", image: "https://media.licdn.com/dms/image/v2/D4E2DAQFWokjGMnvLPg/profile-treasury-image-shrink_800_800/B4EZgJ4lWrGoAg-/0/1752512489393?e=1785600000&v=beta&t=IClturz9s0p-rTb0Uua2eAjhZ7XBmlGiNGeYic-8VoU" }
+  { title: "Convocation", image: "https://media.licdn.com/dms/image/v2/D4E2DAQFWokjGMnvLPg/profile-treasury-image-shrink_800_800/B4EZgJ4lWrGoAg-/0/1752512489393?e=1785600000&v=beta&t=IClturz9s0p-rTb0Uua2eAjhZ7XBmlGiNGeYic-8VoU" },
+  { title: "Paper publication", image: "https://media.licdn.com/dms/image/v2/D4E2DAQFc5MMjfw83YQ/profile-treasury-image-shrink_1280_1280/B4EZl3hajdHgAY-/0/1758646875550?e=1785945600&v=beta&t=wjfkz1U9igfbO1sf4VTzULNBCacfX1kWVUgHIsbkEi4"},
+  { title: "Exhibition", image: "https://media.licdn.com/dms/image/v2/D4E2DAQH6tqtvWk-R-w/profile-treasury-image-shrink_1280_1280/B4EZgPBXtGHEAQ-/0/1752598681092?e=1785945600&v=beta&t=MnfTPvMw2urvPj26Mll8u-jPdmj4tCX8gu7QV4Va5qM" },
+  { title: "Presentation", image: "https://media.licdn.com/dms/image/v2/D562DAQE3upQs1BjM5w/profile-treasury-image-shrink_1920_1920/B56Zx2GO6PIcAc-/0/1771507877549?e=1785945600&v=beta&t=rfgcc-J5wY9JsNumpOrm-V_gGR3e2frACOlS-BLD7iM" },
+  { title: "Event Head", image: "https://media.licdn.com/dms/image/v2/D562DAQGPiO_-Jw6MRQ/profile-treasury-image-shrink_1920_1920/B56Z.uc1IdG8Ac-/0/1785338222172?e=1785945600&v=beta&t=Ioo4mS--QpTHA3w3ulZlRp3yc6cFeXbGVDsf01vvTTM"}
 ];
 
 // --- HELPER: CONSISTENT TAG COLORS ---

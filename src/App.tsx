@@ -19,7 +19,10 @@ const featuredMedia = [
   { title: "Paper publication", image: `${import.meta.env.BASE_URL}albums/Paper publication.jpeg` },
   { title: "Exhibition", image: `${import.meta.env.BASE_URL}albums/Exhibition.jpeg` },
   { title: "Presentation", image: `${import.meta.env.BASE_URL}albums/Presentation.jpeg` },
-  { title: "Event Head", image: `${import.meta.env.BASE_URL}albums/Event Head.jpeg` }
+  { title: "Event Head", image: `${import.meta.env.BASE_URL}albums/Event Head.jpeg` },
+  { title: "AI Conclave", image: `${import.meta.env.BASE_URL}albums/ai conclave.jpeg` },
+  { title: "Flashmob", image: `${import.meta.env.BASE_URL}albums/flashmob.jpeg` },
+  { title: "Themeshow", image: `${import.meta.env.BASE_URL}albums/themeshow.jpg` }
 ];
 
 // --- HELPER: CONSISTENT TAG COLORS ---
@@ -304,6 +307,13 @@ const App = () => {
   ];
 
   const projects = [
+    {
+      title: 'Medtrace',
+      description: 'A healthcare platform designed to digitize, organize, and simplify patient medical records using AI.',
+      image: 'medtrace.png',
+      tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Supabase', 'AI/OCR'],
+      link: 'https://github.com/j-j-j-github/MedTrace'
+    },
     {
       title: 'Renewly',
       description: 'Smart subscription tracker managing all your recurring expenses in one place. Never miss a renewal again.',

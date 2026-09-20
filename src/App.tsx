@@ -308,19 +308,19 @@ const App = () => {
 
   const projects = [
     {
-      title: 'Medtrace',
-      description: 'A healthcare platform designed to digitize, organize, and simplify patient medical records using AI.',
-      image: 'medtrace.png',
-      tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Supabase', 'AI/OCR'],
-      link: 'https://github.com/j-j-j-github/MedTrace'
-    },
-    {
       title: 'Renewly',
       description: 'Smart subscription tracker managing all your recurring expenses in one place. Never miss a renewal again.',
       image: 'renewly.jpeg',
       tags: ['Android', 'Kotlin', 'Room', 'AlarmManager'],
       link: '#',
       overlayText: 'Launching Soon'
+    },
+    {
+      title: 'Medtrace',
+      description: 'A healthcare platform designed to digitize, organize, and simplify patient medical records using AI.',
+      image: 'medtrace.png',
+      tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Supabase', 'AI/OCR'],
+      link: 'https://github.com/j-j-j-github/MedTrace'
     },
     {
       title: 'ECHO - Seek the Silence',

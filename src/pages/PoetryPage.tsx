@@ -1173,12 +1173,14 @@ In this poetic harmony, our story is heard.`}
         </section>
 
         {/* Book Covers Collection Selection - No scrollbar, realistic book cover design without crease line */}
-        <div className="mt-14 mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide mb-5 select-none cursor-default inline-block !leading-[1.25] overflow-visible">
-            <InkText text="Chapters of the" inkRgb="29, 155, 240" />
-            <span className="inline-block">&nbsp;</span>
-            <InkText text="Heart:" inkRgb="239, 68, 68" />
-          </h2>
+        <div className="mt-10 sm:mt-14 mb-8">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+              <InkText text="Chapters of the" inkRgb="29, 155, 240" />
+              <span className="inline-block">&nbsp;</span>
+              <InkText text="Heart:" inkRgb="239, 68, 68" />
+            </h2>
+          </div>
 
           {/* Responsive 4 Book Cover Cards Grid (No scrollbar!) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -1278,8 +1280,8 @@ In this poetic harmony, our story is heard.`}
           </div>
         </div>
 
-        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no line underneath) */}
-        <div ref={paperAreaRef} className="border-t border-white/10 py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
+        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no lines) */}
+        <div ref={paperAreaRef} className="py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
           <div className="flex items-center gap-3">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="My" inkRgb="29, 155, 240" />

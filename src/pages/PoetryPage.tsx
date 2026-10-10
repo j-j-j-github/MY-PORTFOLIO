@@ -1295,18 +1295,23 @@ In this poetic harmony, our story is heard.`}
                     </span>
                   </div>
 
-                  {/* Centered Book Title (like real book covers) & Smooth Hover Description */}
-                  <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-2 sm:px-3 w-full my-auto">
-                    <h3 className="text-base sm:text-lg md:text-xl font-sans font-bold text-white tracking-tight leading-snug drop-shadow-[0_4px_16px_rgba(0,0,0,1)] transition-transform duration-300 group-hover:-translate-y-1">
-                      {col.title}
+                  {/* Centered Big Book Title: Classic, stylish, book-like typography with one word per line */}
+                  <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-1 sm:px-2 w-full my-auto">
+                    <h3 className="font-['Cinzel',serif] font-bold text-xl sm:text-2xl md:text-[26px] lg:text-[30px] text-white tracking-[0.14em] uppercase leading-[0.96] sm:leading-[0.98] drop-shadow-[0_4px_24px_rgba(0,0,0,1)] select-none transition-transform duration-300 group-hover:scale-105">
+                      {col.title.split(' ').map((word, wIdx) => (
+                        <span key={wIdx} className="block my-0.5">
+                          {word}
+                        </span>
+                      ))}
                     </h3>
-                    <p className="font-sans text-xs sm:text-[13px] text-neutral-200 font-medium leading-relaxed tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] max-w-[190px] mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-1 group-hover:translate-y-0 pointer-events-none">
+                  </div>
+
+                  {/* Bottom of Book: Smooth Hover Description */}
+                  <div className="relative z-20 w-full min-h-[36px] flex items-center justify-center text-center">
+                    <p className="font-sans text-[11px] sm:text-xs text-neutral-200 font-medium leading-tight tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-w-[200px] px-1 pointer-events-none">
                       {col.description}
                     </p>
                   </div>
-
-                  {/* Bottom balancing spacer for perfect vertical centering */}
-                  <div className="relative z-20 w-full h-4 sm:h-5 pointer-events-none" aria-hidden="true" />
 
                   {/* Active White Glow Inner Border */}
                   {isActive && (

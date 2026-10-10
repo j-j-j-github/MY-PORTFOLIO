@@ -1263,7 +1263,7 @@ In this poetic harmony, our story is heard.`}
                   key={col.id}
                   onClick={() => handleThemeChange(col.id)}
                   style={{ WebkitTapHighlightColor: 'transparent' }}
-                  className={`group relative text-left rounded-2xl overflow-hidden aspect-[3/4.2] sm:aspect-[3/4.4] flex flex-col justify-between p-4 sm:p-5 transition-all duration-300 select-none focus:outline-none transform-gpu will-change-transform ${
+                  className={`group relative text-center rounded-2xl overflow-hidden aspect-[3/4.2] sm:aspect-[3/4.4] flex flex-col justify-between p-4 sm:p-5 transition-all duration-300 select-none focus:outline-none transform-gpu will-change-transform ${
                     isActive
                       ? 'ring-2 ring-white shadow-[0_0_35px_rgba(255,255,255,0.4),0_15px_40px_rgba(0,0,0,0.85)]'
                       : 'ring-1 ring-white/10 hover:ring-white/40 shadow-2xl opacity-90 hover:opacity-100'
@@ -1283,7 +1283,7 @@ In this poetic harmony, our story is heard.`}
                   />
 
                   {/* Dark Atmospheric Gradient Overlays for Readability and Depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/60 pointer-events-none" />
 
                   {/* Top Header on Book Cover - Clean Volume and Bold Count Number */}
                   <div className="relative z-20 flex items-center justify-between gap-1 w-full">
@@ -1295,19 +1295,18 @@ In this poetic harmony, our story is heard.`}
                     </span>
                   </div>
 
-                  {/* Description centered on cover on hover, clean normal font */}
-                  <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-5 text-center">
-                    <p className="font-sans text-xs sm:text-sm text-white font-medium leading-relaxed tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,1)] max-w-[200px]">
+                  {/* Centered Book Title (like real book covers) & Smooth Hover Description */}
+                  <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-2 sm:px-3 w-full my-auto">
+                    <h3 className="text-base sm:text-lg md:text-xl font-sans font-bold text-white tracking-tight leading-snug drop-shadow-[0_4px_16px_rgba(0,0,0,1)] transition-transform duration-300 group-hover:-translate-y-1">
+                      {col.title}
+                    </h3>
+                    <p className="font-sans text-xs sm:text-[13px] text-neutral-200 font-medium leading-relaxed tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] max-w-[190px] mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform-gpu translate-y-1 group-hover:translate-y-0 pointer-events-none">
                       {col.description}
                     </p>
                   </div>
 
-                  {/* Bottom of Book: Title in Normal Font */}
-                  <div className="relative z-20 space-y-1 w-full">
-                    <h3 className="text-sm sm:text-base md:text-[17px] font-sans font-bold text-white tracking-tight leading-snug drop-shadow-lg">
-                      {col.title}
-                    </h3>
-                  </div>
+                  {/* Bottom balancing spacer for perfect vertical centering */}
+                  <div className="relative z-20 w-full h-4 sm:h-5 pointer-events-none" aria-hidden="true" />
 
                   {/* Active White Glow Inner Border */}
                   {isActive && (

@@ -839,8 +839,8 @@ In this poetic harmony, our story is heard.`}
           className="my-10 sm:my-14 relative"
         >
           {/* Main Section Heading with Colon */}
-          <div className="mb-6 sm:mb-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.2] overflow-visible">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="Most Recent:" inkRgb="29, 155, 240" />
             </h2>
           </div>
@@ -1036,7 +1036,7 @@ In this poetic harmony, our story is heard.`}
 
               {/* Context Header */}
               <div className="relative z-10">
-                <h4 className="text-3xl sm:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide">
+                <h4 className="text-2xl sm:text-3xl font-['Caveat',cursive] font-bold text-white tracking-wide">
                   Behind the Words:
                 </h4>
               </div>
@@ -1065,8 +1065,8 @@ In this poetic harmony, our story is heard.`}
           className="my-10 sm:my-14 relative"
         >
           {/* Header with Colon */}
-          <div className="mb-6 sm:mb-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="His" inkRgb="29, 155, 240" />
               <span className="inline-block">&nbsp;</span>
               <InkText text="Favorites:" inkRgb="239, 68, 68" />
@@ -1173,8 +1173,8 @@ In this poetic harmony, our story is heard.`}
         </section>
 
         {/* Book Covers Collection Selection - No scrollbar, realistic book cover design without crease line */}
-        <div className="mt-16 mb-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide mb-6 select-none cursor-default inline-block !leading-[1.25] overflow-visible">
+        <div className="mt-14 mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide mb-5 select-none cursor-default inline-block !leading-[1.25] overflow-visible">
             <InkText text="Chapters of the" inkRgb="29, 155, 240" />
             <span className="inline-block">&nbsp;</span>
             <InkText text="Heart:" inkRgb="239, 68, 68" />
@@ -1184,33 +1184,33 @@ In this poetic harmony, our story is heard.`}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
-  id: 'all' as const,
-  volume: 'VOL. I',
-  title: 'The Whole of It',
-  description: 'Every piece, a part of me',
-  coverImage: 'all.jpeg',
-},
-{
-  id: 'unspoken' as const,
-  volume: 'VOL. II',
-  title: 'What Remained Unsaid',
-  description: 'Feelings that never found a voice',
-  coverImage: 'unspoken.jpg',
-},
-{
-  id: 'letting-go' as const,
-  volume: 'VOL. III',
-  title: 'Things We Leave Behind',
-  description: 'Some goodbyes never quite end',
-  coverImage: 'lettinggo.jpg',
-},
-{
-  id: 'reflections' as const,
-  volume: 'VOL. IV',
-  title: 'Somewhere Within',
-  description: 'Conversations with the self',
-  coverImage: 'echoes.jpg',
-},
+                id: 'all' as const,
+                volume: 'COMPLETE',
+                title: 'The Whole of It',
+                description: 'Every piece, a part of me',
+                coverImage: 'all.jpeg',
+              },
+              {
+                id: 'unspoken' as const,
+                volume: 'VOL. I',
+                title: 'What Remained Unsaid',
+                description: 'Feelings that never found a voice',
+                coverImage: 'unspoken.jpg',
+              },
+              {
+                id: 'letting-go' as const,
+                volume: 'VOL. II',
+                title: 'Things We Leave Behind',
+                description: 'Some goodbyes never quite end',
+                coverImage: 'lettinggo.jpg',
+              },
+              {
+                id: 'reflections' as const,
+                volume: 'VOL. III',
+                title: 'Somewhere Within',
+                description: 'Conversations with the self',
+                coverImage: 'echoes.jpg',
+              },
             ].map((col) => {
               const isActive = selectedTheme === col.id;
               const count = col.id === 'all' 
@@ -1254,16 +1254,16 @@ In this poetic harmony, our story is heard.`}
                     </span>
                   </div>
 
-                  {/* Free writing style description centered on cover, no box */}
-                  <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4 text-center">
-                    <p className="font-['Caveat',cursive] text-2xl sm:text-3xl text-white font-bold leading-snug tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,1)]">
+                  {/* Description centered on cover on hover, clean normal font */}
+                  <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-5 text-center">
+                    <p className="font-sans text-xs sm:text-sm text-white font-medium leading-relaxed tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,1)] max-w-[200px]">
                       {col.description}
                     </p>
                   </div>
 
-                  {/* Bottom of Book: Title in Writing Font */}
+                  {/* Bottom of Book: Title in Normal Font */}
                   <div className="relative z-20 space-y-1 w-full">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-['Caveat',cursive] font-bold text-white tracking-wide leading-tight drop-shadow-lg">
+                    <h3 className="text-sm sm:text-base md:text-[17px] font-sans font-bold text-white tracking-tight leading-snug drop-shadow-lg">
                       {col.title}
                     </h3>
                   </div>
@@ -1281,7 +1281,7 @@ In this poetic harmony, our story is heard.`}
         {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no line underneath) */}
         <div ref={paperAreaRef} className="border-t border-white/10 py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
           <div className="flex items-center gap-3">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="My" inkRgb="29, 155, 240" />
               <span className="inline-block">&nbsp;</span>
               <InkText text="Writings:" inkRgb="239, 68, 68" />
@@ -1536,7 +1536,7 @@ In this poetic harmony, our story is heard.`}
           <div className="relative rounded-3xl bg-neutral-900/60 border border-white/10 backdrop-blur-2xl p-7 sm:p-10 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.7)] text-center overflow-hidden">
             {/* Header Content */}
             <div className="max-w-2xl mx-auto space-y-3 mb-8 sm:mb-10">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
                 <InkText text="Want to vent something out?" inkRgb="29, 155, 240" />
               </h2>
 

@@ -58,7 +58,6 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
   const { navigate } = useRouter();
 
   const handleCardClick = (destination: string) => {
-    sessionStorage.setItem('returnSection', 'beyondcode');
     navigate(destination);
   };
 
@@ -66,11 +65,11 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
     <section
       id="beyondcode"
       ref={sectionRef}
-      className="scroll-mt-20 py-16 md:py-24 px-6 md:px-12 bg-white text-black border-t border-neutral-200 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] relative"
+      className="scroll-mt-20 pt-8 sm:pt-10 md:pt-12 pb-16 md:pb-24 px-6 md:px-12 bg-white text-black border-t border-neutral-200 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] relative"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
-        <div className="flex flex-col items-center justify-center mb-14 md:mb-16 text-center">
+        <div className="flex flex-col items-center justify-center mb-10 md:mb-12 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

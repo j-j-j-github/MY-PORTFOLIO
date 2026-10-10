@@ -88,7 +88,7 @@ export const RouterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       window.history.pushState({ sectionId }, '', path);
       setCurrentPath(targetPath);
       if (!sectionId) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo(0, 0);
       }
     } else if (sectionId) {
       const el = document.getElementById(sectionId);

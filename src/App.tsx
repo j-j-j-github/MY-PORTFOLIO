@@ -277,13 +277,11 @@ const HomePage = () => {
       const timer1 = setTimeout(() => scrollToTarget('auto'), 40);
       const timer2 = setTimeout(() => scrollToTarget('auto'), 120);
       const timer3 = setTimeout(() => scrollToTarget('auto'), 300);
-      const timer4 = setTimeout(() => scrollToTarget('smooth'), 500);
 
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
         clearTimeout(timer3);
-        clearTimeout(timer4);
       };
     }
   }, [targetSectionId, clearTargetSection]);

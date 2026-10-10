@@ -40,8 +40,7 @@ export const PhotographyPage: React.FC = () => {
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">
           Deploying soon
         </h1>
-        <p className="text-neutral-400 text-xs sm:text-sm font-mono tracking-wide flex items-center justify-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+        <p className="text-neutral-400 text-xs sm:text-sm font-mono tracking-wide text-center">
           Taking you back to home in <span className="text-white font-semibold">{countdown}s</span>...
         </p>
       </div>

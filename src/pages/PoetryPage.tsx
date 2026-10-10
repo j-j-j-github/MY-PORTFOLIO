@@ -866,7 +866,7 @@ In this poetic harmony, our story is heard.`}
                     {overlookedPoem?.title || 'The Overlooked'}
                   </h3>
                 </div>
-                <span className="font-mono text-xs sm:text-sm text-neutral-300 tracking-wider select-none">
+                <span className="font-['Caveat',cursive] text-xl sm:text-2xl text-white/90 font-bold select-none tracking-wide">
                   — Writings of J
                 </span>
               </div>
@@ -986,8 +986,8 @@ In this poetic harmony, our story is heard.`}
               </div>
             </div>
 
-            {/* Right Card: Fixed-Height Glassmorphic Context Card with Moving Dim Light Blur Effect & Tight Spacing */}
-            <div className="lg:col-span-5 xl:col-span-4 h-[360px] sm:h-[380px] relative rounded-3xl bg-neutral-950/75 border border-white/10 backdrop-blur-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden text-left flex flex-col justify-center gap-3 sm:gap-3.5">
+            {/* Right Card: Fixed-Height Glassmorphic Context Card with Moving Dim Light Blur Effect & Rich Typography */}
+            <div className="lg:col-span-5 xl:col-span-4 h-[360px] sm:h-[380px] relative rounded-3xl bg-neutral-950/75 border border-white/10 backdrop-blur-2xl p-6 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden text-left flex flex-col justify-between">
               {/* Moving Dim Light Orbs behind blurred glass */}
               <motion.div
                 animate={{
@@ -1036,24 +1036,24 @@ In this poetic harmony, our story is heard.`}
 
               {/* Context Header */}
               <div className="relative z-10">
-                <h4 className="text-2xl sm:text-3xl font-['Caveat',cursive] font-bold text-white tracking-wide">
+                <h4 className="text-3xl sm:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide">
                   Behind the Words:
                 </h4>
               </div>
 
-              {/* Context Explanation */}
-              <div className="relative z-10 space-y-2.5 text-neutral-300 text-xs sm:text-[13px] leading-relaxed font-light">
-                <p>
+              {/* Context Explanation - Richer font size gracefully filling the card */}
+              <div className="relative z-10 space-y-3 sm:space-y-3.5 text-neutral-300 leading-relaxed font-light">
+                <p className="text-sm sm:text-[15px] md:text-base italic text-white/95 leading-relaxed font-serif">
                   &ldquo;Written about the quiet art of retreating before being asked to leave, and the subtle grief of convincing oneself that what was lost was never desired.&rdquo;
                 </p>
-                <p className="text-neutral-400">
+                <p className="text-xs sm:text-[13.5px] md:text-sm text-neutral-300 leading-relaxed">
                   It explores the human instinct of preemptive withdrawal: choosing solitude over the sting of being second choice, and finding quiet dignity in walking away before anyone can close the door.
                 </p>
               </div>
 
               {/* Bottom Context Footnote */}
-              <div className="relative z-10 pt-1 flex items-center justify-between text-[11px] font-mono text-neutral-400">
-                <span className="text-neutral-500 tracking-wider">Reflections &bull; Piece 01</span>
+              <div className="relative z-10 pt-1 flex items-center justify-between text-xs font-mono text-neutral-400">
+                <span className="text-neutral-400 tracking-wider">Reflections &bull; Piece 01</span>
               </div>
             </div>
           </div>
@@ -1184,33 +1184,33 @@ In this poetic harmony, our story is heard.`}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
-                id: 'all' as const,
-                volume: 'VOL. I',
-                title: 'Complete Archive',
-                description: 'All 19 poems',
-                coverImage: 'all.jpeg',
-              },
-              {
-                id: 'unspoken' as const,
-                volume: 'VOL. II',
-                title: 'The Unspoken',
-                description: 'Unspoken longing & quiet glances',
-                coverImage: 'unspoken.jpg',
-              },
-              {
-                id: 'letting-go' as const,
-                volume: 'VOL. III',
-                title: 'The Art of Letting Go',
-                description: 'The bittersweet grace of letting go',
-                coverImage: 'lettinggo.jpg',
-              },
-              {
-                id: 'reflections' as const,
-                volume: 'VOL. IV',
-                title: 'Echoes & Solitude',
-                description: 'Midnight musings & quiet echoes',
-                coverImage: 'echoes.jpg',
-              },
+  id: 'all' as const,
+  volume: 'VOL. I',
+  title: 'The Whole of It',
+  description: 'Every piece, a part of me',
+  coverImage: 'all.jpeg',
+},
+{
+  id: 'unspoken' as const,
+  volume: 'VOL. II',
+  title: 'What Remained Unsaid',
+  description: 'Feelings that never found a voice',
+  coverImage: 'unspoken.jpg',
+},
+{
+  id: 'letting-go' as const,
+  volume: 'VOL. III',
+  title: 'Things We Leave Behind',
+  description: 'Some goodbyes never quite end',
+  coverImage: 'lettinggo.jpg',
+},
+{
+  id: 'reflections' as const,
+  volume: 'VOL. IV',
+  title: 'Somewhere Within',
+  description: 'Conversations with the self',
+  coverImage: 'echoes.jpg',
+},
             ].map((col) => {
               const isActive = selectedTheme === col.id;
               const count = col.id === 'all' 
@@ -1278,8 +1278,8 @@ In this poetic harmony, our story is heard.`}
           </div>
         </div>
 
-        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right */}
-        <div ref={paperAreaRef} className="border-t border-b border-white/10 py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
+        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no line underneath) */}
+        <div ref={paperAreaRef} className="border-t border-white/10 py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
           <div className="flex items-center gap-3">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="My" inkRgb="29, 155, 240" />
@@ -1520,6 +1520,8 @@ In this poetic harmony, our story is heard.`}
             </span>
           </div>
 
+          {/* Section End Divider Line */}
+          <div className="w-full border-b border-white/10 pt-6 sm:pt-8" />
         </div>
 
         {/* SECTION 4: APP SHOWCASE - Echo App ("Want to vent something out?") */}

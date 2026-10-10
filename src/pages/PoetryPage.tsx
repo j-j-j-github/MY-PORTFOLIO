@@ -840,7 +840,7 @@ In this poetic harmony, our story is heard.`}
         >
           {/* Main Section Heading with Colon */}
           <div className="mb-5 sm:mb-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+            <h2 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="Most Recent:" inkRgb="29, 155, 240" />
             </h2>
           </div>
@@ -1036,7 +1036,7 @@ In this poetic harmony, our story is heard.`}
 
               {/* Context Header */}
               <div className="relative z-10">
-                <h4 className="text-2xl sm:text-3xl font-['Caveat',cursive] font-bold text-white tracking-wide">
+                <h4 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl font-['Caveat',cursive] font-bold text-white tracking-wide">
                   Behind the Words:
                 </h4>
               </div>
@@ -1066,7 +1066,7 @@ In this poetic harmony, our story is heard.`}
         >
           {/* Header with Colon */}
           <div className="mb-5 sm:mb-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+            <h2 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="His" inkRgb="29, 155, 240" />
               <span className="inline-block">&nbsp;</span>
               <InkText text="Favorites:" inkRgb="239, 68, 68" />
@@ -1175,7 +1175,7 @@ In this poetic harmony, our story is heard.`}
         {/* Book Covers Collection Selection - No scrollbar, realistic book cover design without crease line */}
         <div className="mt-10 sm:mt-14 mb-8">
           <div className="mb-5 sm:mb-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+            <h2 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="Chapters of the" inkRgb="29, 155, 240" />
               <span className="inline-block">&nbsp;</span>
               <InkText text="Heart:" inkRgb="239, 68, 68" />
@@ -1283,7 +1283,7 @@ In this poetic harmony, our story is heard.`}
         {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no lines) */}
         <div ref={paperAreaRef} className="py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
           <div className="flex items-center gap-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+            <h2 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
               <InkText text="My" inkRgb="29, 155, 240" />
               <span className="inline-block">&nbsp;</span>
               <InkText text="Writings:" inkRgb="239, 68, 68" />
@@ -1538,7 +1538,7 @@ In this poetic harmony, our story is heard.`}
           <div className="relative rounded-3xl bg-neutral-900/60 border border-white/10 backdrop-blur-2xl p-7 sm:p-10 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.7)] text-center overflow-hidden">
             {/* Header Content */}
             <div className="max-w-2xl mx-auto space-y-3 mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+              <h2 className="inline-block border-b-2 border-white/30 pb-1 text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
                 <InkText text="Want to vent something out?" inkRgb="29, 155, 240" />
               </h2>
 

@@ -35,7 +35,7 @@ export const AnimatedHeaderTitle: React.FC<AnimatedHeaderTitleProps> = ({ onClic
     <button
       onClick={handleClick}
       style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
-      className="relative flex items-center justify-center font-bold text-xs sm:text-base md:text-lg tracking-[0.16em] sm:tracking-[0.2em] text-white uppercase outline-none focus:outline-none focus:ring-0 select-none z-10 whitespace-nowrap cursor-pointer group hover:opacity-85 transition-opacity"
+      className="relative flex items-center justify-center text-white outline-none focus:outline-none focus:ring-0 select-none z-10 whitespace-nowrap cursor-pointer group hover:opacity-85 transition-opacity"
       aria-label={isScrolled ? 'Writings of J (Click to scroll to top)' : "Jeeval's Space (Click for home)"}
       title={isScrolled ? 'Writings of J • Click to return to top' : "Jeeval's Space • Click for home"}
     >
@@ -47,7 +47,7 @@ export const AnimatedHeaderTitle: React.FC<AnimatedHeaderTitleProps> = ({ onClic
             animate={{ opacity: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, filter: 'blur(4px)' }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="inline-block"
+            className="inline-block font-['Caveat',cursive] normal-case text-2xl sm:text-3xl font-bold tracking-wide leading-none"
           >
             Writings of J
           </motion.span>
@@ -58,7 +58,7 @@ export const AnimatedHeaderTitle: React.FC<AnimatedHeaderTitleProps> = ({ onClic
             animate={{ opacity: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, filter: 'blur(4px)' }}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
-            className="inline-block"
+            className="inline-block font-bold text-xs sm:text-base md:text-lg tracking-[0.16em] sm:tracking-[0.2em] uppercase font-sans"
           >
             Jeeval&apos;s Space
           </motion.span>

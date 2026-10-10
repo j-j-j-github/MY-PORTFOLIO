@@ -94,7 +94,7 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
             <span className="block mt-2 font-normal">
               <span className="text-blue-600 font-semibold">The objects I collect</span>,{' '}
               <span className="text-emerald-600 font-semibold">the moments I capture</span>, and{' '}
-              <span className="text-[#8a0303] font-semibold">the words I write</span>.
+              <span className="text-red-500 font-semibold">the words I write</span>.
             </span>
           </p>
         </div>

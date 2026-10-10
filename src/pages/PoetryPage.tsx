@@ -1224,34 +1224,34 @@ In this poetic harmony, our story is heard.`}
           {/* Responsive 4 Book Cover Cards Grid (No scrollbar!) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
-{
-  id: 'all' as const,
-  volume: 'COMPLETE',
-  title: 'The Whole of It',
-  description: 'A thousand selves, one beating heart.',
-  coverImage: 'all.jpeg',
-},
-{
-  id: 'unspoken' as const,
-  volume: 'VOL. I',
-  title: 'What Remained Unsaid',
-  description: 'We spoke in everything but words.',
-  coverImage: 'unspoken.jpg',
-},
-{
-  id: 'letting-go' as const,
-  volume: 'VOL. II',
-  title: 'Things We Leave Behind',
-  description: 'What leaves the hand haunts the heart.',
-  coverImage: 'lettinggo.jpg',
-},
-{
-  id: 'reflections' as const,
-  volume: 'VOL. III',
-  title: 'Somewhere Within',
-  description: 'There are worlds in me I have yet to wander.',
-  coverImage: 'echoes.jpg',
-},
+              {
+                id: 'all' as const,
+                volume: 'COMPLETE',
+                title: 'The Whole of It',
+                description: 'A thousand selves, one beating heart.',
+                coverImage: 'all_v2.jpeg',
+              },
+              {
+                id: 'unspoken' as const,
+                volume: 'VOL. I',
+                title: 'What Remained Unsaid',
+                description: 'We spoke in everything but words.',
+                coverImage: 'unspoken_v2.jpg',
+              },
+              {
+                id: 'letting-go' as const,
+                volume: 'VOL. II',
+                title: 'Things We Leave Behind',
+                description: 'What leaves the hand haunts the heart.',
+                coverImage: 'lettinggo_v2.jpg',
+              },
+              {
+                id: 'reflections' as const,
+                volume: 'VOL. III',
+                title: 'Somewhere Within',
+                description: 'There are worlds in me I have yet to wander.',
+                coverImage: 'echoes_v2.jpg',
+              },
             ].map((col) => {
               const isActive = selectedTheme === col.id;
               const count = col.id === 'all' 

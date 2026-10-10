@@ -277,11 +277,13 @@ const HomePage = () => {
       const timer1 = setTimeout(() => scrollToTarget('auto'), 40);
       const timer2 = setTimeout(() => scrollToTarget('auto'), 120);
       const timer3 = setTimeout(() => scrollToTarget('auto'), 300);
+      const timer4 = setTimeout(() => scrollToTarget('smooth'), 500);
 
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
         clearTimeout(timer3);
+        clearTimeout(timer4);
       };
     }
   }, [targetSectionId, clearTargetSection]);
@@ -994,17 +996,33 @@ const App = () => {
     }
   }, [currentPath]);
 
-  if (currentPath === '/watches') {
-    return <WatchesPage />;
-  }
-  if (currentPath === '/photography') {
-    return <PhotographyPage />;
-  }
-  if (currentPath === '/writingsofj' || currentPath === '/poetry') {
-    return <PoetryPage />;
-  }
+  const renderCurrentPage = () => {
+    if (currentPath === '/watches') {
+      return <WatchesPage />;
+    }
+    if (currentPath === '/photography') {
+      return <PhotographyPage />;
+    }
+    if (currentPath === '/writingsofj' || currentPath === '/poetry') {
+      return <PoetryPage />;
+    }
+    return <HomePage />;
+  };
 
-  return <HomePage />;
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentPath === '/poetry' ? '/writingsofj' : currentPath}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.45, ease: 'easeInOut' }}
+        className="w-full min-h-screen"
+      >
+        {renderCurrentPage()}
+      </motion.div>
+    </AnimatePresence>
+  );
 };
 
 export default App;

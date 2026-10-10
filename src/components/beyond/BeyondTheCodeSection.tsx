@@ -8,6 +8,10 @@ interface InterestCardData {
   subtitle: string;
   destination: string;
   image: string;
+  archiveColor: string;
+  archiveHoverColor: string;
+  hoverBorder: string;
+  hoverTitle: string;
 }
 
 const interests: InterestCardData[] = [
@@ -17,6 +21,10 @@ const interests: InterestCardData[] = [
     subtitle: 'A growing collection of watches and the stories behind them.',
     destination: '/watches',
     image: `${import.meta.env.BASE_URL}beyondcode/watches.jpg`,
+    archiveColor: 'text-blue-400',
+    archiveHoverColor: 'group-hover:text-blue-300',
+    hoverBorder: 'hover:border-blue-500/50',
+    hoverTitle: 'group-hover:text-blue-400',
   },
   {
     id: 'photography',
@@ -24,6 +32,10 @@ const interests: InterestCardData[] = [
     subtitle: 'Everyday moments, interesting light, and perspectives worth keeping.',
     destination: '/photography',
     image: `${import.meta.env.BASE_URL}beyondcode/photo.jpg`,
+    archiveColor: 'text-emerald-400',
+    archiveHoverColor: 'group-hover:text-emerald-300',
+    hoverBorder: 'hover:border-emerald-500/50',
+    hoverTitle: 'group-hover:text-emerald-400',
   },
   {
     id: 'poetry',
@@ -31,6 +43,10 @@ const interests: InterestCardData[] = [
     subtitle: 'Poems, thoughts, and words that deserve a little space.',
     destination: '/writingsofj',
     image: `${import.meta.env.BASE_URL}beyondcode/poem.jpg`,
+    archiveColor: 'text-red-500',
+    archiveHoverColor: 'group-hover:text-red-400',
+    hoverBorder: 'hover:border-red-600/50',
+    hoverTitle: 'group-hover:text-red-400',
   },
 ];
 
@@ -74,7 +90,12 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
           />
 
           <p className="max-w-2xl text-neutral-600 font-light text-base md:text-lg leading-relaxed mt-6">
-            A little about what I enjoy when I am not building software: the objects I collect, the moments I capture, and the words I write.
+            A little about what I enjoy when I am not building software:
+            <span className="block mt-2 font-normal">
+              <span className="text-blue-600 font-semibold">The objects I collect</span>,{' '}
+              <span className="text-emerald-600 font-semibold">the moments I capture</span>, and{' '}
+              <span className="text-[#8a0303] font-semibold">the words I write</span>.
+            </span>
           </p>
         </div>
 
@@ -97,7 +118,7 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
               tabIndex={0}
               role="button"
               aria-label={`Explore ${interest.title}`}
-              className="group relative h-[460px] md:h-[500px] rounded-3xl overflow-hidden border border-neutral-300 shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_28px_60px_rgba(0,0,0,0.28)] hover:border-blue-500/50 hover:-translate-y-2 transition-all duration-500 cursor-pointer focus:outline-none select-none bg-neutral-900"
+              className={`group relative h-[460px] md:h-[500px] rounded-3xl overflow-hidden border border-neutral-300 shadow-[0_12px_36px_rgba(0,0,0,0.14)] hover:shadow-[0_28px_60px_rgba(0,0,0,0.28)] ${interest.hoverBorder} hover:-translate-y-2 transition-all duration-500 cursor-pointer focus:outline-none select-none bg-neutral-900`}
             >
               {/* Full-bleed Background Image (Top remains 100% bright and undimmed) */}
               <img
@@ -112,7 +133,7 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
 
               {/* Bottom Text Content */}
               <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end z-10 pointer-events-none">
-                <h3 className="text-xl md:text-2xl font-bold uppercase tracking-[0.16em] text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                <h3 className={`text-xl md:text-2xl font-bold uppercase tracking-[0.16em] text-white mb-2 ${interest.hoverTitle} transition-colors duration-300`}>
                   {interest.title}
                 </h3>
 
@@ -120,7 +141,7 @@ export const BeyondTheCodeSection: React.FC<BeyondTheCodeSectionProps> = ({ sect
                   {interest.subtitle}
                 </p>
 
-                <div className="flex items-center text-xs font-bold uppercase tracking-wider text-blue-400 group-hover:text-blue-300 transition-colors">
+                <div className={`flex items-center text-xs font-bold uppercase tracking-wider ${interest.archiveColor} ${interest.archiveHoverColor} transition-colors`}>
                   <span>Explore Archive</span>
                   <span className="ml-2 group-hover:translate-x-1.5 transition-transform duration-300 text-sm">
                     &rarr;

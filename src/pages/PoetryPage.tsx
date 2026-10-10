@@ -572,8 +572,8 @@ export const PoetryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Profile Action Buttons: Compact on mobile fitting beside DP without wasting extra lines, spaced nicely on desktop */}
-            <div className="flex flex-wrap items-center justify-end gap-1.5 sm:gap-2.5 pb-1 sm:pb-0 sm:mt-3.5 sm:pt-1 pr-0">
+            {/* Profile Action Buttons: Desktop Top-Right below banner */}
+            <div className="hidden sm:flex flex-wrap items-center justify-end gap-2 sm:gap-2.5 sm:mt-3.5 sm:pt-1 pr-0">
               <a
                 href="mailto:jeevaljolly@gmail.com"
                 className="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/[0.08] hover:bg-white/[0.16] active:scale-95 backdrop-blur-2xl border border-white/15 hover:border-white/35 text-[10px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-neutral-200 hover:text-white shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:shadow-[0_8px_32px_rgba(168,85,247,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)]"
@@ -649,6 +649,42 @@ export const PoetryPage: React.FC = () => {
                 <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">3</span>
                 <span className="text-xs uppercase tracking-wider text-neutral-400">Chapters</span>
               </div>
+            </div>
+
+            {/* Mobile Action Buttons: Sits right under Writings, Readers, Chapters with dynamic fluid scaling */}
+            <div className="flex sm:hidden items-center justify-between gap-1.5 pt-3.5 w-full">
+              <a
+                href="mailto:jeevaljolly@gmail.com"
+                className="group flex-1 min-w-0 flex items-center justify-center gap-1 px-1.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.16] active:scale-95 backdrop-blur-2xl border border-white/15 hover:border-white/35 font-semibold tracking-wider uppercase transition-all duration-300 text-neutral-200 hover:text-white shadow-[0_4px_24px_rgba(0,0,0,0.5)] text-[clamp(9px,2.5vw,11.5px)]"
+                title="Write to me (jeevaljolly@gmail.com)"
+              >
+                <Mail className="w-3 h-3 text-purple-400 group-hover:scale-110 transition-transform duration-300 shrink-0" />
+                <span className="font-mono whitespace-nowrap truncate">Write to Me</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/writingsofj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex-1 min-w-0 flex items-center justify-center gap-1 px-1.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.16] active:scale-95 backdrop-blur-2xl border border-white/15 hover:border-white/35 font-semibold tracking-wider uppercase transition-all duration-300 text-neutral-200 hover:text-white shadow-[0_4px_24px_rgba(0,0,0,0.5)] text-[clamp(9px,2.5vw,11.5px)]"
+                title="Find on Instagram (@writingsofj)"
+              >
+                <Instagram className="w-3 h-3 text-pink-400 group-hover:scale-110 transition-transform duration-300 shrink-0" />
+                <span className="font-mono whitespace-nowrap truncate">Follow</span>
+              </a>
+
+              <button
+                onClick={handleShare}
+                className="group flex-1 min-w-0 flex items-center justify-center gap-1 px-1.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.16] active:scale-95 backdrop-blur-2xl border border-white/15 hover:border-white/35 font-semibold tracking-wider uppercase transition-all duration-300 text-neutral-200 hover:text-white shadow-[0_4px_24px_rgba(0,0,0,0.5)] text-[clamp(9px,2.5vw,11.5px)]"
+                title="Share Archive (jeevals.space/writingsofj)"
+              >
+                {copied ? (
+                  <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                ) : (
+                  <Share2 className="w-3 h-3 text-blue-400 group-hover:scale-110 transition-transform duration-300 shrink-0" />
+                )}
+                <span className="font-mono whitespace-nowrap truncate">{copied ? 'Copied' : 'Share'}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -822,15 +858,15 @@ In this poetic harmony, our story is heard.`}
               {/* Dark Overlay for rich contrast and readable white typography */}
               <div className="absolute inset-0 bg-black/65 backdrop-blur-[1.5px] pointer-events-none" />
 
-              {/* Top Bar: Poem Title in Handwritten font & White (No dividing horizontal line) */}
+              {/* Top Bar: Poem Title in Clean Typography & White (No handwriting font) */}
               <div className="relative z-10 flex items-center justify-between pb-1">
                 <div className="flex items-center gap-2">
                   <Feather className="w-4 h-4 text-sky-400 shrink-0" />
-                  <h3 className="text-2xl sm:text-3xl font-['Caveat',cursive] font-bold text-white tracking-wide">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-sans font-bold text-white tracking-tight">
                     {overlookedPoem?.title || 'The Overlooked'}
                   </h3>
                 </div>
-                <span className="font-['Caveat',cursive] text-lg sm:text-xl text-white/80 font-bold select-none">
+                <span className="font-mono text-xs sm:text-sm text-neutral-300 tracking-wider select-none">
                   — Writings of J
                 </span>
               </div>
@@ -904,9 +940,9 @@ In this poetic harmony, our story is heard.`}
                 </AnimatePresence>
               </div>
 
-              {/* Bottom Retro Controls (No dividing horizontal line) */}
+              {/* Bottom Retro Controls (No dividing horizontal line, clean font for counter) */}
               <div className="relative z-10 pt-1 flex items-center justify-between">
-                <span className="font-['Caveat',cursive] text-sm sm:text-base text-white/70">
+                <span className="font-mono text-xs sm:text-sm text-white/70 tracking-wider">
                   {recentLineIdx + 1} / {overlookedLines.length}
                 </span>
 
@@ -950,8 +986,8 @@ In this poetic harmony, our story is heard.`}
               </div>
             </div>
 
-            {/* Right Card: Fixed-Height Glassmorphic Context Card with Moving Dim Light Blur Effect */}
-            <div className="lg:col-span-5 xl:col-span-4 h-[360px] sm:h-[380px] relative rounded-3xl bg-neutral-950/75 border border-white/10 backdrop-blur-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden text-left flex flex-col justify-between">
+            {/* Right Card: Fixed-Height Glassmorphic Context Card with Moving Dim Light Blur Effect & Tight Spacing */}
+            <div className="lg:col-span-5 xl:col-span-4 h-[360px] sm:h-[380px] relative rounded-3xl bg-neutral-950/75 border border-white/10 backdrop-blur-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden text-left flex flex-col justify-center gap-3 sm:gap-3.5">
               {/* Moving Dim Light Orbs behind blurred glass */}
               <motion.div
                 animate={{
@@ -1016,7 +1052,7 @@ In this poetic harmony, our story is heard.`}
               </div>
 
               {/* Bottom Context Footnote */}
-              <div className="relative z-10 pt-2 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+              <div className="relative z-10 pt-1 flex items-center justify-between text-[11px] font-mono text-neutral-400">
                 <span className="text-neutral-500 tracking-wider">Reflections &bull; Piece 01</span>
               </div>
             </div>
@@ -1242,11 +1278,13 @@ In this poetic harmony, our story is heard.`}
           </div>
         </div>
 
-        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (keys instructions placed below the pages) */}
-        <div ref={paperAreaRef} className="border-t border-b border-white/10 py-3.5 px-2 flex items-center justify-between flex-wrap gap-2 scroll-mt-24">
+        {/* Section Heading Bar: MY WRITINGS on left, Piece text on right */}
+        <div ref={paperAreaRef} className="border-t border-b border-white/10 py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
           <div className="flex items-center gap-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide">
-              My Writings:
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible">
+              <InkText text="My" inkRgb="29, 155, 240" />
+              <span className="inline-block">&nbsp;</span>
+              <InkText text="Writings:" inkRgb="239, 68, 68" />
             </h2>
           </div>
 

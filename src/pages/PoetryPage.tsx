@@ -1263,10 +1263,10 @@ In this poetic harmony, our story is heard.`}
                   key={col.id}
                   onClick={() => handleThemeChange(col.id)}
                   style={{ WebkitTapHighlightColor: 'transparent' }}
-                  className={`group relative text-center rounded-2xl overflow-hidden aspect-[3/4.2] sm:aspect-[3/4.4] flex flex-col justify-between p-4 sm:p-5 transition-all duration-300 select-none focus:outline-none transform-gpu will-change-transform ${
+                  className={`group relative text-center rounded-2xl overflow-hidden aspect-[3/4.2] sm:aspect-[3/4.4] flex flex-col justify-between p-4 sm:p-5 transition-all duration-500 select-none focus:outline-none transform-gpu will-change-transform ${
                     isActive
-                      ? 'ring-2 ring-white shadow-[0_0_35px_rgba(255,255,255,0.4),0_15px_40px_rgba(0,0,0,0.85)]'
-                      : 'ring-1 ring-white/10 hover:ring-white/40 shadow-2xl opacity-90 hover:opacity-100'
+                      ? 'ring-2 ring-white shadow-[0_0_35px_rgba(255,255,255,0.4),0_15px_40px_rgba(0,0,0,0.85)] group-hover:ring-black'
+                      : 'ring-1 ring-white/10 group-hover:ring-black/20 shadow-2xl opacity-90 hover:opacity-100 group-hover:shadow-[0_20px_50px_rgba(255,255,255,0.25)]'
                   }`}
                 >
                   {/* Background Book Cover Image from poem folder */}
@@ -1283,21 +1283,24 @@ In this poetic harmony, our story is heard.`}
                   />
 
                   {/* Dark Atmospheric Gradient Overlays for Readability and Depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/60 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/60 pointer-events-none transition-opacity duration-500 ease-out group-hover:opacity-0" />
+
+                  {/* Smooth White Fade Layer on Hover */}
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none z-10" />
 
                   {/* Top Header on Book Cover - Clean Volume and Bold Count Number */}
                   <div className="relative z-20 flex items-center justify-between gap-1 w-full">
-                    <span className="text-[11px] font-mono tracking-[0.22em] uppercase text-neutral-200 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                    <span className="text-[11px] font-mono tracking-[0.22em] uppercase text-neutral-200 group-hover:text-black font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:drop-shadow-none transition-all duration-500 ease-out">
                       {col.volume}
                     </span>
-                    <span className="font-['Montserrat',sans-serif] font-bold text-sm sm:text-base text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] tracking-tight">
+                    <span className="font-['Montserrat',sans-serif] font-bold text-sm sm:text-base text-white/95 group-hover:text-black drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:drop-shadow-none tracking-tight transition-all duration-500 ease-out">
                       {count}
                     </span>
                   </div>
 
                   {/* Centered Big Book Title: Classic, stylish, book-like typography with one word per line */}
                   <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-1 sm:px-2 w-full my-auto">
-                    <h3 className="font-['Cinzel',serif] font-bold text-xl sm:text-2xl md:text-[26px] lg:text-[30px] text-white tracking-[0.14em] uppercase leading-[0.96] sm:leading-[0.98] drop-shadow-[0_4px_24px_rgba(0,0,0,1)] select-none transition-transform duration-300 group-hover:scale-105">
+                    <h3 className="font-['Cinzel',serif] font-bold text-xl sm:text-2xl md:text-[26px] lg:text-[30px] text-white group-hover:text-black tracking-[0.14em] uppercase leading-[0.96] sm:leading-[0.98] drop-shadow-[0_4px_24px_rgba(0,0,0,1)] group-hover:drop-shadow-none select-none transition-all duration-500 ease-out">
                       {col.title.split(' ').map((word, wIdx) => (
                         <span key={wIdx} className="block my-0.5">
                           {word}
@@ -1306,16 +1309,16 @@ In this poetic harmony, our story is heard.`}
                     </h3>
                   </div>
 
-                  {/* Bottom of Book: Smooth Hover Description */}
+                  {/* Bottom of Book: Always Visible Description */}
                   <div className="relative z-20 w-full min-h-[36px] flex items-center justify-center text-center">
-                    <p className="font-sans text-[11px] sm:text-xs text-neutral-200 font-medium leading-tight tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-w-[200px] px-1 pointer-events-none">
+                    <p className="font-sans text-[11px] sm:text-xs text-neutral-300 group-hover:text-black font-medium leading-tight tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,1)] group-hover:drop-shadow-none max-w-[200px] px-1 transition-all duration-500 ease-out pointer-events-none">
                       {col.description}
                     </p>
                   </div>
 
                   {/* Active White Glow Inner Border */}
                   {isActive && (
-                    <div className="absolute inset-0 rounded-2xl ring-1 ring-white/80 shadow-[inset_0_0_20px_rgba(255,255,255,0.18)] pointer-events-none z-30" />
+                    <div className="absolute inset-0 rounded-2xl ring-1 ring-white/80 group-hover:ring-black/20 shadow-[inset_0_0_20px_rgba(255,255,255,0.18)] group-hover:shadow-none transition-all duration-500 pointer-events-none z-30" />
                   )}
                 </button>
               );
@@ -1324,7 +1327,7 @@ In this poetic harmony, our story is heard.`}
         </div>
 
         {/* Section Heading Bar: MY WRITINGS on left, Piece text on right (no lines) */}
-        <div ref={paperAreaRef} className="py-4 px-2 flex items-center justify-between flex-wrap gap-3 scroll-mt-24">
+        <div ref={paperAreaRef} className="pt-3 pb-1 px-2 flex items-center justify-between flex-wrap gap-2 scroll-mt-24">
           <div className="flex items-center gap-3">
             <h2 className="relative inline-block text-2xl sm:text-3xl md:text-4xl font-['Caveat',cursive] font-bold text-white tracking-wide !leading-[1.25] overflow-visible pb-1.5">
               <InkText text="My" inkRgb="29, 155, 240" />
@@ -1341,12 +1344,12 @@ In this poetic harmony, our story is heard.`}
       </div>
 
       {/* Main 3D Card Deck Carousel Section - Protected & Sized so sides never get cut off */}
-      <main className="w-full max-w-7xl mx-auto px-2 sm:px-6 md:px-10 relative mt-8 sm:mt-10 overflow-x-clip select-none">
+      <main className="w-full max-w-7xl mx-auto px-2 sm:px-6 md:px-10 relative mt-1 sm:mt-2 overflow-x-clip select-none">
         <div 
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onContextMenu={(e) => e.preventDefault()}
-          className="relative min-h-[550px] sm:min-h-[610px] md:min-h-[660px] flex items-center justify-center py-4 touch-pan-y"
+          className="relative min-h-[510px] sm:min-h-[570px] md:min-h-[610px] flex items-center justify-center py-1 touch-pan-y"
         >
           {/* Previous Arrow Button - Smooth slow fade to white on hover */}
           <button

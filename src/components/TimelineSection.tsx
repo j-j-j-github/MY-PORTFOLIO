@@ -283,8 +283,8 @@ const TimelineSection = forwardRef<HTMLElement>((_, ref) => {
       <div className="w-full max-w-6xl mx-auto px-4 md:px-8">
         
         <div className="flex flex-col items-center justify-center mb-16 relative">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-center flex items-center justify-center">
-              My Timeline
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-center flex items-center justify-center uppercase">
+              MY TIMELINE
           </h2>
           <motion.div 
               initial={{ width: 0 }}

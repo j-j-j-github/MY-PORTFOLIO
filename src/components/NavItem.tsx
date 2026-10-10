@@ -19,15 +19,15 @@ const NavItem = forwardRef(
     <button
       ref={ref}
       onClick={() => onClick(id)}
+      style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
       className={`
-        relative group overflow-hidden px-6 py-2.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-[0.2em]
-        transition-all duration-300 ease-out transform
-        border
+        relative group overflow-hidden px-3.5 sm:px-4 md:px-4.5 py-1.5 md:py-2 rounded-full text-xs font-bold uppercase tracking-[0.14em]
+        transition-all duration-300 ease-out transform select-none
+        border outline-none focus:outline-none focus:ring-0 active:outline-none
         ${active 
           ? 'text-white bg-white/10 border-white/10 shadow-[0_0_20px_rgba(37,99,235,0.25)] scale-105' 
           : 'text-neutral-400 border-transparent hover:text-white hover:bg-white/5 hover:border-white/5'
         }
-        focus:outline-none focus:ring-2 focus:ring-blue-500/50
       `}
     >
       {/* Label */}

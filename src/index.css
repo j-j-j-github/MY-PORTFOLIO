@@ -69,6 +69,33 @@ body {
   background: #718096;
 }
 
+/* Delicate Paper Scrollbar: ultra-thin, translucent, unobtrusive */
+.paper-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.paper-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.paper-scroll::-webkit-scrollbar-thumb {
+  background: rgba(160, 140, 120, 0.35);
+  border-radius: 9999px;
+}
+.paper-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 120, 100, 0.6);
+}
+.paper-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 140, 120, 0.35) transparent;
+}
+
+/* Vintage Realistic Quill Custom Cursor for Poetry Page */
+body.quill-cursor,
+body.quill-cursor *,
+body.quill-cursor *::before,
+body.quill-cursor *::after {
+  cursor: var(--quill-cursor-url, url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMSAxIEw1IDExIEM4IDkgMTIgNyAxNiA2IEMyMCA1IDI0IDYgMjggOCBDMzAgMTAgMzEgMTMgMzAgMTYgQzI3IDIwIDIyIDIzIDE4IDI1IEMxNCAyNyAxMCAyOCA2IDMwIEw1IDI1IEM3IDIzIDkgMjAgMTEgMTcgTDEgMSBaIiBmaWxsPSIjMDAwMDAwIiBmaWxsLW9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSwgMSkiLz48cGF0aCBkPSJNNyA3IEMxMSA1IDE1IDQgMTkgNCBDMjMgNCAyNyA1IDMwIDcgQzMxIDkgMzEgMTEgMzAgMTMgQzI3IDE2IDIzIDE5IDE5IDIxIEMxNiAyMiAxMyAyMiAxMCAyMiBMNyA3IFoiIGZpbGw9IiNlMmU4ZjAiIHN0cm9rZT0iIzk0YTNiOCIgc3Ryb2tlLXdpZHRoPSIwLjciLz48cGF0aCBkPSJNMTEgOSBDMTUgNyAxOSA2IDIzIDYgQzI2IDYgMjggNyAzMCA5IEMyOCAxMSAyNSAxMyAyMiAxNSBDMTkgMTcgMTYgMTggMTMgMTggTDExIDkgWiIgZmlsbD0iI2Y4ZmFmYyIvPjxwYXRoIGQ9Ik0xNCA3IEwxNyAxMSBNMTggNyBMMjEgMTEgTTIyIDggTDI0IDEyIE0yNSA5IEwyNyAxMyIgc3Ryb2tlPSIjY2JkNWUxIiBzdHJva2Utd2lkdGg9IjAuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTYgMTMgQzkgMTUgMTIgMTcgMTUgMTkgQzE4IDIxIDIxIDIzIDIzIDI2IEMyMSAyNyAxOCAyOCAxNSAyOCBDMTIgMjggOSAyNyA3IDI0IEM1IDIxIDUgMTcgNiAxMyBaIiBmaWxsPSIjY2JkNWUxIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMC42Ii8+PHBhdGggZD0iTTggMTcgTDExIDIwIE0xMSAxOSBMMTQgMjIgTTE0IDIyIEwxNyAyNSIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2Utd2lkdGg9IjAuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEgMSBROCAxMCAxNyAxOCBUMzEgMzEiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xIDEgUTggMTAgMTcgMTggVDMxIDMxIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMC44IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMSAxIEwzIDYgTDYgMyBaIiBmaWxsPSIjZmVmMDhhIiBzdHJva2U9IiMwZjE3MmEiIHN0cm9rZS13aWR0aD0iMC44Ii8+PGxpbmUgeDE9IjEiIHkxPSIxIiB4Mj0iMy41IiB5Mj0iMy41IiBzdHJva2U9IiMwZjE3MmEiIHN0cm9rZS13aWR0aD0iMC44IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIxLjIiIGN5PSIxLjIiIHI9IjEuMiIgZmlsbD0iIzAyODRjNyIvPjwvc3ZnPg==") 1 1, auto) !important;
+}
+
 
 /* Enhanced section styling for better visual separation */
 section {

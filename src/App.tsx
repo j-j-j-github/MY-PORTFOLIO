@@ -1,9 +1,13 @@
-// App.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import TimelineSection from "./components/TimelineSection";
 import { Github, Linkedin, Mail, Code, Briefcase, User, Star, ChevronDown, ChevronUp, ArrowRight, Rocket, Download, Layout, Server, Smartphone, HelpCircle } from 'lucide-react';
 import NavItem from './components/NavItem';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useRouter } from './context/RouterContext';
+import { BeyondTheCodeSection } from './components/beyond/BeyondTheCodeSection';
+import { WatchesPage } from './pages/WatchesPage';
+import { PhotographyPage } from './pages/PhotographyPage';
+import { PoetryPage } from './pages/PoetryPage';
 
 const featuredMedia = [
   { title: "μLearn Orientation", image: `${import.meta.env.BASE_URL}albums/Orientation.jpeg` },
@@ -222,7 +226,8 @@ const HeroHoverText = ({ style }: { style?: any }) => {
   );
 };
 
-const App = () => {
+const HomePage = () => {
+  const { navigate, targetSectionId, clearTargetSection } = useRouter();
   const { scrollY } = useScroll();
   const textScale = useTransform(scrollY, [0, 600], [1, 3.5]);
   const textX = useTransform(scrollY, [0, 600], [0, 150]);
@@ -234,14 +239,52 @@ const App = () => {
   const [isLogoHovered, setIsLogoHovered] = useState(false);
   const [showSkillInfo, setShowSkillInfo] = useState(false);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+  const hasScrolledToReturnRef = useRef(false);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -70;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       setActiveSection(id);
     }
   };
+
+  useEffect(() => {
+    const hash = window.location.hash ? window.location.hash.replace('#', '') : null;
+    const returnSection = targetSectionId || sessionStorage.getItem('returnSection') || (hash === 'beyondcode' && !hasScrolledToReturnRef.current ? 'beyondcode' : null);
+    if (returnSection) {
+      hasScrolledToReturnRef.current = true;
+      sessionStorage.removeItem('returnSection');
+      clearTargetSection();
+
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+
+      const scrollToTarget = (behavior: ScrollBehavior = 'auto') => {
+        const el = document.getElementById(returnSection);
+        if (el) {
+          const yOffset = -70;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior });
+          setActiveSection(returnSection);
+        }
+      };
+
+      scrollToTarget('auto');
+      const timer1 = setTimeout(() => scrollToTarget('auto'), 40);
+      const timer2 = setTimeout(() => scrollToTarget('auto'), 120);
+      const timer3 = setTimeout(() => scrollToTarget('auto'), 300);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
+    }
+  }, [targetSectionId, clearTargetSection]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -292,6 +335,7 @@ const App = () => {
     { id: 'education', label: 'Timeline' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
+    { id: 'beyondcode', label: 'Interests' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -442,26 +486,27 @@ const App = () => {
       */}
 
       {/* Navigation (New: Text Logo, Left-Aligned Navbar) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 h-[76px] bg-black/70 backdrop-blur-xl border-b border-white/5 px-4 md:px-12 flex items-center transform-gpu">
-        <div className="flex-shrink-0 mr-4 md:mr-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 h-[64px] bg-black/75 backdrop-blur-xl border-b border-white/5 px-4 md:px-8 lg:px-12 flex items-center transform-gpu">
+        <div className="flex-shrink-0 mr-3 md:mr-6">
           <button
             onClick={() => scrollToSection('hero')}
             onMouseEnter={() => setIsLogoHovered(true)}
             onMouseLeave={() => setIsLogoHovered(false)}
-            className="font-bold text-lg md:text-xl tracking-[0.2em] text-white transition-colors duration-300 focus:outline-none uppercase flex items-center"
+            style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
+            className="font-bold text-base md:text-lg tracking-[0.16em] text-white transition-colors duration-300 outline-none focus:outline-none focus:ring-0 active:outline-none uppercase flex items-center select-none"
           >
-            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-3' : 'mr-3'}`}>J</span>
-            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>EEVAL&nbsp;</span>
-            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-3' : 'mr-3'}`}>J</span>
-            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>OLLY&nbsp;</span>
+            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-2.5' : 'mr-2.5'}`}>J</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[85px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>EEVAL&nbsp;</span>
+            <span className={`transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:mr-0 mr-2.5' : 'mr-2.5'}`}>J</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[85px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>OLLY&nbsp;</span>
             <span>J</span>
-            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[100px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>ACOB</span>
+            <span className={`overflow-hidden transition-all duration-500 ease-in-out ${isLogoHovered || activeSection !== 'hero' ? 'md:max-w-[85px] md:opacity-100 max-w-0 opacity-0' : 'max-w-0 opacity-0'}`}>ACOB</span>
           </button>
         </div>
 
         <div className="flex-grow relative flex overflow-hidden">
           <div ref={navRef} className="w-full flex justify-start md:justify-end overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] nav-fade-mask">
-            <div className="flex space-x-2 md:space-x-4 p-1 relative w-max md:w-auto">
+            <div className="flex space-x-1 sm:space-x-1.5 md:space-x-2 p-1 relative w-max md:w-auto">
               {navItemsData.map(item => (
                 <NavItem
                   key={item.id}
@@ -481,7 +526,7 @@ const App = () => {
         {/* HERO SECTION (Split Layout) */}
         <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative flex flex-col justify-center md:flex-row md:items-center min-h-[100vh] bg-transparent overflow-hidden pt-20 md:pt-24 pb-12 md:pb-0">
           {/* Background Image bounded to exactly below topbar */}
-          <div className="absolute inset-x-0 bottom-0 top-[76px] z-0 bg-white">
+          <div className="absolute inset-x-0 bottom-0 top-[64px] z-0 bg-white">
              <img src="hero.png" alt="Hero Background" className="hidden md:block w-full h-full object-contain object-[left_center] translate-x-8 md:translate-x-12 transition-transform" />
           </div>
 
@@ -524,7 +569,7 @@ const App = () => {
           </div>
 
           {/* Foreground Cutout Layer (z-30) for Depth Effect */}
-          <div className="hidden md:block absolute inset-x-0 bottom-0 top-[76px] z-30 pointer-events-none">
+          <div className="hidden md:block absolute inset-x-0 bottom-0 top-[64px] z-30 pointer-events-none">
              <img src="hero overlay.png" alt="Hero Overlay" className="w-full h-full object-contain object-[left_center] translate-x-8 md:translate-x-12 transition-transform" />
           </div>
 
@@ -545,8 +590,8 @@ const App = () => {
 
             {/* Overlay Centered Heading */}
             <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-8 z-10">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black">
-                About Me
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black uppercase">
+                ABOUT ME
               </h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -711,9 +756,9 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black"
+                className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black uppercase"
               >
-                My Skills
+                MY SKILLS
               </motion.h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -821,8 +866,8 @@ const App = () => {
         <section id="projects" ref={(el) => { sectionsRef.current[4] = el; }} className="py-10 md:py-16 px-8 bg-black border-y border-neutral-900 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex flex-col items-center justify-center mb-16 relative">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-white flex items-center justify-center">
-                Featured Projects
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-white flex items-center justify-center uppercase">
+                FEATURED PROJECTS
               </h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -881,48 +926,54 @@ const App = () => {
           </div>
         </section>
 
+        {/* BEYOND THE CODE SECTION */}
+        <BeyondTheCodeSection sectionRef={(el) => { sectionsRef.current[5] = el; }} />
+
         {/* CONTACT SECTION */}
-        <section id="contact" ref={(el) => { sectionsRef.current[5] = el; }} className="py-8 md:py-12 px-8 bg-white border-t border-neutral-200 text-black bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
+        <section id="contact" ref={(el) => { sectionsRef.current[6] = el; }} className="py-12 md:py-20 px-8 bg-black border-t border-neutral-900 text-white bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px]">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <div className="flex flex-col items-center justify-center relative">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-black">
-                Get In Touch
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter flex items-center justify-center text-white uppercase">
+                GET IN TOUCH
               </h2>
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: "120px" }}
                 viewport={{ once: false }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="h-1 bg-blue-600 rounded-full mt-4"
+                className="h-1 bg-blue-500 rounded-full mt-4"
               />
             </div>
-            <p className="text-xl text-black leading-relaxed font-light">
-              Have a project in mind or just want to say hello? Feel free to reach out! I'm always open to new opportunities and collaborations.
+            <p className="text-xl text-neutral-300 leading-relaxed font-light">
+              Have a project in mind or just want to say hello? Feel free to reach out! I am always open to new opportunities and collaborations.
             </p>
             <div className="flex justify-center space-x-12 py-4">
               <a href="https://github.com/j-j-j-github" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                <div className="p-3 rounded-full border border-black bg-black group-hover:bg-emerald-600 group-hover:border-emerald-600 transition-all duration-300 shadow-lg hover:-translate-y-1">
-                  <Github className="h-6 w-6 text-emerald-500 group-hover:text-white transition-colors duration-300" />
+                <div className="p-3.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 group-hover:bg-emerald-600 group-hover:border-emerald-500 transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:-translate-y-1">
+                  <Github className="h-6 w-6 text-emerald-400 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="text-xs font-bold text-black mt-2">GitHub</span>
+                <span className="text-xs font-bold text-emerald-400 group-hover:text-emerald-300 mt-2 transition-colors">GitHub</span>
               </a>
               <a href="https://www.linkedin.com/in/jeeval-jolly-jacob-5a28b4329/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                <div className="p-3 rounded-full border border-black bg-black group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-300 shadow-lg hover:-translate-y-1">
-                  <Linkedin className="h-6 w-6 text-blue-500 group-hover:text-white transition-colors duration-300" />
+                <div className="p-3.5 rounded-full border border-blue-500/40 bg-blue-500/10 group-hover:bg-blue-600 group-hover:border-blue-500 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.15)] group-hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] hover:-translate-y-1">
+                  <Linkedin className="h-6 w-6 text-blue-400 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="text-xs font-bold text-black mt-2">LinkedIn</span>
+                <span className="text-xs font-bold text-blue-400 group-hover:text-blue-300 mt-2 transition-colors">LinkedIn</span>
               </a>
               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jeevaljolly@gmail.com" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                <div className="p-3 rounded-full border border-black bg-black group-hover:bg-red-600 group-hover:border-red-600 transition-all duration-300 shadow-lg hover:-translate-y-1">
-                  <Mail className="h-6 w-6 text-red-500 group-hover:text-white transition-colors duration-300" />
+                <div className="p-3.5 rounded-full border border-rose-500/40 bg-rose-500/10 group-hover:bg-rose-600 group-hover:border-rose-500 transition-all duration-300 shadow-[0_0_20px_rgba(244,63,94,0.15)] group-hover:shadow-[0_0_25px_rgba(244,63,94,0.4)] hover:-translate-y-1">
+                  <Mail className="h-6 w-6 text-rose-400 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="text-xs font-bold text-black mt-2">Email</span>
+                <span className="text-xs font-bold text-rose-400 group-hover:text-rose-300 mt-2 transition-colors">Email</span>
               </a>
             </div>
             <div className="flex justify-center">
-              <Button primary={true} onClick={() => window.location.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=jeevaljolly@gmail.com'}>
+              <button
+                onClick={() => window.location.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=jeevaljolly@gmail.com'}
+                className="group px-8 py-4 rounded-full font-bold text-xs md:text-sm uppercase tracking-[0.15em] flex items-center justify-center transition-all duration-500 ease-out focus:outline-none w-full sm:w-auto bg-white text-black hover:bg-blue-600 hover:text-white hover:shadow-[0_10px_30px_rgba(37,99,235,0.4)] hover:-translate-y-1 border border-white hover:border-blue-600"
+              >
                 Send Me an Email <Mail className="ml-2 h-5 w-5" />
-              </Button>
+              </button>
             </div>
           </div>
         </section>
@@ -932,6 +983,28 @@ const App = () => {
       </footer>
     </div>
   );
+};
+
+const App = () => {
+  const { currentPath } = useRouter();
+
+  useEffect(() => {
+    if (currentPath === '/') {
+      document.title = "Meet Jeeval";
+    }
+  }, [currentPath]);
+
+  if (currentPath === '/watches') {
+    return <WatchesPage />;
+  }
+  if (currentPath === '/photography') {
+    return <PhotographyPage />;
+  }
+  if (currentPath === '/writingsofj' || currentPath === '/poetry') {
+    return <PoetryPage />;
+  }
+
+  return <HomePage />;
 };
 
 export default App;

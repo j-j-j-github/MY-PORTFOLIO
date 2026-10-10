@@ -12,16 +12,28 @@ interface RouterContextType {
 
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
+const formatCleanPath = (input: string): string => {
+  if (!input) return '/';
+  let clean = decodeURIComponent(input).trim();
+  clean = clean.split(/[?#]/)[0];
+  clean = clean.replace(/^\/+/, '').replace(/\/+$/, '');
+  if (!clean) return '/';
+  return '/' + clean;
+};
+
 const normalizePath = (rawPath: string): RoutePath | string => {
-  const base = rawPath.split(/[?#]/)[0];
-  let path = base.replace(/\/+$/, '') || '/';
+  let path = formatCleanPath(rawPath);
   
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectParam = urlParams.get('p') || urlParams.get('path');
     if (redirectParam) {
-      path = redirectParam.split(/[?#]/)[0].replace(/\/+$/, '') || '/';
-      window.history.replaceState(null, '', path);
+      path = formatCleanPath(redirectParam);
+      window.history.replaceState(null, '', path + window.location.hash);
+    } else if (window.location.search.startsWith('?/')) {
+      const param = window.location.search.slice(2).split('&')[0];
+      path = formatCleanPath(param);
+      window.history.replaceState(null, '', path + window.location.hash);
     }
   }
 
@@ -29,14 +41,15 @@ const normalizePath = (rawPath: string): RoutePath | string => {
   if (path === '/poetry') {
     path = '/writingsofj';
     if (typeof window !== 'undefined') {
-      window.history.replaceState(null, '', '/writingsofj');
+      window.history.replaceState(null, '', '/writingsofj' + window.location.hash);
     }
   }
 
   if (path === '/' && typeof window !== 'undefined' && window.location.hash) {
-    const hash = window.location.hash.replace(/^#\/?/, '/');
-    if (hash === '/watches' || hash === '/photography' || hash === '/writingsofj' || hash === '/poetry') {
-      path = hash === '/poetry' ? '/writingsofj' : hash;
+    const hash = window.location.hash.replace(/^#\/?/, '');
+    if (hash === 'watches' || hash === 'photography' || hash === 'writingsofj' || hash === 'poetry') {
+      path = formatCleanPath(hash);
+      if (path === '/poetry') path = '/writingsofj';
     }
   }
 

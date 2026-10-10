@@ -995,13 +995,14 @@ const App = () => {
   }, [currentPath]);
 
   const renderCurrentPage = () => {
-    if (currentPath === '/watches') {
+    const p = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+    if (p === '/watches') {
       return <WatchesPage />;
     }
-    if (currentPath === '/photography') {
+    if (p === '/photography') {
       return <PhotographyPage />;
     }
-    if (currentPath === '/writingsofj' || currentPath === '/poetry') {
+    if (p === '/writingsofj' || p === '/poetry') {
       return <PoetryPage />;
     }
     return <HomePage />;

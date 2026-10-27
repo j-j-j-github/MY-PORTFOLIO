@@ -802,7 +802,7 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const leftColRef = useRef<HTMLDivElement>(null);
   const rightColRef = useRef<HTMLDivElement>(null);
-  const [rightTranslateY, setRightTranslateY] = useState(0);
+  const [stickyTop, setStickyTop] = useState<number>(88);
   const matchingWatch = mainWatchesData.find((w) => w.id === review.watchId);
   const momentGroup = watchMomentsData.find((g) => g.watchId === review.watchId);
 
@@ -811,69 +811,42 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
     window.scrollTo(0, 0);
   }, [review]);
 
-  // Synchronized scroll stop for Review page:
-  // When the right column runs out of content, it stops scrolling and stays pinned,
-  // so on page end both sides finish at the exact same level with zero wasted spacing.
+  // Smooth native CSS sticky layout for Review page:
+  // Dynamically determines whether the right column fits on screen or needs to stick
+  // at the bottom so its content is fully seen and both sides end at the exact same level.
+  // 100% hardware-accelerated by the browser's compositor thread with zero scroll jank.
   useEffect(() => {
-    const calculateReviewScroll = () => {
-      if (window.innerWidth < 1024) {
-        setRightTranslateY(0);
-        return;
-      }
-      if (!leftColRef.current || !rightColRef.current) return;
-
-      const leftEl = leftColRef.current;
-      const rightEl = rightColRef.current;
-
-      const leftH = leftEl.offsetHeight;
-      const rightH = rightEl.offsetHeight;
-      const leftRect = leftEl.getBoundingClientRect();
+    const updateSticky = () => {
+      if (window.innerWidth < 1024) return;
+      if (!rightColRef.current) return;
+      const rightH = rightColRef.current.offsetHeight;
       const windowH = window.innerHeight;
-      const topOffset = 76; // sticky topbar allowance
+      const topOffset = 88; // below sticky topbar
       const bottomOffset = 32; // breathing space above bottom nav
 
-      const maxShift = Math.max(0, leftH - rightH);
-      if (maxShift <= 0) {
-        setRightTranslateY(0);
-        return;
-      }
-
-      const targetPinScreenY = windowH - bottomOffset;
-      const unpinnedBottom = leftRect.top + rightH;
-
-      if (rightH < targetPinScreenY - topOffset) {
-        // Shorter than screen: starts at top, pins when it hits topOffset
-        const neededShift = Math.max(0, topOffset - leftRect.top);
-        setRightTranslateY(Math.min(neededShift, maxShift));
+      if (windowH - topOffset >= rightH) {
+        setStickyTop(topOffset);
       } else {
-        // Taller than screen: scrolls naturally until its bottom reaches targetPinScreenY
-        const neededShift = Math.max(0, targetPinScreenY - unpinnedBottom);
-        setRightTranslateY(Math.min(neededShift, maxShift));
+        setStickyTop(windowH - rightH - bottomOffset);
       }
     };
 
-    window.addEventListener('scroll', calculateReviewScroll, { passive: true });
-    window.addEventListener('resize', calculateReviewScroll);
+    updateSticky();
+    window.addEventListener('resize', updateSticky);
 
     let observer: ResizeObserver | null = null;
-    if (typeof ResizeObserver !== 'undefined') {
-      observer = new ResizeObserver(() => calculateReviewScroll());
-      if (leftColRef.current) observer.observe(leftColRef.current);
-      if (rightColRef.current) observer.observe(rightColRef.current);
+    if (typeof ResizeObserver !== 'undefined' && rightColRef.current) {
+      observer = new ResizeObserver(() => updateSticky());
+      observer.observe(rightColRef.current);
     }
 
-    const timer1 = setTimeout(calculateReviewScroll, 60);
-    const timer2 = setTimeout(calculateReviewScroll, 200);
-    const timer3 = setTimeout(calculateReviewScroll, 500);
-
-    calculateReviewScroll();
+    const t1 = setTimeout(updateSticky, 100);
+    const t2 = setTimeout(updateSticky, 400);
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      window.removeEventListener('scroll', calculateReviewScroll);
-      window.removeEventListener('resize', calculateReviewScroll);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener('resize', updateSticky);
       if (observer) observer.disconnect();
     };
   }, [review, matchingWatch]);
@@ -1103,10 +1076,9 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
             <div
               ref={rightColRef}
               style={{
-                transform: `translate3d(0, ${rightTranslateY}px, 0)`,
-                willChange: 'transform',
+                top: `${stickyTop}px`,
               }}
-              className="space-y-7"
+              className="lg:sticky space-y-7"
             >
               {/* 1. Primary Photo Card */}
               <div id="review-photo-card" className="rounded-2xl bg-white border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.04)] p-4 sm:p-5">

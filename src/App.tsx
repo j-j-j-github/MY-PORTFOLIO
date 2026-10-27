@@ -586,7 +586,16 @@ const HomePage = () => {
 
           {/* Edge-to-Edge Banner Image with Overlay Heading */}
           <div className="relative w-full mb-12 md:mb-16 flex items-center justify-center bg-white">
-            <img src="banner.jpg" alt="About Banner" className="w-full h-48 md:h-80 object-cover shadow-md border-y border-neutral-200 opacity-30" />
+            <img
+              src={`${import.meta.env.BASE_URL}banner.jpg`}
+              alt="About Banner"
+              className="w-full h-48 md:h-80 object-cover shadow-md border-y border-neutral-200 opacity-30"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.src = 'banner.jpg';
+              }}
+            />
 
             {/* Overlay Centered Heading */}
             <div className="absolute inset-0 flex flex-col items-center justify-center w-full px-8 z-10">

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type RoutePath = '/' | '/watches' | '/photography' | '/writingsofj' | '/poetry';
+export type RoutePath = '/' | '/watches' | '/photography' | '/writingsofj' | '/poetry' | '/objects-and-time';
 
 interface RouterContextType {
   currentPath: RoutePath | string;
@@ -45,11 +45,17 @@ const normalizePath = (rawPath: string): RoutePath | string => {
     }
   }
 
+  // Support /objects-and-time and /objects aliases for /watches
+  if (path === '/objects-and-time' || path === '/objects') {
+    path = '/watches';
+  }
+
   if (path === '/' && typeof window !== 'undefined' && window.location.hash) {
     const hash = window.location.hash.replace(/^#\/?/, '');
-    if (hash === 'watches' || hash === 'photography' || hash === 'writingsofj' || hash === 'poetry') {
+    if (hash === 'watches' || hash === 'objects-and-time' || hash === 'photography' || hash === 'writingsofj' || hash === 'poetry') {
       path = formatCleanPath(hash);
       if (path === '/poetry') path = '/writingsofj';
+      if (path === '/objects-and-time' || path === '/objects') path = '/watches';
     }
   }
 

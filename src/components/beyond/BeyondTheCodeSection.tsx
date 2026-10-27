@@ -17,8 +17,8 @@ interface InterestCardData {
 const interests: InterestCardData[] = [
   {
     id: 'watches',
-    title: 'Objects & Time',
-    subtitle: 'A growing collection of watches and the stories behind them.',
+    title: 'Watches',
+    subtitle: 'Different watches, different moments. One collection.',
     destination: '/watches',
     image: `${import.meta.env.BASE_URL}beyondcode/watches.jpg`,
     archiveColor: 'text-blue-400',

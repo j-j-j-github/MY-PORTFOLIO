@@ -461,17 +461,17 @@ const WatchDetailPage: React.FC<WatchDetailPageProps> = ({ watch, onBack, onOpen
   return (
     <div className="min-h-screen bg-[#fafafa] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] text-neutral-900 flex flex-col justify-between selection:bg-neutral-900 selection:text-white">
       {/* Sticky Solid Black Topbar Matching Homescreen Size */}
-      <header className="sticky top-0 z-40 h-14 sm:h-[60px] bg-[#0c0c0e] text-white border-b border-white/[0.08] px-3.5 sm:px-8 lg:px-12 flex items-center justify-between transition-all">
+      <header className="sticky top-0 z-40 h-14 sm:h-[60px] bg-[#0c0c0e] text-white border-b border-white/[0.08] px-3.5 sm:px-8 lg:px-12 flex items-center justify-between transition-all relative">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] sm:text-[13px] font-semibold text-white transition-all duration-200 cursor-pointer shrink-0 hover:-translate-x-0.5"
+          aria-label={isArchiveWatch ? 'Back to Archive' : 'Back to Collection'}
+          className="inline-flex items-center gap-1.5 sm:gap-2 p-2 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] sm:text-[13px] font-semibold text-white transition-all duration-200 cursor-pointer shrink-0 hover:-translate-x-0.5"
         >
-          <ArrowLeft className="w-3.5 h-3.5 text-blue-400" />
+          <ArrowLeft className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-blue-400" />
           <span className="hidden sm:inline">{isArchiveWatch ? 'Back to Archive' : 'Back to Collection'}</span>
-          <span className="sm:hidden">Back</span>
         </button>
 
-        <div className="flex items-center gap-2 font-mono text-[13px] sm:text-[15px] md:text-base font-bold tracking-widest uppercase text-white px-2 whitespace-nowrap shrink-0">
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-mono text-[13px] sm:text-[15px] md:text-base font-bold tracking-widest uppercase text-white px-2 whitespace-nowrap pointer-events-none">
           <span>JJJ WATCHES</span>
         </div>
 
@@ -508,6 +508,24 @@ const WatchDetailPage: React.FC<WatchDetailPageProps> = ({ watch, onBack, onOpen
               </p>
 
               <div className="w-16 h-px bg-neutral-300 mt-6" />
+            </div>
+
+            {/* Mobile Hero Thumbnail Photo (shown after model & description, before narrative cards) */}
+            <div
+              onClick={() => setLightboxImg(resolveImg(watch.heroImage))}
+              className="lg:hidden relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer mt-6"
+            >
+              <img
+                src={resolveImg(watch.heroImage)}
+                alt={`${watch.brand} ${watch.model}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 active:opacity-100 transition-opacity flex items-center justify-center">
+                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-medium">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>Enlarge Photo</span>
+                </span>
+              </div>
             </div>
 
             {/* The Story Section (Collection) OR Archive Notes (Archive) */}
@@ -606,10 +624,10 @@ const WatchDetailPage: React.FC<WatchDetailPageProps> = ({ watch, onBack, onOpen
           <div className={`lg:col-span-5 relative ${isArchiveWatch ? '' : 'h-full min-h-full'}`}>
             {isArchiveWatch ? (
               <div className="space-y-7">
-                {/* Primary Hero Photograph */}
+                {/* Primary Hero Photograph (Desktop only, mobile shows it under header description) */}
                 <div
                   id="archive-hero-photo"
-                  className="relative aspect-[16/10] sm:aspect-[4/3] max-h-[300px] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_12px_32px_rgba(0,0,0,0.08)] shrink-0"
+                  className="hidden lg:block relative aspect-[16/10] sm:aspect-[4/3] max-h-[300px] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_12px_32px_rgba(0,0,0,0.08)] shrink-0"
                 >
                   <img
                     src={resolveImg(watch.heroImage)}
@@ -657,8 +675,8 @@ const WatchDetailPage: React.FC<WatchDetailPageProps> = ({ watch, onBack, onOpen
                   }}
                   className="space-y-7"
                 >
-                  {/* Primary Hero Photograph */}
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_12px_32px_rgba(0,0,0,0.08)]">
+                  {/* Primary Hero Photograph (Desktop only, mobile shows it under header description) */}
+                  <div className="hidden lg:block relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_12px_32px_rgba(0,0,0,0.08)]">
                     <img
                       src={resolveImg(watch.heroImage)}
                       alt={`${watch.brand} ${watch.model}`}
@@ -739,8 +757,8 @@ const WatchDetailPage: React.FC<WatchDetailPageProps> = ({ watch, onBack, onOpen
         </div>
       </main>
 
-      {/* Solid Black Footer */}
-      <footer className="w-full bg-[#0c0c0e] text-white border-t border-white/[0.08] py-12 px-6 sm:px-10 lg:px-14">
+      {/* Solid Black Footer (Hidden on Mobile) */}
+      <footer className="hidden sm:block w-full bg-[#0c0c0e] text-white border-t border-white/[0.08] py-12 px-6 sm:px-10 lg:px-14">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs sm:text-sm font-medium text-neutral-400">
           <div className="flex items-center gap-3">
             <span className="font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Display','Inter',sans-serif] font-bold tracking-tight uppercase text-white text-base">
@@ -940,17 +958,17 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
   return (
     <div className="min-h-screen bg-[#fafafa] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] text-neutral-900 flex flex-col justify-between selection:bg-neutral-900 selection:text-white">
       {/* Sticky Solid Black Topbar Matching Homescreen Size */}
-      <header className="sticky top-0 z-40 h-14 sm:h-[60px] bg-[#0c0c0e] text-white border-b border-white/[0.08] px-3.5 sm:px-8 lg:px-12 flex items-center justify-between transition-all">
+      <header className="sticky top-0 z-40 h-14 sm:h-[60px] bg-[#0c0c0e] text-white border-b border-white/[0.08] px-3.5 sm:px-8 lg:px-12 flex items-center justify-between transition-all relative">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] sm:text-[13px] font-semibold text-white transition-all duration-200 cursor-pointer shrink-0 hover:-translate-x-0.5"
+          aria-label="Back to Reviews"
+          className="inline-flex items-center gap-1.5 sm:gap-2 p-2 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] sm:text-[13px] font-semibold text-white transition-all duration-200 cursor-pointer shrink-0 hover:-translate-x-0.5"
         >
-          <ArrowLeft className="w-3.5 h-3.5 text-blue-400" />
+          <ArrowLeft className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-blue-400" />
           <span className="hidden sm:inline">Back to Reviews</span>
-          <span className="sm:hidden">Back</span>
         </button>
 
-        <div className="flex items-center gap-2 font-mono text-[13px] sm:text-[15px] md:text-base font-bold tracking-widest uppercase text-white px-2 whitespace-nowrap shrink-0">
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-mono text-[13px] sm:text-[15px] md:text-base font-bold tracking-widest uppercase text-white px-2 whitespace-nowrap pointer-events-none">
           <span>JJJ WATCHES</span>
         </div>
 
@@ -986,6 +1004,26 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
               </p>
 
               <div className="w-16 h-px bg-neutral-300 mt-6" />
+            </div>
+
+            {/* Mobile Hero Thumbnail Photo (shown after model & excerpt, before Why I Bought It) */}
+            <div className="lg:hidden mt-6">
+              <div
+                onClick={() => setLightboxImg(resolveImg(review.coverImage))}
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-[0_8px_24px_rgba(0,0,0,0.08)] cursor-pointer"
+              >
+                <img
+                  src={resolveImg(review.coverImage)}
+                  alt={review.model}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 active:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-medium">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>Enlarge Photo</span>
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Narrative Sections */}
@@ -1080,8 +1118,8 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
               }}
               className="lg:sticky space-y-7"
             >
-              {/* 1. Primary Photo Card */}
-              <div id="review-photo-card" className="rounded-2xl bg-white border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.04)] p-4 sm:p-5">
+              {/* 1. Primary Photo Card (Desktop only, mobile shows it under excerpt/description) */}
+              <div id="review-photo-card" className="hidden lg:block rounded-2xl bg-white border border-neutral-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.04)] p-4 sm:p-5">
                 <div
                   onClick={() => setLightboxImg(resolveImg(review.coverImage))}
                   className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-100 border border-neutral-300 shadow-md cursor-pointer"
@@ -1219,8 +1257,8 @@ const ReviewDetailPage: React.FC<ReviewDetailPageProps> = ({ review, onBack, onO
         )}
       </AnimatePresence>
 
-      {/* Solid Black Footer */}
-      <footer className="w-full bg-[#0c0c0e] text-white border-t border-white/[0.08] py-12 px-6 sm:px-10 lg:px-14">
+      {/* Solid Black Footer (Hidden on Mobile) */}
+      <footer className="hidden sm:block w-full bg-[#0c0c0e] text-white border-t border-white/[0.08] py-12 px-6 sm:px-10 lg:px-14">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs sm:text-sm font-medium text-neutral-400">
           <div className="flex items-center gap-3">
             <span className="font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Display','Inter',sans-serif] font-bold tracking-tight uppercase text-white text-base">

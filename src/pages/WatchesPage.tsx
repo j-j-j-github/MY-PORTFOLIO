@@ -1304,6 +1304,19 @@ export const WatchesPage: React.FC = () => {
   const [isArchiveExpanded, setIsArchiveExpanded] = useState(false);
   const [isReviewsExpanded, setIsReviewsExpanded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileScreen, setIsMobileScreen] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileScreen(window.innerWidth < 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const archiveInitialCount = isMobileScreen ? 4 : 3;
 
   // Active section for topbar tracking (null when on hero cover)
   const [activeSection, setActiveSection] = useState<'journey' | 'main' | 'extended' | 'reviews' | 'stories' | null>(null);
@@ -2083,9 +2096,9 @@ export const WatchesPage: React.FC = () => {
             </span>
           </div>
 
-          {/* Initial 3 Archive Watches: 2 Cards per Row on Mobile */}
+          {/* Initial Archive Watches: 4 Cards on Mobile (2 rows of 2), 3 on Desktop (1 row of 3) */}
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
-            {secondaryWatchesData.slice(0, 3).map((watch) => (
+            {secondaryWatchesData.slice(0, archiveInitialCount).map((watch) => (
               <article
                 key={watch.id}
                 onClick={() => openWatchPage(watch)}
@@ -2155,7 +2168,7 @@ export const WatchesPage: React.FC = () => {
 
           {/* Additional Archive Watches with Smooth Expand/Collapse Animation */}
           <AnimatePresence initial={false}>
-            {isArchiveExpanded && secondaryWatchesData.length > 3 && (
+            {isArchiveExpanded && secondaryWatchesData.length > archiveInitialCount && (
               <motion.div
                 key="archive-expanded-container"
                 initial={{ opacity: 0, height: 0 }}
@@ -2165,7 +2178,7 @@ export const WatchesPage: React.FC = () => {
                 className="overflow-hidden"
               >
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8 pt-6 sm:pt-8">
-                  {secondaryWatchesData.slice(3).map((watch, index) => (
+                  {secondaryWatchesData.slice(archiveInitialCount).map((watch, index) => (
                     <motion.div
                       key={watch.id}
                       initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -2245,7 +2258,7 @@ export const WatchesPage: React.FC = () => {
           </AnimatePresence>
 
           {/* Expand / Collapse Button for The Archive with Smooth Text & Chevron Animations */}
-          {secondaryWatchesData.length > 3 && (
+          {secondaryWatchesData.length > archiveInitialCount && (
             <div className="mt-10 flex justify-center">
               <button
                 onClick={() => {

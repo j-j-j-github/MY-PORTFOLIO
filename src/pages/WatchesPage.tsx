@@ -1800,7 +1800,7 @@ export const WatchesPage: React.FC = () => {
               className="mt-6 max-w-lg mx-auto lg:mx-0"
             >
               <p className="text-base sm:text-lg md:text-xl font-normal text-neutral-700 leading-relaxed font-[-apple-system,BlinkMacSystemFont,'Inter',sans-serif] italic">
-                A growing watch collection curated by Jeeval Jolly Jacob.<br />
+                A growing watch collection curated by <br className="sm:hidden" />Jeeval Jolly Jacob.<br />
                 A student's exploration of time and design.<br />
                 Every watch, a story. Every story, timeless.
               </p>

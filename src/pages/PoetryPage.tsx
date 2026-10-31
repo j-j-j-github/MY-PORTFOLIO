@@ -250,24 +250,27 @@ export const PoetryPage: React.FC = () => {
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
 
   // Dedicated lookups for "Most Recent" and "His Favorites"
-  const overlookedPoem = useMemo(() => poemsData.find((p) => p.id === 'overlooked'), []);
-  const overlookedLines = useMemo(() => {
-    if (!overlookedPoem?.body) return [];
-    return overlookedPoem.body
+  const recentPoem = useMemo(
+    () => poemsData.find((p) => p.id === 'the-moon-even-in-absence') || poemsData[poemsData.length - 1],
+    []
+  );
+  const recentLines = useMemo(() => {
+    if (!recentPoem?.body) return [];
+    return recentPoem.body
       .split('\n')
       .map((l) => l.trim())
       .filter(Boolean);
-  }, [overlookedPoem]);
+  }, [recentPoem]);
 
   const handleNextRecentLine = useCallback(() => {
     setSlideDirection(1);
-    setRecentLineIdx((prev) => (prev < overlookedLines.length - 1 ? prev + 1 : 0));
-  }, [overlookedLines.length]);
+    setRecentLineIdx((prev) => (prev < recentLines.length - 1 ? prev + 1 : 0));
+  }, [recentLines.length]);
 
   const handlePrevRecentLine = useCallback(() => {
     setSlideDirection(-1);
-    setRecentLineIdx((prev) => (prev > 0 ? prev - 1 : overlookedLines.length - 1));
-  }, [overlookedLines.length]);
+    setRecentLineIdx((prev) => (prev > 0 ? prev - 1 : recentLines.length - 1));
+  }, [recentLines.length]);
 
   const handleResetRecentLine = useCallback(() => {
     setSlideDirection(-1);
@@ -899,7 +902,7 @@ In this poetic harmony, our story is heard.`}
                 <div className="flex items-center gap-2">
                   <Feather className="w-4 h-4 text-sky-400 shrink-0" />
                   <h3 className="text-lg sm:text-xl md:text-2xl font-sans font-bold text-white tracking-tight">
-                    {overlookedPoem?.title || 'The Overlooked'}
+                    {recentPoem?.title || 'The Moon, Even in Absence'}
                   </h3>
                 </div>
                 <span className="font-['Caveat',cursive] text-xl sm:text-2xl text-white/90 font-bold select-none tracking-wide">
@@ -948,7 +951,7 @@ In this poetic harmony, our story is heard.`}
                     <div className="h-7 flex items-center justify-center px-2">
                       {recentLineIdx > 0 ? (
                         <p className="text-white/45 font-['Caveat',cursive] text-lg sm:text-xl truncate max-w-md select-none tracking-wide">
-                          &ldquo;{overlookedLines[recentLineIdx - 1]}&rdquo;
+                          &ldquo;{recentLines[recentLineIdx - 1]}&rdquo;
                         </p>
                       ) : (
                         <div className="h-7" />
@@ -958,15 +961,15 @@ In this poetic harmony, our story is heard.`}
                     {/* Active Hero Line (center) - generous height and line-height prevents any clipping */}
                     <div className="min-h-[80px] sm:min-h-[88px] flex items-center justify-center px-3 py-1">
                       <p className="text-white font-['Caveat',cursive] font-bold text-3xl sm:text-4xl md:text-[40px] !leading-[1.3] tracking-wide select-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
-                        &ldquo;{overlookedLines[recentLineIdx]}&rdquo;
+                        &ldquo;{recentLines[recentLineIdx]}&rdquo;
                       </p>
                     </div>
 
                     {/* Next Line (bottom) */}
                     <div className="h-7 flex items-center justify-center px-2">
-                      {recentLineIdx < overlookedLines.length - 1 ? (
+                      {recentLineIdx < recentLines.length - 1 ? (
                         <p className="text-white/45 font-['Caveat',cursive] text-lg sm:text-xl truncate max-w-md select-none tracking-wide">
-                          &ldquo;{overlookedLines[recentLineIdx + 1]}&rdquo;
+                          &ldquo;{recentLines[recentLineIdx + 1]}&rdquo;
                         </p>
                       ) : (
                         <div className="h-7" />
@@ -979,7 +982,7 @@ In this poetic harmony, our story is heard.`}
               {/* Bottom Retro Controls (No dividing horizontal line, clean font for counter) */}
               <div className="relative z-10 pt-1 flex items-center justify-between">
                 <span className="font-mono text-xs sm:text-sm text-white/70 tracking-wider">
-                  {recentLineIdx + 1} / {overlookedLines.length}
+                  {recentLineIdx + 1} / {recentLines.length}
                 </span>
 
                 {/* Navigation Buttons: Beginning, Previous, Next */}
@@ -1015,7 +1018,7 @@ In this poetic harmony, our story is heard.`}
                     title="Next line"
                     className="group flex items-center gap-1.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white text-stone-900 hover:bg-neutral-200 active:scale-95 text-xs sm:text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 shadow-lg"
                   >
-                    <span>{recentLineIdx === overlookedLines.length - 1 ? 'Start Over' : 'Next'}</span>
+                    <span>{recentLineIdx === recentLines.length - 1 ? 'Start Over' : 'Next'}</span>
                     <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                   </button>
                 </div>
@@ -1081,16 +1084,16 @@ In this poetic harmony, our story is heard.`}
               {/* Context Explanation - Richer font size gracefully filling the card */}
               <div className="relative z-10 space-y-3 sm:space-y-3.5 text-neutral-300 leading-relaxed font-light">
                 <p className="text-sm sm:text-[15px] md:text-base italic text-white/95 leading-relaxed font-serif">
-                  &ldquo;Written about the quiet art of retreating before being asked to leave, and the subtle grief of convincing oneself that what was lost was never desired.&rdquo;
+                  &ldquo;Written about enduring devotion that outlives sight and distance—a love that does not depend on presence or illumination to remain whole.&rdquo;
                 </p>
                 <p className="text-xs sm:text-[13.5px] md:text-sm text-neutral-300 leading-relaxed">
-                  It explores the human instinct of preemptive withdrawal: choosing solitude over the sting of being second choice, and finding quiet dignity in walking away before anyone can close the door.
+                  It explores the quiet devotion of the night for the moon: loving someone not just when they are radiant and near, but remaining steadfast even when dawn conceals their light and leaves the sky empty.
                 </p>
               </div>
 
               {/* Bottom Context Footnote */}
               <div className="relative z-10 pt-1 flex items-center justify-between text-xs font-mono text-neutral-400">
-                <span className="text-neutral-400 tracking-wider">Reflections &bull; Piece 01</span>
+                <span className="text-neutral-400 tracking-wider">Unspoken &bull; Piece 20</span>
               </div>
             </div>
           </div>

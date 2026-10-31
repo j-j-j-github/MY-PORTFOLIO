@@ -350,4 +350,22 @@ As we let go gracefully, showing we cared.`,
     date: 'Piece 19',
     author: 'Writings of J',
   },
+  {
+    id: 'the-moon-even-in-absence',
+    title: 'The Moon, Even in Absence',
+    theme: 'unspoken',
+    body: `I have loved the moon in all her grace,
+Even when the dawn concealed her face,
+And left the heavens an empty space.
+
+For what is love that longs for sight,
+That fades when parted from its light,
+When I, the night, still long to hold her tight?
+
+Let others love the moon when she is bright,
+I shall love her beyond the reach of sight,
+Even when she forsakes me, her faithful night.`,
+    date: 'Piece 20',
+    author: 'Writings of J',
+  },
 ];

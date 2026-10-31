@@ -1084,7 +1084,7 @@ In this poetic harmony, our story is heard.`}
               {/* Context Explanation - Richer font size gracefully filling the card */}
               <div className="relative z-10 space-y-3 sm:space-y-3.5 text-neutral-300 leading-relaxed font-light">
                 <p className="text-sm sm:text-[15px] md:text-base italic text-white/95 leading-relaxed font-serif">
-                  &ldquo;Written about enduring devotion that outlives sight and distance—a love that does not depend on presence or illumination to remain whole.&rdquo;
+                  &ldquo;Written about enduring devotion that outlives sight and distance, a love that does not depend on presence or illumination to remain whole.&rdquo;
                 </p>
                 <p className="text-xs sm:text-[13.5px] md:text-sm text-neutral-300 leading-relaxed">
                   It explores the quiet devotion of the night for the moon: loving someone not just when they are radiant and near, but remaining steadfast even when dawn conceals their light and leaves the sky empty.
@@ -1093,7 +1093,7 @@ In this poetic harmony, our story is heard.`}
 
               {/* Bottom Context Footnote */}
               <div className="relative z-10 pt-1 flex items-center justify-between text-xs font-mono text-neutral-400">
-                <span className="text-neutral-400 tracking-wider">Unspoken &bull; Piece 20</span>
+                <span className="text-neutral-400 tracking-wider">Somewhere Within &bull; Piece 20</span>
               </div>
             </div>
           </div>
